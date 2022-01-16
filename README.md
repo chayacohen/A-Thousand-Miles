@@ -29,8 +29,8 @@ User Auth & Splash
 ## Timeline & Group Breakdown 
 
 ### Day 1: 
-  - User Auth/Splash ()
-  - User profile ()
+  - User Auth/Splash Fontend Routes (Nick) [/] 
+  - User profile (Brian) [/:id/profile]
   - Figuring out map draw / fetch attractions from map (Chaya)
   - User table / schema 
 
