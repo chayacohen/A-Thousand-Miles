@@ -1,0 +1,34 @@
+{
+  "name": "a-thousand-miles",
+  "version": "1.0.0",
+  "description": "## Background and Overview",
+  "main": "index.js",
+  "scripts": {
+    "server:debug": "nodemon --inspect app.js",
+    "server": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chayacohen/A-Thousand-Miles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chayacohen/A-Thousand-Miles/issues"
+  },
+  "homepage": "https://github.com/chayacohen/A-Thousand-Miles#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.6",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
