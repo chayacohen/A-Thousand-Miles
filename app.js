@@ -3,9 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
-const User =require("./models/User");
+const itineraries = require("./routes/api/itineraries")
+// const User = require("./models/User");
 const bodyParser = require("body-parser");
-
+const passport = require('passport');
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log("Connected to mongoDB"))
@@ -21,7 +22,13 @@ app.get("/", (req, res) => {
     res.send("Initial creation");
 });
 
+app.use(passport.initialize());
+require('./config/passport')(passport);
+
+
 app.use("/api/users", users);
+app.use("/api/itineraries", itineraries);
+
 
 const port = process.env.PORT || 5000;
 
