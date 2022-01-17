@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Itinerary = require("../../models/Itinerary");
+const User = require("../../models/User");
 const validateItineraryInput = require("../../validation/itinerary");
 
 router.get('/', (req, res) => {
@@ -50,9 +51,14 @@ router.post('/',
             start_date: req.body.start_date,
             end_date: req.body.end_date,
         });
+        // const currentUser = User.findOne({ id: req.user._doc._id});
+        // debugger;
 
         newItinerary.save()
-            .then(itinerary => res.json(itinerary))
+            .then(itinerary => {
+                // currentUser.itineraries.push(itinerary._doc._id)
+                res.json(itinerary)
+            })
             .catch(err => console.log(err));
     }
 );
