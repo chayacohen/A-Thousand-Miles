@@ -18,13 +18,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    // const user = new User({
-    //     username: "test",
-    //     email: "test@test.com",
-    //     password: "password",
-    //     address: "123 st 123 ave NY"
-    // });
-    // user.save();
     res.send("Initial creation");
 });
 
