@@ -4,6 +4,7 @@ const User = require("../../models/User");
 const bcrypt = require('bcryptjs');
 const keys = require("../../config/keys");
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -52,7 +53,7 @@ router.post('/login', (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    
+
     const email = req.body.email;
     const password = req.body.password;
 
@@ -84,5 +85,21 @@ router.post('/login', (req, res) => {
                 })
         })
 })
+
+router.put('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        User.findById(req.params.id)
+            .then(user => {
+                user.username = req.body.username;
+                user.address = req.body.address;
+                user.save();
+                res.json(user)
+            })
+            .catch(err =>
+                res.status(404).json({ message: 'No user found with that ID' })
+            );
+    }
+);
 
 module.exports = router;

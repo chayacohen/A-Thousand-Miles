@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/itinerary/:itinerary_id', (req, res) => {
-    Itinerary.find({ id: req.params.itinerary_id })
-        .then(itineraries => res.json(itineraries))
+    Attraction.find({ itinerary: req.params.itinerary_id })
+        .then(attractions => res.json(attractions))
         .catch(err =>
             res.status(404).json({ notweetsfound: 'No attractions found from that itinerary' }
             )
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
         );
 });
 
-router.post('/',
+router.post('/itinerary/:itinerary_id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { errors, isValid } = validateAttractionInput(req.body);
@@ -37,21 +37,27 @@ router.post('/',
         if (!isValid) {
             return res.status(400).json(errors);
         }
+        const newAttraction = new Attraction({
+            itinerary: req.params.itinerary_id,
+            lat: req.body.lat,
+            lng: req.body.lng,
+            title: req.body.title
+        });
+        newAttraction.save().then(attraction => res.json(attraction));
+    }
+);
 
-        Attraction.findOne({ title: req.body.title})
+router.delete('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Attraction.findById(req.params.id)
             .then(attraction => {
-                if (attraction) {
-                    res.json(attraction)
-                } else {
-                    const newAttraction = new Attraction({
-                        lat: req.body.lat,
-                        lng: req.body.lng,
-                        title: req.body.title
-                    });
-                    newAttraction.save().then(attraction => res.json(attraction));
-                }
+                attraction.remove()
+                res.json(attraction)
             })
-
+            .catch(err =>
+                res.status(404).json({ message: 'No attraction found with that ID' })
+            );
     }
 );
 

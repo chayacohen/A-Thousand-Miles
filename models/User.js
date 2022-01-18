@@ -17,13 +17,7 @@ const UserSchema = new Schema({
     address: {
         type: String,
         required: true
-    },
-    itineraries: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "itineraries"
-        }
-    ]
+    }
 }, {
     timestamps: true
 })

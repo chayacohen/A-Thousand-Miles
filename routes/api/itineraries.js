@@ -10,14 +10,14 @@ const validateItineraryInput = require("../../validation/itinerary");
 router.get('/', (req, res) => {
     Itinerary.find()
         .then(itineraries => res.json(itineraries))
-        .catch(err => res.status(404).json({ notweetsfound: 'No itineraries found' }));
+        .catch(err => res.status(404).json({ message: 'No itineraries found' }));
 });
 
 router.get('/user/:user_id', (req, res) => {
     Itinerary.find({ user: req.params.user_id })
         .then(itineraries => res.json(itineraries))
         .catch(err =>
-            res.status(404).json({ notweetsfound: 'No itineraries found from that user' }
+            res.status(404).json({ message: 'No itineraries found from that user' }
             )
         );
 });
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     Itinerary.findById(req.params.id)
         .then(itinerary => res.json(itinerary))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No itinerary found with that ID' })
+            res.status(404).json({ message: 'No itinerary found with that ID' })
         );
 });
 
@@ -52,17 +52,8 @@ router.post('/',
             start_date: req.body.start_date,
             end_date: req.body.end_date,
         });
-    
-        User.findById(req.user.id)
-            .then(user => console.log(user))
-
         newItinerary.save()
             .then(itinerary => {
-                User.findById(req.user.id)
-                    .then(user => {
-                        user.itineraries.push(itinerary)
-                        user.save();
-                    })
                 res.json(itinerary)
             })
             .catch(err => console.log(err));
@@ -74,22 +65,40 @@ router.put('/:id/:attraction_id',
     (req, res) => {
         Itinerary.findById(req.params.id)
             .then(itinerary => {
-                Attraction.findById(req.params.attraction_id)
-                    .then(attraction => {
-                        if(!itinerary.attractions.includes(attraction.id)){
-                            itinerary.attractions.push(attraction);
-                            itinerary.save();
-                        }
+                // Attraction.findById(req.params.attraction_id)
+                //     .then(attraction => {
+                //         if(!itinerary.attractions.includes(attraction.id)){
+                //             itinerary.attractions.push(attraction);
+                //             itinerary.save();
+                //         }
 
-                        if(!attraction.itineraries.includes(itinerary.id)){
-                            attraction.itineraries.push(itinerary);
-                            attraction.save();
-                        }
-                    })
+                //         if(!attraction.itineraries.includes(itinerary.id)){
+                //             attraction.itineraries.push(itinerary);
+                //             attraction.save();
+                //         }
+                //     })
                 res.json(itinerary)
             })
             .catch(err =>
-                res.status(404).json({ notweetfound: 'No itinerary found with that ID' })
+                res.status(404).json({ message: 'No itinerary found with that ID' })
+            );
+    }
+);
+
+router.delete('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Itinerary.findById(req.params.id)
+        .then(itinerary => {
+                if(req.user.id === itinerary.user.toString()){
+                    itinerary.remove()
+                    res.json(itinerary)
+                } else {
+                    res.status(401).json({message: "This itinerary does not belong to this user"})
+                }
+            })
+            .catch(err =>
+                res.status(404).json({ message: 'No itinerary found with that ID' })
             );
     }
 );

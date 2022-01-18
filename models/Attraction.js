@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AttractionSchema = new Schema({
+    itinerary: {
+        type: Schema.Types.ObjectId,
+        ref: 'itineraries'
+    },
     lat: {
         type: Number,
         required: true
@@ -13,13 +17,7 @@ const AttractionSchema = new Schema({
     title: {
         type: String,
         required: true
-    },
-    itineraries: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "itineraries"
-        }
-    ]
+    }
 }, {
     timestamps: true
 })
