@@ -51,12 +51,17 @@ router.post('/',
             start_date: req.body.start_date,
             end_date: req.body.end_date,
         });
-        // const currentUser = User.findOne({ id: req.user._doc._id});
-        // debugger;
+    
+        User.findById(req.user.id)
+            .then(user => console.log(user))
 
         newItinerary.save()
             .then(itinerary => {
-                // currentUser.itineraries.push(itinerary._doc._id)
+                User.findById(req.user.id)
+                    .then(user => {
+                        user.itineraries.push(itinerary)
+                        user.save();
+                    })
                 res.json(itinerary)
             })
             .catch(err => console.log(err));
