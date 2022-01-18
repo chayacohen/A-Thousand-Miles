@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
+const validateCoordinateInput = require("../../validation/coordinate");
 
 router.get("/test", (req, res) => {
     res.json({msg: "this is the user route"})
@@ -15,9 +15,14 @@ router.get("/test", (req, res) => {
 
 router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
+    const { coordinateErrors, isValidCoordinate } = validateCoordinateInput(req.body);
 
     if (!isValid) {
         return res.status(400).json(errors);
+    }
+
+    if (!isValidCoordinate) {
+        return res.status(400).json(coordinateErrors);
     }
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })

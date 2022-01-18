@@ -23,7 +23,8 @@ const UserSchema = new Schema({
         coordinates: {
             type: [Number],
             // index: "2dsphere"
-        }
+            required: true
+        },
     },
     line: {
         type: { type: String },
