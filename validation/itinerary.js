@@ -27,7 +27,7 @@ module.exports = function validateItineraryInput(data) {
     }
 
     if (!Validator.isFloat(data.start_lat)) {
-        errors.start_lat = 'Starting lat must be a decimal';
+        errors.start_lat = 'Starting lat must be a float';
     }
     //start lng
     if (Validator.isEmpty(data.start_lng)) {
@@ -35,7 +35,7 @@ module.exports = function validateItineraryInput(data) {
     }
 
     if (!Validator.isFloat(data.start_lng)) {
-        errors.start_lng = 'Starting lng must be a decimal';
+        errors.start_lng = 'Starting lng must be a float';
     }
     //end lat
     if (Validator.isEmpty(data.end_lat)) {
@@ -43,7 +43,7 @@ module.exports = function validateItineraryInput(data) {
     }
 
     if (!Validator.isFloat(data.end_lat)) {
-        errors.end_lat = 'Ending lat must be a decimal';
+        errors.end_lat = 'Ending lat must be a float';
     }
     //end lng
     if (Validator.isEmpty(data.end_lng)) {
@@ -51,7 +51,7 @@ module.exports = function validateItineraryInput(data) {
     }
 
     if (!Validator.isFloat(data.end_lng)) {
-        errors.end_lng = 'Ending lng must be a decimal';
+        errors.end_lng = 'Ending lng must be a float';
     }
     //start_date
     if (!Validator.isDate(data.start_date)) {

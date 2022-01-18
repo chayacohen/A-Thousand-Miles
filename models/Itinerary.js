@@ -42,7 +42,13 @@ const ItinerarySchema = new Schema({
     },
     end_date: {
         type: Date
-    }
+    },
+    attractions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "attractions"
+        }
+    ]
 }, {
     timestamps: true
 })

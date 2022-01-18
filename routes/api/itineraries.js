@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const Itinerary = require("../../models/Itinerary");
 const User = require("../../models/User");
+const Attraction = require("../../models/Attraction")
 const validateItineraryInput = require("../../validation/itinerary");
 
 router.get('/', (req, res) => {
@@ -67,5 +68,32 @@ router.post('/',
             .catch(err => console.log(err));
     }
 );
+
+router.put('/:id/:attraction_id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Itinerary.findById(req.params.id)
+            .then(itinerary => {
+                Attraction.findById(req.params.attraction_id)
+                    .then(attraction => {
+                        if(!itinerary.attractions.includes(attraction.id)){
+                            itinerary.attractions.push(attraction);
+                            itinerary.save();
+                        }
+
+                        if(!attraction.itineraries.includes(itinerary.id)){
+                            attraction.itineraries.push(itinerary);
+                            attraction.save();
+                        }
+                    })
+                res.json(itinerary)
+            })
+            .catch(err =>
+                res.status(404).json({ notweetfound: 'No itinerary found with that ID' })
+            );
+    }
+);
+
+
 
 module.exports = router;
