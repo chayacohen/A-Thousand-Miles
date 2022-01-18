@@ -28,11 +28,15 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.6",
+    "node-sass": "^7.0.1",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sass": "^1.48.0",
+    "sass-loader": "^12.4.0",
+    "webpack": "^5.66.0"
   }
 }
