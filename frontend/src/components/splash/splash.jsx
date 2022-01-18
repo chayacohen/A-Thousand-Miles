@@ -10,6 +10,8 @@ class Splash extends React.Component{
         return(
             <div className='splash-container'>
                 <div className='splash-intro'>
+                    <div className='splash-intro-bar'><div className='splash-intro-inner'></div></div>
+                    
                     <div className='splash-intro-content'>
                         <div className='splash-intro-content2'>
                             <h1>A Thousand Miles</h1>
