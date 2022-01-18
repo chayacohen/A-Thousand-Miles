@@ -38,10 +38,12 @@ const ItinerarySchema = new Schema({
         required: true
     },
     start_date: {
-        type: Date
+        type: Date,
+        // default: Date.now
     },
     end_date: {
-        type: Date
+        type: Date,
+        // default: () => Date.now() + 2 * 24 * 60 * 60 * 1000
     }
 }, {
     timestamps: true

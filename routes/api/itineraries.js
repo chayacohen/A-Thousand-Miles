@@ -60,24 +60,17 @@ router.post('/',
     }
 );
 
-router.put('/:id/:attraction_id',
+router.put('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Itinerary.findById(req.params.id)
             .then(itinerary => {
-                // Attraction.findById(req.params.attraction_id)
-                //     .then(attraction => {
-                //         if(!itinerary.attractions.includes(attraction.id)){
-                //             itinerary.attractions.push(attraction);
-                //             itinerary.save();
-                //         }
-
-                //         if(!attraction.itineraries.includes(itinerary.id)){
-                //             attraction.itineraries.push(itinerary);
-                //             attraction.save();
-                //         }
-                //     })
-                res.json(itinerary)
+                itinerary.title = req.body.title;
+                itinerary.description = req.body.description;
+                itinerary.start_date = req.body.start_date;
+                itinerary.end_date = req.body.end_date;
+                itinerary.save();
+                res.json(itinerary);
             })
             .catch(err =>
                 res.status(404).json({ message: 'No itinerary found with that ID' })

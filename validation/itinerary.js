@@ -54,11 +54,11 @@ module.exports = function validateItineraryInput(data) {
         errors.end_lng = 'Ending lng must be a float';
     }
     //start_date
-    if (!Validator.isDate(data.start_date)) {
+    if (!Validator.isDate(data.start_date) && data.start_date) {
         errors.start_date = 'Start date must be a date';
     }
     //end_date
-    if (!Validator.isDate(data.end_date)) {
+    if (!Validator.isDate(data.end_date) && data.end_date) {
         errors.end_date = 'End date must be a date';
     }
     
