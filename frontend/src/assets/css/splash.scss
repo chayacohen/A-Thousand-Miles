@@ -48,9 +48,8 @@ body {
                     font-size: 65px;
                     font-weight: 800;
                     margin: 20px;
-                    
-            
                 }
+
                 h5 {
                     // border:3px solid blue;
                     margin: 30px;
@@ -68,22 +67,49 @@ body {
     }
 
     .splash-second,.splash-third{
+        padding-top: 30px;
+        padding-bottom: 30px;
         height: 100%;
-        min-height: 400px;
+        min-height: 450px;
         width: 100%;
         display:flex;
-        justify-content: space-between;
-        border-radius: 20px;
+        justify-content: space-around;
+        // padding-left: 10vh;
+        // padding-right: 10vh;
+
+        img {
+            height: 100%;
+            max-height: 350px;
+            width: 600px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
     }
 
     .splash-final{
-        height: 40vh;
-        min-height: 400px;
+        height: 20vh;
+        min-height: 350px;
         width: 100%;
+        background-color: rgba(190, 190, 190, 0.753);
+
+        h2 {
+            color: rgb(37, 37, 37);
+            font-family: 'Rock Salt', cursive;
+            font-size: 30px;
+            font-weight: 500;
+            margin: 20px;
+        }
     }
 
     div {
-        border:2px solid rgb(107, 107, 107);
+        // border:2px solid rgb(107, 107, 107);
     }
 
     .links-container{
@@ -92,30 +118,27 @@ body {
     }
     .links{
         div{
-        width: 150px;
-        margin: 15px;
-        height: 35px;
-        padding-top:20px;
-        
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
+            width: 150px;
+            margin: 15px;
+            height: 35px;
+            padding-top:20px;
+            
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
 
-        background: #ff9a27a8;
-        border-radius: 30px;
-        // color: white;
-        font-size: 18px;
-        font-weight: 500;        
-        box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
-        // border:2px solid rgb(30, 255, 0);
+            background: #ff9a27a8;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;        
+            box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
+
+        }
+
+        div:hover {
+            background: #ff8d0ce3;
         }
     }
 
-    img {
-        height: 100%;
-        max-height: 350px;
-        width: 800px;
-        object-fit: cover;
-    }
 }

@@ -41,6 +41,7 @@ class Splash extends React.Component{
                 </div>
                 <div className='splash-final'>
                     <div className='splash-final-content'>
+                        <div className='splash-final-bar'><div className='splash-final-inner'></div></div>
                         <h2>Ready to start your journey?</h2>
                         <button className='to-top'>Join Now</button>
                     </div>
