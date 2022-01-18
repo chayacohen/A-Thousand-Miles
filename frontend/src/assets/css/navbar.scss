@@ -1,0 +1,77 @@
+// header {
+//     height: 85px;
+//     z-index: 1000;
+//     width: 100%;
+//     position: sticky;
+//     top: 0px;
+//     background-color: rgb(243, 242, 239);
+// }
+
+.navbar { 
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    // max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    // padding-left: 150px;
+    // padding-right: 150px;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 50px;
+    align-items: center;   
+	background-color: rgb(218, 218, 218);
+    box-sizing: content-box;
+    // left: 50%;
+    // right: 50%;
+    
+    // border: 3px solid rgb(0, 0, 0);
+    // position: fixed;
+    top: 0px;
+    z-index: 100;
+
+    // .login-signup {
+    //     display: flex;
+    //     flex-direction: row;
+    //     float: right;
+    //     justify-content: flex-end;
+    //     // border: 2px solid black;
+        
+    // }
+    // .user-links {
+    //     display: flex;
+    //     // position: absolute;
+    //     flex-direction: row;
+    //     justify-content: center;
+    //     float: right;
+    //     // border: 2px solid black;
+
+    // }
+
+    a, button {
+        display: flex;
+        flex-direction: row;
+        // border: 3px solid rgb(0, 0, 0);    
+        color: black;
+        text-decoration: none;
+        margin: 10px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 900;
+        font-size: 17px;
+        height: 20px;
+        padding-bottom: 2px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0);
+    }
+
+    a:hover {
+        
+        padding-bottom: 2px;
+        border-bottom: 2px solid rgba(0, 179, 60, 0.911);
+        // line-height: 23px;
+    }
+
+
+}

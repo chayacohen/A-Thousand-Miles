@@ -1,0 +1,28 @@
+.planner-container{
+    border: 3px solid black;
+    height: 100%;
+    width: 100%;
+
+    .planner-edit{
+        border: 3px solid rgb(255, 0, 0);
+
+    }
+    .planner-main-container{
+        border: 3px solid rgb(22, 189, 0);
+        display: flex;
+
+    }
+
+    .planner-map{
+        border: 3px solid rgb(0, 255, 234);
+        width: 100%;
+        height: 85vh;
+
+    }
+
+
+    .planner-edit{
+        border: 3px solid rgb(172, 14, 235);
+
+    }
+}

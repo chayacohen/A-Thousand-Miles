@@ -1,22 +1,26 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import '../assets/css/reset.scss';
+
 
 import Splash from './splash/splash';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
-import navbar_container from './nav/navbar_container';
+import NavbarContainer from './nav/navbar_container';
+import PlannerContainer from './planner/planner_container';
 
 const App = () => (
     <div>
-        <ProtectedRoute component={navbar_container} />
+        <ProtectedRoute component={NavbarContainer} />
         
         <Switch>
             <AuthRoute exact path="/" component={Splash} /> 
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+            <ProtectedRoute exact path="/planner" component={PlannerContainer} />
         </Switch>
     </div>
 );

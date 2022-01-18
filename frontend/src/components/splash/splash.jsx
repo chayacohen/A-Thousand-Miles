@@ -11,10 +11,12 @@ class Splash extends React.Component{
             <div className='splash-container'>
                 <div className='splash-intro'>
                     <div className='splash-intro-content'>
+                        <div className='splash-intro-content2'>
+                            <h1>A Thousand Miles</h1>
+                            <h5>See what advertures await with a stroke of a brush</h5>
+                            <Navbar className='splash-signup'/>
+                        </div>
                         <img alt="travel" src={splashOne} className='splash-one-image' />
-                        <h1>A Thousand Miles</h1>
-                        <h5>See what advertures await with a stroke of a brush</h5>
-                        <Navbar className='splash-signup'/>
                     </div>
                 </div>
                 <div className='splash-second'>
@@ -36,8 +38,10 @@ class Splash extends React.Component{
                     </div>
                 </div>
                 <div className='splash-final'>
-                    <h2>Ready to start your journey?</h2>
-                    <button className='to-top'>Join Now</button>
+                    <div className='splash-final-content'>
+                        <h2>Ready to start your journey?</h2>
+                        <button className='to-top'>Join Now</button>
+                    </div>
                 </div>
            </div>
     )}     
