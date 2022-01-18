@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-// import './navbar.css'
+import { Link, NavLink } from 'react-router-dom'
+import '../../assets/css/navbar.scss';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -18,18 +18,18 @@ class NavBar extends React.Component {
     getLinks() {
         if (this.props.loggedIn) {
             return (
-                <div>
+                <div className='navbar'>
                     {/* <Link to={'/tweets'}>All Tweets</Link> */}
-                    <Link to={'/profile'}>Profile</Link>
-                    {/* <Link to={'/new_tweet'}>Write a Tweet</Link> */}
+                    <NavLink to={'/profile'}>Profile</NavLink>
+                    <NavLink to={'/planner'}>Trip Planner</NavLink>
                     <button onClick={this.logoutUser}>Logout</button>
                 </div>
             );
         } else {
             return (
-                <div>
-                    <Link to={'/signup'}>Signup</Link>
-                    <Link to={'/login'}>Login</Link>
+                <div className='links'>
+                    <div><Link to={'/signup'}>Signup</Link></div>
+                    <div><Link to={'/login'}>Login</Link></div>
                 </div>
             );
         }
@@ -37,8 +37,7 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>A Thousand Miles</h1>
+            <div className='links-container'>
                 {this.getLinks()}
             </div>
         );
