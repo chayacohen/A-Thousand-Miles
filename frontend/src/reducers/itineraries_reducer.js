@@ -4,9 +4,9 @@ import { RECEIVE_ITINERARIES, RECEIVE_USER_ITINERARIES, RECEIVE_NEW_ITINERARY } 
     Object.freeze(state);
     let newState = Object.assign({}, state);
     switch(action.type) {
-      case RECEIVE_ITINERARIES:
-        newState.all = action.itineraries.data;
-        return newState;
+    //   case RECEIVE_ITINERARIES:
+    //     newState.all = action.itineraries.data;
+    //     return newState;
       case RECEIVE_USER_ITINERARIES:
         newState.user = action.itineraries.data;
         return newState;

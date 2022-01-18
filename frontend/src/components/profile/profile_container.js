@@ -4,14 +4,14 @@ import Profile from './profile';
 
 const mSTP = (state) => {
   return {
-    tweets: Object.values(state.tweets.user),
+    itineraries: Object.values(state.itineraries.user),
     currentUser: state.session.user
   };
 };
 
 const mDTP = dispatch => {
   return {
-    fetchUserTweets: id => dispatch(fetchUserItineraries(id))
+    fetchUserItineraries: id => dispatch(fetchUserItineraries(id))
   };
 };
 
