@@ -17,9 +17,24 @@ const UserSchema = new Schema({
     address: {
         type: String,
         required: true
+    },
+    address_coord: {
+        type: { type: String }, 
+        coordinates: {
+            type: [Number],
+            // index: "2dsphere"
+            required: true
+        },
+    },
+    line: {
+        type: { type: String },
+        coordinates: {
+            type: [[Number]],
+        }
     }
 }, {
     timestamps: true
 })
 
+// UserSchema.index({ address_coord: '2dsphere' });
 module.exports = User = mongoose.model('users', UserSchema);

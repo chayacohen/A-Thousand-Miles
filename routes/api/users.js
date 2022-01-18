@@ -4,9 +4,10 @@ const User = require("../../models/User");
 const bcrypt = require('bcryptjs');
 const keys = require("../../config/keys");
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
+const validateCoordinateInput = require("../../validation/coordinate");
 
 router.get("/test", (req, res) => {
     res.json({msg: "this is the user route"})
@@ -14,9 +15,14 @@ router.get("/test", (req, res) => {
 
 router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
+    const { coordinateErrors, isValidCoordinate } = validateCoordinateInput(req.body);
 
     if (!isValid) {
         return res.status(400).json(errors);
+    }
+
+    if (!isValidCoordinate) {
+        return res.status(400).json(coordinateErrors);
     }
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })
@@ -30,7 +36,9 @@ router.post('/register', (req, res) => {
                     username: req.body.username,
                     email: req.body.email,
                     password: req.body.password,
-                    address: req.body.address
+                    address: req.body.address,
+                    address_coord: { type: "Point", coordinates: [req.body.lng, req.body.lat]},
+                    line: { type: "LineString", coordinates: [[req.body.line_lng1, req.body.line_lat1], [req.body.line_lng2, req.body.line_lat2]] }
                 })
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -52,7 +60,7 @@ router.post('/login', (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    
+
     const email = req.body.email;
     const password = req.body.password;
 
@@ -84,5 +92,21 @@ router.post('/login', (req, res) => {
                 })
         })
 })
+
+router.put('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        User.findById(req.params.id)
+            .then(user => {
+                user.username = req.body.username;
+                user.address = req.body.address;
+                user.save();
+                res.json(user)
+            })
+            .catch(err =>
+                res.status(404).json({ message: 'No user found with that ID' })
+            );
+    }
+);
 
 module.exports = router;
