@@ -55,19 +55,19 @@ export const clearItineraryErrors = () => dispatch => (
 export const getItineraries = () => dispatch => (
   ItineraryApiUtil.getItineraries()
     .then(itineraries => dispatch(receiveItineraries(itineraries)))
-    .catch(err => console.log(err))
+    // .catch(err => console.log(err))
 );
 
 export const getUserItineraries = (userId) => dispatch => (
   ItineraryApiUtil.getUserItineraries(userId)
     .then(itineraries => dispatch(receiveUserItineraries(itineraries)))
-    .catch(err => console.log(err))
+    // .catch(err => console.log(err))
 );
 
 export const getItinerary = (id) => dispatch => (
   ItineraryApiUtil.getItinerary(id)
     .then(itinerary => dispatch(receiveItinerary(itinerary)))
-    .catch(err => console.log(err))
+    // .catch(err => console.log(err))
 );
 
 export const createItinerary = (data) => dispatch => (

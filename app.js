@@ -8,6 +8,9 @@ const attractions = require("./routes/api/attractions")
 // const User = require("./models/User");
 const bodyParser = require("body-parser");
 const passport = require('passport');
+
+const path = require('path');
+
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log("Connected to mongoDB"))
@@ -26,6 +29,12 @@ app.get("/", (req, res) => {
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
 
 app.use("/api/users", users);
 app.use("/api/itineraries", itineraries);

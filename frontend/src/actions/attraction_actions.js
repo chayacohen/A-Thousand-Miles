@@ -53,19 +53,19 @@ export const clearAttractionErrors = () => dispatch => (
 export const getAttractions = () => dispatch => (
     AttractionApiUtil.getAttractions()
         .then(attractions => dispatch(receiveAttractions(attractions)))
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
 );
 
 export const getAttraction = (id) => dispatch => (
     AttractionApiUtil.getAttraction(id)
         .then(attraction => dispatch(receiveAttraction(attraction)))
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
 );
 
 export const getItineraryAttractions = (itineraryId) => dispatch => (
     AttractionApiUtil.getItineraryAttractions(itineraryId)
         .then(attractions => dispatch(receiveItineraryAttractions(attractions)))
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
 );
 
 export const createAttraction = (itineraryId, data) => dispatch => (
