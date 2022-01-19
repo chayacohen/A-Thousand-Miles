@@ -7,11 +7,12 @@ import MarkerManager from "./marker_manager";
 class DrawMapRoute extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { sortedResults: [], totalResults: [] }
+        this.state = { itineraryResults: [], totalResults: [] }
         this.clicked = false;
         this.round = true;
-        this.start_pos = { lat: 34.071422, lng: -118.249808 }
-        this.end_pos = { lat: 40.769180, lng: -73.984892 }
+        debugger 
+        this.start_pos = { lat: this.props.startAddress.lat, lng: this.props.startAddress.lng}
+        this.end_pos = { lat: this.props.endAddress.lat, lng: this.props.endAddress.lng}
         this.addLatLng = this.addLatLng.bind(this);
         this.receiveResults = this.receiveResults.bind(this);
 
@@ -20,6 +21,7 @@ class DrawMapRoute extends React.Component {
     componentDidMount() {
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
+        this.map.map.setZoom(4.7)
         this.map.map.addListener("mousedown", (e) => {
             this.clicked = !this.clicked
         });
@@ -47,6 +49,7 @@ class DrawMapRoute extends React.Component {
                     }
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
+                        this.state.itineraryResults.push(result); 
                         this.markerManager.addMarker({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() })
                     }
                 })
@@ -92,8 +95,8 @@ class DrawMapRoute extends React.Component {
 
     render() {
         return (
-            <div className="map-container-test" style={{width: "100vw", height: "100vh"}}>
-                <div className="map" ref={map => this.mapNode = map} style={{width: "100%", height: "100%"}}></div>
+            <div className="draw-map-container" >
+                <div className="map" ref={map => this.mapNode = map} ></div>
             </div>
         )
     }
