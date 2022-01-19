@@ -8,7 +8,7 @@ const ItineraryErrorsReducer =(state = [], action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ITINERARY_ERRORS:
-            return action.errors;
+            return Object.values(action.errors);
         case RECEIVE_ITINERARY:
             return [];
         case REMOVE_ITINERARY_ERRORS:

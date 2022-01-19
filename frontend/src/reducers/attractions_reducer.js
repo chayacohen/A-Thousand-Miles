@@ -2,7 +2,8 @@ import {
     RECEIVE_ATTRACTIONS,
     RECEIVE_ITINERARY_ATTRACTIONS,
     REMOVE_ATTRACTION,
-    RECEIVE_ATTRACTION
+    RECEIVE_ATTRACTION,
+    REMOVE_ATTRACTION_STATE
 } from '../actions/attraction_actions';
 
 const addKeyToObject = (state, action) => {
@@ -27,6 +28,8 @@ const AttractionsReducer = (state = {}, action) => {
         case REMOVE_ATTRACTION:
             delete nextState[action.attraction.data._id];
             return nextState;
+        case REMOVE_ATTRACTION_STATE:
+            return {};
         default:
             return state;
     }

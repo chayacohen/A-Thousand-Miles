@@ -5,9 +5,9 @@ export const RECEIVE_USER_ITINERARIES = "RECEIVE_USER_ITINERARIES"; // user's it
 export const REMOVE_ITINERARY = "REMOVE_ITINERARY"; // destroy itinerary
 export const RECEIVE_ITINERARY = "RECEIVE_ITINERARY"; // get/create/edit itinerary
 
-export const RECEIVE_ITINERARY_ERRORS = "RECEIVE_ITINERARY_ERRORS"; // get/create/edit itinerary
-export const REMOVE_ITINERARY_ERRORS = "REMOVE_ITINERARY_ERRORS"; // get/create/edit itinerary
-export const REMOVE_ITINERARY_STATE = "REMOVE_ITINERARY_STATE"; // get/create/edit itinerary
+export const RECEIVE_ITINERARY_ERRORS = "RECEIVE_ITINERARY_ERRORS"; // get itinerary errors
+export const REMOVE_ITINERARY_ERRORS = "REMOVE_ITINERARY_ERRORS"; // clear itinerary errors
+export const REMOVE_ITINERARY_STATE = "REMOVE_ITINERARY_STATE"; // clear itinerary state
 
 export const receiveItineraries = itineraries => ({
   type: RECEIVE_ITINERARIES,
