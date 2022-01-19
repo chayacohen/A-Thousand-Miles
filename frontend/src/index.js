@@ -7,7 +7,7 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
 import { getItineraries, getUserItineraries, getItinerary, 
-  createItinerary, editItinerary, deleteItinerary } from "./actions/itinerary_actions"
+  createItinerary, editItinerary, deleteItinerary, clearItinerariesFromState } from "./actions/itinerary_actions"
 
 import { getAttractions, getAttraction, getItineraryAttractions, createAttraction, deleteAttraction } from "./actions/attraction_actions"
 
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.createItinerary = createItinerary;
   window.editItinerary = editItinerary;
   window.deleteItinerary = deleteItinerary;
+  window.clearItinerariesFromState = clearItinerariesFromState;
   //attraction
   window.getAttractions = getAttractions;
   window.getAttraction = getAttraction;

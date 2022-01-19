@@ -2,7 +2,8 @@ import {
   RECEIVE_ITINERARIES,
   RECEIVE_USER_ITINERARIES,
   REMOVE_ITINERARY,
-  RECEIVE_ITINERARY
+  RECEIVE_ITINERARY,
+  REMOVE_ITINERARY_STATE
   } from '../actions/itinerary_actions';
 
   const addKeyToObject = (state, action) => {
@@ -27,6 +28,8 @@ import {
       case REMOVE_ITINERARY:
         delete nextState[action.itinerary.data._id];
         return nextState;
+      case REMOVE_ITINERARY_STATE:
+        return {};
       default:
         return state;
     }
