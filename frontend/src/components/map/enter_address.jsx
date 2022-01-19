@@ -10,6 +10,7 @@ class EnterAddress extends React.Component {
         super(props); 
         this.state = { location: ''}
         this.onPlaceChanged = this.onPlaceChanged.bind(this); 
+        this.handleSubmitItinerary = this.handleSubmitItinerary.bind(this); 
     }
 
     componentDidMount() {
@@ -17,7 +18,7 @@ class EnterAddress extends React.Component {
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
         if (this.props.startAddress) {
-            this.MarkerManager.addMarker(startingAddress.latLng)
+            this.MarkerManager.addMarker(this.props.startAddress.latLng)
         }
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
@@ -25,6 +26,13 @@ class EnterAddress extends React.Component {
         })
         const autocomplete = this.autocomplete;
         autocomplete.addListener('place_changed', this.onPlaceChanged)
+
+        if (this.props.match.params.id === '1') {
+            this.props.receiveStartingAddress({ address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] })
+            this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0]}, {
+                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)
+            })
+        } 
         
     }
 
@@ -75,17 +83,24 @@ class EnterAddress extends React.Component {
         }
     }
 
+    handleSubmitItinerary() {
+        const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()}; 
+        debugger 
+        this.props.createItinerary(itinerary); 
+        // this.props.clearItineraryForm(); 
+
+    }
+
     render() {
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
         }
 
-
         return (
         <div style={{height: "100vh", width: "100vw"}} className="starting-map">
             <div className="question">{this.props.match.params.id === '1' ? 'Where are you starting?' :  'Where are you going?'}</div>
             <div className="address-input">
-                <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input"/>
+                <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
             </div>
             <div className="map-container">
                 <div className="map" ref={map => this.mapNode = map}></div>
@@ -93,7 +108,7 @@ class EnterAddress extends React.Component {
             <div>
                 <div className="next-container">
                     { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button">Back</Link> : null}
-                  {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <Link to="/map" className="next-button">Next</Link>} 
+                  {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <Link to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</Link>} 
                 </div>
             </div>
         </div>

@@ -72,7 +72,7 @@ class DrawMapRoute extends React.Component {
                         this.setState({ 
                             title: result.name, 
                             location: [result.geometry.location.lng(), result.geometry.location.lat()], 
-                            photoUrl: result.photos[0] ? result.photos[0].getUrl() : null , 
+                            photoUrl: result.photos ? result.photos[0].getUrl() : null , 
                             rating: result.rating, 
                             placeId: result.place_id, 
                             googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`

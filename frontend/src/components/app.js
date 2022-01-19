@@ -31,8 +31,8 @@ const App = () => {
             <AuthRoute exact path="/" component={Splash} /> 
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
-            <ProtectedRoute exact path="trip/map/draw" component={DrawMapContainer}/>
-            <ProtectedRoute exact path = "trip/map/:id" component={EnterAddressContainer}/>
+            <ProtectedRoute exact path="/map/draw" component={DrawMapContainer}/>
+            <ProtectedRoute exact path = "/map/:id" component={EnterAddressContainer}/>
             <ProtectedRoute exact path="/trip/new" component={StartItineraryContainer}/>
             <ProtectedRoute exact path="/profile" component={ProfileContainer} />
             <ProtectedRoute exact path="/planner" component={PlannerContainer} />
