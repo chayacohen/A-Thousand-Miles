@@ -1,18 +1,23 @@
-import { RECEIVE_ITINERARIES, RECEIVE_USER_ITINERARIES, RECEIVE_NEW_ITINERARY } from '../actions/itinerary_actions';
+import { 
+  RECEIVE_ITINERARIES,
+  RECEIVE_USER_ITINERARIES,
+  REMOVE_ITINERARY,
+  RECEIVE_ITINERARY
+  } from '../actions/itinerary_actions';
   
-  const ItinerariesReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+  const ItinerariesReducer = (state = {}, action) => {
     Object.freeze(state);
-    let newState = Object.assign({}, state);
+    let nextState = Object.assign({}, state);
     switch(action.type) {
-    //   case RECEIVE_ITINERARIES:
-    //     newState.all = action.itineraries.data;
-    //     return newState;
+      case RECEIVE_ITINERARIES:
+        return Object.assign({}, state, action.itineraries.data);
       case RECEIVE_USER_ITINERARIES:
-        newState.user = action.itineraries.data;
-        return newState;
-      case RECEIVE_NEW_ITINERARY:
-        newState.new = action.itinerary.data
-        return newState;
+        return Object.assign({}, state, action.itineraries.data);;
+      case RECEIVE_ITINERARY:
+        return Object.assign({}, state, { [action.itinerary.data._id]: action.itinerary.data });
+      case REMOVE_ITINERARY:
+        delete nextState[action.itinerary.id];
+        return nextState;
       default:
         return state;
     }

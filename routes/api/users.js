@@ -98,8 +98,10 @@ router.put('/:id',
     (req, res) => {
         User.findById(req.params.id)
             .then(user => {
-                user.username = req.body.username;
-                user.address = req.body.address;
+                user.username = (!req.body.username) ? user.username : req.body.username;
+                // user.username = req.body.username;
+                user.address = (!req.body.address) ? user.address : req.body.address;
+                // user.address = req.body.address;
                 user.save();
                 res.json(user)
             })
