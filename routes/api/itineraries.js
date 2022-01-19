@@ -51,6 +51,7 @@ router.post('/',
             end_lng: req.body.end_lng,
             start_date: req.body.start_date,
             end_date: req.body.end_date,
+            line: req.body.line
         });
         newItinerary.save()
             .then(itinerary => {
