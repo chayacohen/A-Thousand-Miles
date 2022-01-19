@@ -41,7 +41,11 @@ router.post('/itinerary/:itinerary_id',
             itinerary: req.params.itinerary_id,
             lat: req.body.lat,
             lng: req.body.lng,
-            title: req.body.title
+            title: req.body.title,
+            rating: req.body.rating,
+            photoUrl: req.body.photoUrl,
+            googleMapLink: req.body.googleMapLink,
+            placeId: req.body.placeId,
         });
         newAttraction.save().then(attraction => res.json(attraction));
     }

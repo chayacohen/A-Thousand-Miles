@@ -14,10 +14,27 @@ const AttractionSchema = new Schema({
         type: Number,
         required: true
     },
+    rating: {
+        type: Number,
+        // required: true
+    },
     title: {
         type: String,
         required: true
-    }
+    },
+    photoUrl: {
+        type: String,
+        // required: true
+    },
+    googleMapLink: {
+        type: String,
+        // required: true
+    },
+    placeId: {
+        type: String,
+        // required: true
+    },
+    
 }, {
     timestamps: true
 })

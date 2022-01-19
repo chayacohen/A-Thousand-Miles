@@ -27,6 +27,10 @@ module.exports = function validateAttractionInput(data) {
         errors.lng = 'Lng must be a float';
     }
 
+    if (!Validator.isFloat(data.rating)) {
+        errors.lng = 'Rating must be a float';
+    }
+
     return {
         errors,
         isValid: Object.keys(errors).length === 0
