@@ -1,38 +1,41 @@
 import React from 'react';
+import ItineraryContainer from "../itinerary/itinerary_container"
+import { Route, Switch } from "react-router-dom";
+import Attraction from "../attraction/attraction";
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            itineraries: []
-        }
     }
     
-    componentWillMount() {
+    componentDidMount() {
         // console.log(this.props.currentUser.id)
-        // this.props.fetchUserItineraries(this.props.currentUser.id);
+      this.props.getUserItineraries(this.props.currentUser.id);
     }
 
     // componentWillReceiveProps(newState) {
     //     this.setState({ itineraries: newState.itineraries });
     // }   
+
+    //userprofile profile/
+    //switch
+      //route path = / => itinerary => idxitems => link to profile/:id
+      //route path = /:id => attraction => attractionidx => profile/
+    //switch
     
     render() {
-      debugger
-        if (this.state.itineraries.length === 0) {
-          return (<div>This user has no travel plans!</div>)
-        } else {
-          return (
-            <div>
-              <h2>All of your upcoming adventures</h2>
-              {/* {this.state.itineraries.map(tweet => (
-                <TweetBox key={itinerary._id} text={itinerary.text} />
-              ))} */}
-            </div>
-          );
-        }
-      }
+      // debugger
+      return(
+        <div>
+          {this.props.currentUser.id}
+          <Switch>
+            <Route path="/" component={ItineraryContainer}/>
+            <Route path="/:itineraryId" component={Attraction}/>
+          </Switch>
+          {/* <ItineraryContainer/> */}
+        </div>
+      )
+    }
 }
 
 export default Profile;

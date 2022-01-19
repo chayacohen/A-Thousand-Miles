@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-// import { fetchUserItineraries } from '../../actions/itinerary_actions';
+import { getUserItineraries } from '../../actions/itinerary_actions';
 import Profile from './profile';
 
 const mSTP = (state) => {
   return {
-    // itineraries: Object.values(state.itineraries.user),
-    // currentUser: state.session.user
+    itineraries: Object.values(state.entities.itineraries),
+    currentUser: state.session.user
   };
 };
 
 const mDTP = dispatch => {
   return {
-    // fetchUserItineraries: id => dispatch(fetchUserItineraries(id))
+    getUserItineraries: userId => dispatch(getUserItineraries(userId))
   };
 };
 
