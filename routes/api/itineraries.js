@@ -65,10 +65,10 @@ router.put('/:id',
     (req, res) => {
         Itinerary.findById(req.params.id)
             .then(itinerary => {
-                itinerary.title = req.body.title;
-                itinerary.description = req.body.description;
-                itinerary.start_date = req.body.start_date;
-                itinerary.end_date = req.body.end_date;
+                itinerary.title = (!req.body.title) ? itinerary.title : req.body.title;
+                itinerary.description = (!req.body.description) ? itinerary.description : req.body.description;
+                itinerary.start_date = (!req.body.start_date) ? itinerary.start_date : req.body.start_date;
+                itinerary.end_date = (!req.body.end_date) ? itinerary.end_date : req.body.end_date;
                 itinerary.save();
                 res.json(itinerary);
             })
