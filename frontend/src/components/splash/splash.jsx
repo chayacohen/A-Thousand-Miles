@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from '../nav/navbar_container';
+import Modal from '../modal/modal_container'
 import '../../assets/css/splash.scss';
 import splashOne from '../../assets/images/splashroad.jpg';
 import splashTwo from '../../assets/images/splashballoonsmall.jpg';
@@ -19,6 +20,7 @@ class Splash extends React.Component{
                             <h1>A Thousand Miles</h1>
                             <h5>See what advertures await with a stroke of a brush</h5>
                             <Navbar className='splash-signup'/>
+                            <Modal />
                         </div>
                         <img alt="travel" src={splashOne} className='splash-one-image' />
                     </div>
@@ -44,7 +46,7 @@ class Splash extends React.Component{
                 <div className='splash-final'>
                     <div className='splash-final-content'>
                         <h2>Ready to start your journey?</h2>
-                        <div><Link to={'/signup'}>Signup</Link></div>
+                        <div className='sfl'><Link to={'/signup'}>Signup</Link></div>
                         <img alt="travel" src={splashFinal} className='splash-final-image' />
                     </div>
                 </div>
