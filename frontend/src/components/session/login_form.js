@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import '../../assets/css/sessionform.scss';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -15,24 +16,23 @@ class LoginForm extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
     }
 
-    // Once the user has been authenticated, redirect to the Tweets page
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser === true) {
             this.props.history.push('/profile');
         }
-
-        // Set or clear errors
         this.setState({ errors: nextProps.errors })
     }
 
-    // Handle field updates (called in the render method)
+    componentWillUnmount(){
+        this.props.inactiveModal()
+    }
+
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
         });
     }
 
-    // Handle form submission
     handleSubmit(e) {
         e.preventDefault();
 
@@ -42,13 +42,8 @@ class LoginForm extends React.Component {
         };
 
         this.props.login(user)
-        // .then(
-        //     this.props.history.push('/profile')
-        // )
-        
     }
 
-    // Render the session errors if there are any
     renderErrors() {
         return (
             <ul>
@@ -63,9 +58,10 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className='session-form-container'>
+                <form className='session-form' onSubmit={this.handleSubmit}>
                     <div>
+                        <h2>Welcome Back</h2>
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
@@ -78,7 +74,7 @@ class LoginForm extends React.Component {
                             placeholder="Password"
                         />
                         <br />
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Login" />
                         {this.renderErrors()}
                     </div>
                 </form>

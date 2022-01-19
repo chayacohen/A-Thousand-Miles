@@ -2,19 +2,29 @@ body {
     background-color: rgb(252, 252, 252);
 }
 
-    .splash-container {
-    // border:3px solid blue;
-    padding-top: 80px;
+.splash-container {
+// border:3px solid blue;
+padding-top: 80px;
+margin-left: 10%;
+margin-right: 10%;
+// max-width: 1300px;
     
     .splash-intro-bar{
         // border:3px solid rgb(255, 0, 0);
         height: 0px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        position: relative;
+        width: 100vw;
+        margin-left: -13%;
         
         .splash-intro-inner{
             position: relative;
             top: 8vh;
-            width: 100%;
+            width: 100vw;
             height: 50vh;
+            min-height: 500px;
             // border:3px solid #009632;
             background-color: rgba(255, 229, 195, 0.753);
             z-index: -1;
@@ -24,8 +34,6 @@ body {
     .splash-intro{
         height: 75vh;
         width: 100%;
-        // background-image: linear-gradient(180deg, rgba(187, 187, 187, 0.233) 0, rgba(212, 212, 212, 0.733) 0), url('../images/splashroad.jpg'), ;
-        // background-size: cover;
         z-index: -1;
         
         .splash-intro-content{
@@ -36,6 +44,7 @@ body {
             
             .splash-intro-content2{
                 min-width: 650px;
+                min-height: 600px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -43,11 +52,13 @@ body {
                 padding: 30px;
 
                 h1 {
-                    color: rgb(0, 0, 0);
+                    color: rgb(49, 49, 49);
+                    text-shadow: 2px 2px 3px rgb(196, 196, 196);
                     font-family: 'Rock Salt', cursive;
                     font-size: 65px;
                     font-weight: 800;
                     margin: 20px;
+                    text-align: center;
                 }
 
                 h5 {
@@ -61,8 +72,10 @@ body {
         .splash-one-image{
             height: 65vh;
             width: 50%;
+            max-width: 600px;
             object-fit: cover;
             border-radius: 20px;
+            object-position: 0% 0%;
         }
     }
 
@@ -74,43 +87,114 @@ body {
         width: 100%;
         display:flex;
         justify-content: space-around;
-        // padding-left: 10vh;
-        // padding-right: 10vh;
+        align-items: center;
 
         img {
             height: 100%;
             max-height: 350px;
-            width: 600px;
+            min-width: 500px;
+            max-width: 600px;
             object-fit: cover;
             border-radius: 20px;
         }
 
-        div{
+        .s2,.s3{
             display: flex;
             flex-direction: column;
-            align-content: center;
             align-items: center;
+            text-align: center;
+            width: 500px;
+            min-width: 410px;
+            margin: 10px;
+        }
+
+        h2 {
+            margin:15px;
+            font-size: 30px;
+        }
+        h3 {
+            margin:15px;
+            font-size: 15px;
+        }
+
+ 
+    }
+
+    .splash-final-content{
+        margin-bottom: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: middle;
+        align-content: middle;
+        align-items: center;
+        max-height: 350px;
+        margin-top: 10vh;
+        
+        div > a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 55px;
+            // border: 2px solid red;
+            text-align: center;
+            border-radius: 30px;
         }
     }
 
     .splash-final{
-        height: 20vh;
-        min-height: 350px;
+        min-height: 400px;
         width: 100%;
-        background-color: rgba(190, 190, 190, 0.753);
-
+        
         h2 {
             color: rgb(37, 37, 37);
+            text-shadow: 2px 1px 3px rgb(116, 116, 116);
             font-family: 'Rock Salt', cursive;
-            font-size: 30px;
-            font-weight: 500;
+            font-size: 40px;
+            font-weight: 700;
             margin: 20px;
+            z-index: 10;
+            position: relative;
+            top: 100px;
+        }
+
+        .splash-final-content > .sfl{
+            position: relative;
+            top: 130px;
+            width: 150px;
+            min-height: 55px;
+            
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: center;
+            // align-content: center;
+            // text-align: center;
+            // align-items:center;
+
+            background: #ff9a27;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;        
+            box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
+
+        }
+        .splash-final-content > div:hover{
+            background: #ffb560;
+        }
+        
+        .splash-final-image{
+            position: relative;
+            top: -135px;
+            height: 400px;
+            width:100vw;
+            object-fit: cover;
+            z-index: -1;
         }
     }
 
-    div {
-        // border:2px solid rgb(107, 107, 107);
-    }
+    // div {
+    //     border:2px solid rgb(107, 107, 107);
+    // }
 
     .links-container{
         display: flex;
@@ -120,24 +204,36 @@ body {
         div{
             width: 150px;
             margin: 15px;
-            height: 35px;
-            padding-top:20px;
+            height: 55px;
+            // padding-top:20px;
             
             display: flex;
             justify-content: center;
             align-content: center;
+            background: #ff8d0ce3;
             text-align: center;
 
-            background: #ff9a27a8;
             border-radius: 30px;
             font-size: 16px;
             font-weight: 500;        
             box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
-
+            
         }
 
+        div > span {
+            width: 100%;
+            // height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 55px;
+            text-align: center;
+            border-radius: 30px;
+        }
+        
         div:hover {
-            background: #ff8d0ce3;
+            background: #ff9a27a8;
         }
     }
 

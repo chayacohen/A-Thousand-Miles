@@ -26,12 +26,6 @@ const UserSchema = new Schema({
             required: true
         },
     },
-    line: {
-        type: { type: String },
-        coordinates: {
-            type: [[Number]],
-        }
-    }
 }, {
     timestamps: true
 })

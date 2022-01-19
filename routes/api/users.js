@@ -38,7 +38,6 @@ router.post('/register', (req, res) => {
                     password: req.body.password,
                     address: req.body.address,
                     address_coord: { type: "Point", coordinates: [req.body.lng, req.body.lat]},
-                    line: { type: "LineString", coordinates: [[req.body.line_lng1, req.body.line_lat1], [req.body.line_lng2, req.body.line_lat2]] }
                 })
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -47,7 +46,7 @@ router.post('/register', (req, res) => {
                         newUser.password = hash;
                         newUser.save()
                             .then(user => res.json(user))
-                            .catch(err => console.log(err));
+                            // .catch(err => console.log(err));
                     })
                 })
             }
@@ -98,8 +97,10 @@ router.put('/:id',
     (req, res) => {
         User.findById(req.params.id)
             .then(user => {
-                user.username = req.body.username;
-                user.address = req.body.address;
+                user.username = (!req.body.username) ? user.username : req.body.username;
+                // user.username = req.body.username;
+                user.address = (!req.body.address) ? user.address : req.body.address;
+                // user.address = req.body.address;
                 user.save();
                 res.json(user)
             })

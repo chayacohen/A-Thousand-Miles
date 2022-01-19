@@ -10,8 +10,8 @@ class Profile extends React.Component {
     }
     
     componentWillMount() {
-        console.log(this.props.currentUser.id)
-        this.props.fetchUserItineraries(this.props.currentUser.id);
+        // console.log(this.props.currentUser.id)
+        // this.props.fetchUserItineraries(this.props.currentUser.id);
     }
 
     // componentWillReceiveProps(newState) {
@@ -19,6 +19,7 @@ class Profile extends React.Component {
     // }   
     
     render() {
+      debugger
         if (this.state.itineraries.length === 0) {
           return (<div>This user has no travel plans!</div>)
         } else {

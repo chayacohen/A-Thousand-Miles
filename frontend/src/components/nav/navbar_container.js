@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-
+import { activeModal } from '../../actions/modal_actions';
 import NavBar from './navbar';
 
-const mapStateToProps = state => ({
+const mSTP = state => ({
     loggedIn: state.session.isAuthenticated
 });
 
-export default connect(
-    mapStateToProps,
-    { logout }
-)(NavBar);
+const mDTP = dispatch => ({
+    openModal: (modal) => dispatch(activeModal(modal)),
+    logout: () => dispatch(logout())
+})
+
+export default connect(mSTP, mDTP)(NavBar);

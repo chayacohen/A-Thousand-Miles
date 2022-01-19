@@ -51,12 +51,13 @@ router.post('/',
             end_lng: req.body.end_lng,
             start_date: req.body.start_date,
             end_date: req.body.end_date,
+            line: req.body.line
         });
         newItinerary.save()
             .then(itinerary => {
                 res.json(itinerary)
             })
-            .catch(err => console.log(err));
+            // .catch(err => console.log(err));
     }
 );
 
@@ -65,10 +66,10 @@ router.put('/:id',
     (req, res) => {
         Itinerary.findById(req.params.id)
             .then(itinerary => {
-                itinerary.title = req.body.title;
-                itinerary.description = req.body.description;
-                itinerary.start_date = req.body.start_date;
-                itinerary.end_date = req.body.end_date;
+                itinerary.title = (!req.body.title) ? itinerary.title : req.body.title;
+                itinerary.description = (!req.body.description) ? itinerary.description : req.body.description;
+                itinerary.start_date = (!req.body.start_date) ? itinerary.start_date : req.body.start_date;
+                itinerary.end_date = (!req.body.end_date) ? itinerary.end_date : req.body.end_date;
                 itinerary.save();
                 res.json(itinerary);
             })
@@ -84,6 +85,12 @@ router.delete('/:id',
         Itinerary.findById(req.params.id)
         .then(itinerary => {
                 if(req.user.id === itinerary.user.toString()){
+                    Attraction.find({ itinerary: req.params.id })
+                        .then(attractions => {
+                            attractions.forEach(attraction => {
+                                attraction.remove()
+                            })
+                        })
                     itinerary.remove()
                     res.json(itinerary)
                 } else {
