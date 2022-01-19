@@ -85,6 +85,12 @@ router.delete('/:id',
         Itinerary.findById(req.params.id)
         .then(itinerary => {
                 if(req.user.id === itinerary.user.toString()){
+                    Attraction.find({ itinerary: req.params.id })
+                        .then(attractions => {
+                            attractions.forEach(attraction => {
+                                attraction.remove()
+                            })
+                        })
                     itinerary.remove()
                     res.json(itinerary)
                 } else {
