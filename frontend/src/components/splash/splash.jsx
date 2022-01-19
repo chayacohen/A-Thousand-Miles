@@ -46,7 +46,7 @@ class Splash extends React.Component{
                 <div className='splash-final'>
                     <div className='splash-final-content'>
                         <h2>Ready to start your journey?</h2>
-                        <div className='sfl'><Link to={'/signup'}>Signup</Link></div>
+                        {/* <div className='sfl'><Link to={'/signup'}>Signup</Link></div> */}
                         <img alt="travel" src={splashFinal} className='splash-final-image' />
                     </div>
                 </div>

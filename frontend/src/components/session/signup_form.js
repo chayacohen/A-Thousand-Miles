@@ -22,11 +22,21 @@ class SignupForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        let user = {
+            email: this.state.email,
+            password: this.state.password,
+        };
+
         if (nextProps.signedIn === true) {
+            this.props.login(user)
             this.props.history.push('/profile');
         }
 
         this.setState({ errors: nextProps.errors })
+    }
+
+    componentWillUnmount(){
+        this.props.inactiveModal()
     }
 
     update(field) {
@@ -75,7 +85,6 @@ class SignupForm extends React.Component {
             this.setState({address: address, lat: lat, lng: lng});
             this.autocomplete.value = address;
         }
-
     }
 
     componentDidMount(){
@@ -105,8 +114,6 @@ class SignupForm extends React.Component {
                             placeholder="Email"
                         />
                         <input type="text"
-                            // value={this.state.address}
-                            // onChange={this.update('address')}
                             placeholder="Address"
                             id='autocomplete'
                         />

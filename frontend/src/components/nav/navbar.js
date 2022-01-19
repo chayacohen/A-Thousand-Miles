@@ -18,7 +18,6 @@ class NavBar extends React.Component {
     handleModal(modal){
         this.props.openModal(modal);
     }
-    // Selectively render links dependent on whether the user is logged in
     getLinks() {
         if (this.props.loggedIn) {
             return (
@@ -31,8 +30,6 @@ class NavBar extends React.Component {
         } else {
             return (
                 <div className='links'>
-                    {/* <div><span to={'/signup'}>Signup</span></div> */}
-                    {/* <div><span to={'/login'}>Login</span></div> */}
                     <div><span onClick={() => this.handleModal('signup')}>Signup</span></div>
                     <div><span onClick={() => this.handleModal('login')}>Login</span></div>
                 </div>

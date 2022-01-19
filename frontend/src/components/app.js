@@ -12,15 +12,12 @@ import PlannerContainer from './planner/planner_container';
 
 const KEYS = require("../keys");
 
-// debugger
 const App = () => {
     
-    // debugger
     const head = document.head
     const googleScript = document.createElement('script')
     googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`
     head.appendChild(googleScript);
-    // debugger
     
     return(
     <div>

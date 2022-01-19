@@ -57,3 +57,5 @@ export const logout = () => dispatch => {
     APIUtil.setAuthToken(false)
     dispatch(logoutUser())
 };
+
+// login: user => dispatch(login(user)).then(dispatch(inactiveModal()))

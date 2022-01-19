@@ -22,6 +22,11 @@ class LoginForm extends React.Component {
         }
         this.setState({ errors: nextProps.errors })
     }
+
+    componentWillUnmount(){
+        this.props.inactiveModal()
+    }
+
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
