@@ -38,7 +38,7 @@ router.post('/register', (req, res) => {
                     password: req.body.password,
                     address: req.body.address,
                     address_coord: { type: "Point", coordinates: [req.body.lng, req.body.lat]},
-                    line: { type: "LineString", coordinates: [[req.body.line_lng1, req.body.line_lat1], [req.body.line_lng2, req.body.line_lat2]] }
+                    // line: { type: "LineString", coordinates: [[req.body.line_lng1, req.body.line_lat1], [req.body.line_lng2, req.body.line_lat2]] }
                 })
 
                 bcrypt.genSalt(10, (err, salt) => {
