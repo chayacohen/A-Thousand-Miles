@@ -45,7 +45,7 @@ class EnterAddress extends React.Component {
             const lng = place.geometry.location.lng();
 
             
-            const address = {address: place.formatted_address, lat: lat, lng: lng, place_id: place.place_id}
+            const address = {address: place.formatted_address, lat: lat, lng: lng}
 
             if (this.props.match.params.id === '1') {
                 if (this.props.startAddress) {

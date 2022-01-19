@@ -12,6 +12,7 @@ import ProfileContainer from './profile/profile_container';
 import NavbarContainer from './nav/navbar_container';
 import PlannerContainer from './planner/planner_container';
 import EnterAddressContainer from './map/enter_address_container';
+import StartItineraryContainer from './itinerary/start_itinerary_container'
 
 const KEYS = require("../keys");
 
@@ -30,8 +31,9 @@ const App = () => {
             <AuthRoute exact path="/" component={Splash} /> 
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
-            <Route exact path = "/map/:id" component={EnterAddressContainer}/>
-            <Route exact path="/map" component={DrawMapContainer}/>
+            <ProtectedRoute exact path="trip/map/draw" component={DrawMapContainer}/>
+            <ProtectedRoute exact path = "trip/map/:id" component={EnterAddressContainer}/>
+            <ProtectedRoute exact path="/trip/new" component={StartItineraryContainer}/>
             <ProtectedRoute exact path="/profile" component={ProfileContainer} />
             <ProtectedRoute exact path="/planner" component={PlannerContainer} />
         </Switch>
