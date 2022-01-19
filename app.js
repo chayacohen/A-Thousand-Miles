@@ -22,9 +22,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    res.send("Initial creation");
-});
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
@@ -34,6 +31,10 @@ if (process.env.NODE_ENV === 'production') {
     app.get('/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
     })
+} else {
+    app.get("/", (req, res) => {
+        res.send("Initial creation");
+    });
 }
 
 app.use("/api/users", users);
