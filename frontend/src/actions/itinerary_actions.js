@@ -2,7 +2,7 @@ import * as ItineraryApiUtil from '../util/itinerary_api_util';
 
 export const RECEIVE_ITINERARIES = "RECEIVE_ITINERARIES"; // all itineraries
 export const RECEIVE_USER_ITINERARIES = "RECEIVE_USER_ITINERARIES"; // user's itineraries
-export const RECEIVE_NEW_ITINERARY = "RECEIVE_ITINERARY"; // get/create itinerary
+// export const RECEIVE_NEW_ITINERARY = "RECEIVE_ITINERARY"; // get/create itinerary
 export const REMOVE_ITINERARY = "REMOVE_ITINERARY"; // destroy itinerary
 export const RECEIVE_ITINERARY = "RECEIVE_ITINERARY"; // get/create/edit itinerary
 

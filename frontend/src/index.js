@@ -9,6 +9,8 @@ import { logout } from './actions/session_actions';
 import { getItineraries, getUserItineraries, getItinerary, 
   createItinerary, editItinerary, deleteItinerary } from "./actions/itinerary_actions"
 
+import { getAttractions, getAttraction, getItineraryAttractions, createAttraction, deleteAttraction } from "./actions/attraction_actions"
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
@@ -34,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.createItinerary = createItinerary;
   window.editItinerary = editItinerary;
   window.deleteItinerary = deleteItinerary;
+  //attraction
+  window.getAttractions = getAttractions;
+  window.getAttraction = getAttraction;
+  window.getItineraryAttractions = getItineraryAttractions;
+  window.createAttraction = createAttraction;
+  window.deleteAttraction = deleteAttraction;
 
   const root = document.getElementById('root');
 
