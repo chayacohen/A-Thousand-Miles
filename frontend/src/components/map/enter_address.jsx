@@ -21,7 +21,7 @@ class EnterAddress extends React.Component {
         }
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
-            fields: ['place_id', 'geometry', 'name', 'address_components']
+            fields: ['place_id', 'geometry', 'name', 'formatted_address']
         })
         const autocomplete = this.autocomplete;
         autocomplete.addListener('place_changed', this.onPlaceChanged)
@@ -37,7 +37,6 @@ class EnterAddress extends React.Component {
 
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
-        debugger 
         if (!place.geometry) {
             document.getElementById('autocomplete').placeholder = 'Enter an address'
         }
@@ -46,12 +45,9 @@ class EnterAddress extends React.Component {
             const lng = place.geometry.location.lng();
 
             
-            // const address = { address: `${place.address_components[0].short_name} ${place.address_components[1].short_name}`, city: place.address_components[3].long_name, state: place.address_components[5].short_name, country: place.address_components[6].short_name, zipCode: place.address_components[7].short_name, lat: lat, lng: lng }
-            const address = {address: place.address_components, lat: lat, lng: lng, place_id: place.place_id}
-            // this.setState({ location: address })
-            // debugger 
+            const address = {address: place.formatted_address, lat: lat, lng: lng, place_id: place.place_id}
+
             if (this.props.match.params.id === '1') {
-                // debugger 
                 if (this.props.startAddress) {
                     this.MarkerManager.removeMarker(this.props.startAddress.lat)
                 }
@@ -65,8 +61,17 @@ class EnterAddress extends React.Component {
                 this.props.receiveEndAddress(address)
                 //save address into itinerary as well 
             }
+
+            if (this.props.match.params.id === '1')  {
+                this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
+                    url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)})
+            }
+            else {
+                this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
+                    url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(30, 30)
+                })
+            }
             
-            this.MarkerManager.addMarker({lat: lat, lng: lng})
         }
     }
 

@@ -61,8 +61,14 @@
 }
 
 .draw-map-container {
-    height: 60vh;
-    width: 60vw;
+    height: 80vh;
+    width: 80vw;
+    margin: auto;
+}
+
+.after-draw-map-container {
+    height: 50vh;
+    width: 50vw;
     margin-top: 100px;
     margin-left: 50px;
 }

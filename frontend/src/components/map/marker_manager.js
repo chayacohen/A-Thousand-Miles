@@ -6,10 +6,11 @@ class MarkerManager {
         // this.addMarker = this.addMarker.bind(this); 
     }
     
-    addMarker(position) {
+    addMarker(position, icon) {
        const marker = new google.maps.Marker({
             position: position,
             map: this.map.map,
+            icon: icon
             //add on click to go to that attraction on attraction list 
             // custom the markers 
             // hover to see the name 

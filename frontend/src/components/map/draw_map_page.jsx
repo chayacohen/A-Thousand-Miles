@@ -7,12 +7,11 @@ import MarkerManager from "./marker_manager";
 class DrawMapRoute extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { itineraryResults: [], totalResults: [] }
+        this.state = { itineraryResults: [], totalResults: [], mapName: 'draw-map-container' }
         this.clicked = false;
         this.round = true;
-        debugger 
-        this.start_pos = { lat: this.props.startAddress.lat, lng: this.props.startAddress.lng}
-        this.end_pos = { lat: this.props.endAddress.lat, lng: this.props.endAddress.lng}
+        this.start_pos = new google.maps.LatLng(this.props.startAddress.lat, this.props.startAddress.lng)
+        this.end_pos = new google.maps.LatLng(this.props.endAddress.lat, this.props.endAddress.lng)
         this.addLatLng = this.addLatLng.bind(this);
         this.receiveResults = this.receiveResults.bind(this);
 
@@ -40,24 +39,32 @@ class DrawMapRoute extends React.Component {
                 this.clicked = false;
                 this.round = false;
                 this.drawListener.remove();
-                this.path = this.map.poly.getPath().xd
-
+                
+                this.path = this.map.poly.getPath().xd 
+                this.map.poly.getPath().insertAt(0,this.start_pos); 
+                this.map.poly.getPath().insertAt((this.path.length - 1), this.end_pos); 
+                this.path = this.map.poly.getPath().xd 
                 this.receiveResults().then(() => {
-                    let increment = Math.floor(this.state.totalResults.length / 10)
+                    let increment = Math.floor(this.state.totalResults.length / 15)
                     if (increment === 0) {
                         increment = 1
                     }
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
                         this.state.itineraryResults.push(result); 
-                        this.markerManager.addMarker({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() })
+                        this.markerManager.addMarker({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() }, { url: result.icon, scaledSize: new google.maps.Size(20, 20)})
                     }
                 })
+                this.setState({mapName: 'after-draw-map-container'})
             }
         })
         this.markerManager = new MarkerManager(this.map)
-        this.markerManager.addMarker(this.start_pos)
-        this.markerManager.addMarker(this.end_pos)
+        this.markerManager.addMarker(this.start_pos, {
+            url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(40, 40)
+        })
+        this.markerManager.addMarker(this.end_pos, {
+            url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
+        })
     }
 
     addLatLng(e) {
@@ -71,7 +78,7 @@ class DrawMapRoute extends React.Component {
         const promises = [];
         const service = new google.maps.places.PlacesService(this.map.map);
         const increment = Math.floor(this.path.length / 15)
-        for (let i = 0; i < this.path.length; i += (increment > 0 ? increment : 1)) {
+        for (let i = 1; i < this.path.length; i += (increment > 0 ? increment : 1)) {
             if (this.path[i])
                 promises.push(new Promise((resolve, reject) => {
                     service.nearbySearch({
@@ -95,7 +102,7 @@ class DrawMapRoute extends React.Component {
 
     render() {
         return (
-            <div className="draw-map-container" >
+            <div className={this.state.mapName} >
                 <div className="map" ref={map => this.mapNode = map} ></div>
             </div>
         )
