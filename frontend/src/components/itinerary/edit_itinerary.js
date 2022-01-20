@@ -1,6 +1,7 @@
 import React from "react";
 import Map from "../map/map";
 import MarkerManager from "../map/marker_manager";
+import ItineraryAttractionItem from "./itinerary_attraction_item";
 
 class EditItinerary extends React.Component {
 
@@ -11,15 +12,18 @@ class EditItinerary extends React.Component {
     }
 
     componentDidMount() {
+        this.map = new Map(this.mapNode)
+        this.markerManager = new MarkerManager(this.map)
+        this.map.instantiateMap();
+        this.map.map.setZoom(4)
         this.props.getItinerary(this.props.match.params.id).then(() => {
             this.itineraryAttractions = '';
             this.props.getItineraryAttractions(this.props.match.params.id).then(response => {
-                this.setState({ itineraryAttractions: response.attractions.data}) 
+                this.setState({ itineraryAttractions: response.attractions.data})
+                this.state.itineraryAttractions.forEach(attraction => {
+                    this.markerManager.addMarker({lat: attraction.lat, lng: attraction.lng}, {url: attraction.icon, scaledSize: new google.maps.Size(20,20)})
+                }) 
             })
-            this.map = new Map(this.mapNode)
-            this.markerManager = new MarkerManager(this.map)
-            this.map.instantiateMap();
-            this.map.map.setZoom(4)
             // this.setState({line: this.props.itinerary.line})
             this.changeLineForMap();
             this.markerManager.addMarker(this.state.line[0], {
@@ -31,6 +35,7 @@ class EditItinerary extends React.Component {
             this.state.line.forEach((location, index) => {
                 this.map.poly.getPath().insertAt(index, location); 
             })
+
 
         })
     }
@@ -50,20 +55,20 @@ class EditItinerary extends React.Component {
     render () {
         const map = <div className="map" ref={map => this.mapNode = map} ></div>
 
-        if (!this.state.itineraryAttractions) {
+        if (!this.state.itineraryAttractions || !this.props.itinerary) {
             return null
         }
 
         return (
             <div>
+                <p>{this.props.itinerary.title}</p>
+                <p>{this.props.itinerary.description}</p>
                 <div className="edit-map-container" style={{width: '800px', height:'500px'}}>
                     {map}
                 </div>
                 <ul>
                     {this.state.itineraryAttractions.map((attraction, index) => (
-                        <li key={index}>
-                            {attraction.title}
-                        </li>
+                        <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itinerary.id} />
                     ))}
                 </ul>
             </div> 

@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => ({
     editItinerary: (itineraryId, data) => dispatch(editItinerary(itineraryId, data)), 
     createAttraction: (attraction) => dispatch(createAttraction(attraction)), 
     getItineraryAttractions: (itineraryId) => dispatch(getItineraryAttractions(itineraryId)), 
-    deleteAttraction: (attractionId) => dispatch(deleteAttraction(attractionId)), 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditItinerary); 
