@@ -5,6 +5,7 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
+import { isGoogle } from './util/google_util';
 
 import { getItineraries, getUserItineraries, getItinerary, 
   createItinerary, editItinerary, deleteItinerary, clearItinerariesFromState } from "./actions/itinerary_actions"
@@ -13,6 +14,9 @@ import { getAttractions, getAttraction, getItineraryAttractions,
   createAttraction, deleteAttraction, clearAttractionsFromState, editAttraction } from "./actions/attraction_actions"
 
 import { editUser, getUser} from "./actions/user_actions"
+
+const KEYS = require("./keys");
+
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -52,7 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
   //user
   window.editUser = editUser;
   window.getUser = getUser;
-  const root = document.getElementById('root');
 
-  ReactDOM.render(<Root store={store} />, root);
+  const head = document.head
+  const googleMapScript = document.querySelector('.google');
+  if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
+    const googleScript = document.createElement('script')
+    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
+    googleScript.className = "google";
+    head.appendChild(googleScript);
+  }
+
+  const root = document.getElementById('root');
+  isGoogle().then(() => {
+      ReactDOM.render(<Root store={store} />, root);
+  })
 });
