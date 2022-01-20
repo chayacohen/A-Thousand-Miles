@@ -1,8 +1,9 @@
 import React from "react";
-
+import AttractionItemContainer from "./attraction_item_container"
 class Attraction extends React.Component{
     constructor(props){
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount(){
@@ -13,16 +14,24 @@ class Attraction extends React.Component{
         this.props.clearAttractionsFromState();
     }
 
+    handleSubmit(){
+        this.props.history.push("/profile")
+    }
+
     render(){
         const attractionitems = this.props.attractions.map(attraction => {
-            return <li>{attraction.title}</li>
+            return <li key={attraction._id}>
+                <AttractionItemContainer attraction={attraction}/>
+                </li>
         })
-        // debugger
         return(
             <div>
                 attractions
                 please show
-                {attractionitems}
+                <ul>
+                    {attractionitems}   
+                </ul>
+                <button onClick={this.handleSubmit}>go back</button>
             </div>
         )
     }

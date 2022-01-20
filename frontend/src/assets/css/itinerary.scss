@@ -1,0 +1,115 @@
+.itinerary-container{
+    border: 2px solid red;
+    height: 70vh;
+    overflow: scroll;
+    width: 60vw;
+}
+
+.itinerary-inner-container{
+    border: 2px solid orange;
+}
+
+.itinerary-item-container{
+    border: 2px solid green;
+    // display: flex;
+    height: 180px;
+    margin-bottom: 10px;
+}
+
+.itinerary-item{
+    // border: 2px solid indianred;
+    display: flex;
+    height: 100%;
+}
+//map tbd
+.map-temp{
+    // border:2px solid purple;
+    width: 230px;
+    background-color: rgb(241, 219, 200);
+}
+//button
+.button-container{
+    // border: 2px solid brown;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-button{
+    // border: 2px solid gold;
+    height: 50%;
+    background-color: rgb(230, 189, 189);
+}
+
+.delete-button:hover{
+    background-color: rgb(233, 143, 143);
+}
+
+.edit-button{
+    // border: 2px solid blue;
+    height: 50%;
+    background-color: rgb(250, 250, 189);
+}
+
+.edit-button:hover{
+    background-color: rgb(253, 253, 146);
+}
+//itinerary content
+.itinerary-item-content-container{
+    // border: 2px solid cyan;
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.itinerary-title{
+    // border: 2px solid red;
+    font-size: 40px;
+    h1{
+        padding: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.itinerary-address{
+    // border: 2px solid green;
+    display: flex;
+}
+
+.address{
+    padding: 5px;
+    width: 50%;
+    // border: 2px solid orange;
+
+    h3{
+        font-size: 16px;
+    }
+
+    span{
+        font-size: 13px;
+    }
+}
+
+
+.itinerary-description{
+    padding: 5px;
+    // border: 2px solid blue;
+    height: 100%;
+    overflow-y: scroll;
+    // display: inline-block;
+    h3{
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+    p{
+        font-size: 13px;
+        overflow: hidden;
+        // white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+

@@ -3,11 +3,48 @@ import { Link } from "react-router-dom";
 const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary }) => {
     // debugger;
     return(
-        <div>
-            <Link to={`/profile/${itinerary._id}`}>Itinerary attraction</Link>
-            <br/>
-            {itinerary.title}, description: {itinerary.description}, start: {itinerary.start_address}, end: {itinerary.end_address}
-            <button onClick={() => deleteItinerary(itinerary._id)}>Delete</button>
+        <div className="itinerary-item-container">
+            <Link to={`/profile/${itinerary._id}`}>
+                <div className="itinerary-item">
+                    <div className="map-temp">
+
+                    </div>
+                    <div className="itinerary-item-content-container">
+                        <div className="itinerary-title">
+                            <h1>{itinerary.title}</h1>
+                        </div>
+                        <div className="itinerary-address">
+                            <div className="address">
+                                <h3>Start Address:</h3>
+                                <span>
+                                    {itinerary.start_address}
+                                </span>
+                            </div>
+                            <div className="address">
+                                <h3>Destination:</h3>
+                                <span>
+                                    {itinerary.end_address}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="itinerary-description">
+                            <h3>Description</h3>
+                            <p>
+                                {itinerary.description}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="button-container">
+                        <div className="delete-button" onClick={() => deleteItinerary(itinerary._id)}>
+
+                        </div>
+                        <div className="edit-button">
+
+                        </div>
+                        {/* <button onClick={() => deleteItinerary(itinerary._id)}>Delete</button> */}
+                    </div>
+                </div>
+            </Link>
         </div>
     );
 }
