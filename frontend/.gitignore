@@ -25,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 keys_dev.js
+.env
