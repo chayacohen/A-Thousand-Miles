@@ -1,5 +1,6 @@
 import React from 'react';
 import ItineraryContainer from "../itinerary/itinerary_container"
+import AttractionContainer from "../attraction/attraction_container"
 import { Route, Switch } from "react-router-dom";
 import Attraction from "../attraction/attraction";
 
@@ -27,10 +28,11 @@ class Profile extends React.Component {
       // debugger
       return(
         <div>
+          this should always be here
           {this.props.currentUser.id}
           <Switch>
-            <Route path="/" component={ItineraryContainer}/>
-            <Route path="/:itineraryId" component={Attraction}/>
+            <Route path="/profile/:itineraryId" component={AttractionContainer}/>
+            <Route path="/profile" component={ItineraryContainer}/>
           </Switch>
           {/* <ItineraryContainer/> */}
         </div>
