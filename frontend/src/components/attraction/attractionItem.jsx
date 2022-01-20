@@ -15,8 +15,8 @@ const AttractionItem = ({ attraction, deleteAttraction }) => {
                         <span>Rating: {attraction.rating}</span>
                     </div>
                 </div>
-                <div className="attraction-delete-button">
-                    <button onClick={() => deleteAttraction(attraction._id)}>Delete</button>
+                <div className="attraction-delete-button" onClick={() => deleteAttraction(attraction._id)}>
+                    {/* <button onClick={() => deleteAttraction(attraction._id)}>Delete</button> */}
                 </div>
             </div>
         </div>

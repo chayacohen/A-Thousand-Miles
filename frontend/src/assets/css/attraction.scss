@@ -1,3 +1,7 @@
+.attraction-wrapper{
+    position: relative;
+}
+
 .attraction-container{
     border: 2px solid red;
     height: 490px;
@@ -7,6 +11,14 @@
 
 .attraction-inner-container{
     border: 2px solid orange;
+}
+
+.back-arrow{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition-duration: 0.2s;
 }
 
 .attraction-item-container{
@@ -31,6 +43,12 @@
 .attraction-delete-button{
     border: 2px solid brown;
     width: 70px;
+    // height: 100%;    
+    background-color: rgb(230, 189, 189);
+}
+
+.attraction-delete-button:hover{
+    background-color: rgb(233, 143, 143);
 }
 //attraction content
 .attraction-item-content-container{

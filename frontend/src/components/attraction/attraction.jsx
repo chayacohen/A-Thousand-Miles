@@ -26,13 +26,16 @@ class Attraction extends React.Component{
                 </li>
         })
         return(
-            <div className="attraction-container">
-                    attractions
-                    <button onClick={this.handleSubmit}>go back</button>
-                <div className="attraction-inner-container">
-                    <ul>
-                        {attractionitems}   
-                    </ul>
+            <div className="attraction-wrapper">
+                <div className="attraction-container">
+                    <div className="attraction-inner-container">
+                        <ul>
+                            {attractionitems}   
+                        </ul>
+                    </div>
+                    <div className="back-arrow">
+                        <button onClick={this.handleSubmit}>go back</button>
+                    </div>
                 </div>
             </div>
         )
