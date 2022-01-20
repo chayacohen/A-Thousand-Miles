@@ -31,7 +31,6 @@ class DrawMapRoute extends React.Component {
     }
 
     componentDidMount() {
-        this.addGoogleMapScript()
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)
@@ -113,19 +112,6 @@ class DrawMapRoute extends React.Component {
             path.push(e.latLng)
         }
     }
-
-    addGoogleMapScript() {
-        const head = document.head
-        const googleMapScript = document.querySelector('.google');
-        if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
-            const googleScript = document.createElement('script')
-            googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
-            googleScript.className = "google";
-            debugger
-            head.appendChild(googleScript);
-        }
-    }
-
 
     receiveResults() {
         const promises = [];
