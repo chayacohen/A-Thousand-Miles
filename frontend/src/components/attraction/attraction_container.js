@@ -10,7 +10,7 @@ const mSTP = (state) => {
 
 const mDTP = dispatch => {
     return {
-        getItineraryAttractions: itineraryId => dispatch(getItineraryAttractions(itineraryId)),
+        getItineraryAttractions: (itineraryId, data) => dispatch(getItineraryAttractions(itineraryId, data)),
         clearAttractionsFromState: () => dispatch(clearAttractionsFromState()),
     };
 };
