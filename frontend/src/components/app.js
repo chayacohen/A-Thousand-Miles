@@ -17,7 +17,6 @@ import EditItineraryContainer from './itinerary/edit_itinerary_container';
 const KEYS = require("../keys");
 
 const App = () => {
-    
     const head = document.head
     const googleMapScript = document.querySelector('.google');
     if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {

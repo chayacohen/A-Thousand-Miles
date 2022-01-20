@@ -2,6 +2,7 @@ import React from "react";
 import Map from './map';
 import MarkerManager from "./marker_manager";
 import ItineraryAttractionItem from "../itinerary/itinerary_attraction_item";
+import ItineraryAttractionIndex from "../itinerary/itinerary_attraction_index";
 const KEYS = require('../../keys')
 
 class DrawMapRoute extends React.Component {
@@ -17,7 +18,8 @@ class DrawMapRoute extends React.Component {
             attractionAddress: '', 
             rating: '',
             placeId: '', 
-            googleLink: ''
+            googleLink: '', 
+            attractions: []
         }
         this.clicked = false;
         this.round = true;
@@ -31,7 +33,6 @@ class DrawMapRoute extends React.Component {
     }
 
     componentDidMount() {
-        this.addGoogleMapScript()
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)
@@ -75,16 +76,25 @@ class DrawMapRoute extends React.Component {
                             }
                         })
                         this.markerManager.addMarker({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() }, { url: result.icon, scaledSize: new google.maps.Size(20, 20)})
-                        this.setState({ 
-                            title: result.name, 
-                            location: [result.geometry.location.lng(), result.geometry.location.lat()], 
-                            photoUrl: result.photos ? result.photos[0].getUrl() : null , 
-                            rating: result.rating, 
-                            placeId: result.place_id, 
-                            googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`
-                        })
+                        const resultInfo = {
+                            title: result.name,
+                            lat: result.geometry.location.lat().toString(),
+                            lng: result.geometry.location.lng().toString(),
+                            photoUrl: result.photos ? result.photos[0].getUrl() : null,
+                            rating: result.rating ? result.rating.toString() : 'none',
+                            placeId: result.place_id,
+                            googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`, 
+                            icon: result.icon}
+                        this.setState(resultInfo)
+                        this.props.createAttraction(this.props.match.params.id, resultInfo)
                     }
+                    debugger 
+                    this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
+                        debugger 
+                        this.setState({attractions: response.attractions.data})
+                    })
                 })
+            
                 this.setState({mapName: 'after-draw-map-container'})
             }
         })
@@ -113,19 +123,6 @@ class DrawMapRoute extends React.Component {
             path.push(e.latLng)
         }
     }
-
-    addGoogleMapScript() {
-        const head = document.head
-        const googleMapScript = document.querySelector('.google');
-        if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
-            const googleScript = document.createElement('script')
-            googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
-            googleScript.className = "google";
-            debugger
-            head.appendChild(googleScript);
-        }
-    }
-
 
     receiveResults() {
         const promises = [];
@@ -160,13 +157,7 @@ class DrawMapRoute extends React.Component {
                     <div className="map" ref={map => this.mapNode = map} ></div>
                 </div>
                 <div className="attraction-index">
-                    <ul>
-                        {this.state.itineraryResults.map((result, index)=> (
-                            <div>
-                                <ItineraryAttractionItem key={index} result={result} createAttraction={this.props.createAttraction} itineraryId={this.props.match.params.id}/>
-                            </div>
-                        ))}
-                    </ul>
+                    <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
                 </div>
             </div>
         )

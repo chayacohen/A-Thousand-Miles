@@ -8,22 +8,18 @@ class ItineraryAttractionItem extends React.Component {
     }
 
     handleAttractionClick() {
-        const attraction = {
-            title: this.props.result.name,
-            lat: this.props.result.geometry.location.lat().toString(),
-            lng: this.props.result.geometry.location.lat().toString(),
-            photoUrl: this.props.result.photos ? this.props.result.photos[0].getUrl() : null,
-            rating: this.props.result.rating.toString(),
-            placeId: this.props.result.place_id,
-            googleLink: `https://www.google.com/maps/place/?q=place_id:${this.props.result.place_id}`
+        if (this.props.attraction.isAdded === false) {
+            this.props.editAttraction(this.props.attraction._id, {isAdded: true})
         }
-        this.props.createAttraction(this.props.itineraryId, attraction)
+        else {
+            this.props.editAttraction(this.props.attraction._id, { isAdded: false }) 
+        }
     }
 
     render() {
         return (
-            <div key={this.props.key}>
-                <p>{this.props.result.name}</p>
+            <div>
+                <p>{this.props.attraction.title}</p>
                 <button onClick={this.handleAttractionClick}>Add</button>
             </div>
         )

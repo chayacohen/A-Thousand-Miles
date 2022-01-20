@@ -15,6 +15,7 @@ import { getAttractions, getAttraction, getItineraryAttractions,
 import { editUser, getUser} from "./actions/user_actions"
 
 document.addEventListener('DOMContentLoaded', () => {
+  
   let store;
 
   if (localStorage.jwtToken) {

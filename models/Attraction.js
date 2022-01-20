@@ -37,6 +37,9 @@ const AttractionSchema = new Schema({
     isAdded: {
         type: Boolean,
         default: false
+    }, 
+    icon: {
+        type: String,  
     }
     
 }, {
