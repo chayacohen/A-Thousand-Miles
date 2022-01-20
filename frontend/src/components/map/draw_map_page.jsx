@@ -42,7 +42,7 @@ class DrawMapRoute extends React.Component {
 
         this.drawListener = this.map.map.addListener("mousemove", e => {
             if (e.domEvent.type === "mouseup") {
-                console.log("mouseup")
+                // console.log("mouseup")
             }
             if (this.clicked && this.round) {
                 this.addLatLng(e)
@@ -88,9 +88,9 @@ class DrawMapRoute extends React.Component {
                         this.setState(resultInfo)
                         this.props.createAttraction(this.props.match.params.id, resultInfo)
                     }
-                    debugger 
+                    // debugger 
                     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                        debugger 
+                        // debugger 
                         this.setState({attractions: response.attractions.data})
                     })
                 })
