@@ -1,6 +1,7 @@
 import React from "react";
 import AttractionItemContainer from "./attraction_item_container"
 import '../../assets/css/attraction.scss';
+import backArrow from '../../assets/images/back-arrow.png';
 class Attraction extends React.Component{
     constructor(props){
         super(props);
@@ -26,7 +27,6 @@ class Attraction extends React.Component{
                 </li>
         })
         return(
-            // <div className="attraction-wrapper">
                 <div className="attraction-container">
                     <div className="attraction-inner-container">
                         <ul>
@@ -34,10 +34,10 @@ class Attraction extends React.Component{
                         </ul>
                     </div>
                     <div className="back-arrow">
-                        <button onClick={this.handleSubmit}>go back</button>
+                    <img alt="travel" src={backArrow} onClick={this.handleSubmit}/>
+                        {/* <button onClick={this.handleSubmit}>go back</button> */}
                     </div>
                 </div>
-            // </div>
         )
     }
 }
