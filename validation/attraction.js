@@ -31,6 +31,10 @@ module.exports = function validateAttractionInput(data) {
         errors.lng = 'Rating must be a float';
     }
 
+    // if(!Validator.isBoolean(data.isAdded) && data.isAdded) {
+    //     errors.lng = 'isAdded must be a boolean';
+    // }
+
     return {
         errors,
         isValid: Object.keys(errors).length === 0
