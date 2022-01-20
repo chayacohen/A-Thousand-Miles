@@ -18,7 +18,7 @@ class EditItinerary extends React.Component {
         this.map.map.setZoom(4)
         this.props.getItinerary(this.props.match.params.id).then(() => {
             this.itineraryAttractions = '';
-            this.props.getItineraryAttractions(this.props.match.params.id).then(response => {
+            this.props.getItineraryAttractions(this.props.match.params.id, {boolean: false}).then(response => {
                 this.setState({ itineraryAttractions: response.attractions.data})
                 this.state.itineraryAttractions.forEach(attraction => {
                     this.markerManager.addMarker({lat: attraction.lat, lng: attraction.lng}, {url: attraction.icon, scaledSize: new google.maps.Size(20,20)})
