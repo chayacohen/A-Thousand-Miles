@@ -16,6 +16,10 @@ export const createAttraction = (itineraryId, data) => {
     return axios.post(`/api/attractions/itinerary/${itineraryId}`, data)
 };
 
+export const editAttraction = (id, data) => {
+    return axios.put(`/api/attractions/${id}`, data)
+};
+
 export const deleteAttraction = id => {
     return axios.delete(`/api/attractions/${id}`)
 };

@@ -74,6 +74,12 @@ export const createAttraction = (itineraryId, data) => dispatch => (
         err => (dispatch(receiveAttractionErrors(err.response.data))))
 );
 
+export const editAttraction = (id, data) => dispatch => (
+    AttractionApiUtil.editAttraction(id, data)
+        .then(attraction => (dispatch(receiveAttraction(attraction))),
+        err => (dispatch(receiveAttractionErrors(err.response.data))))
+);
+
 export const deleteAttraction = (id) => dispatch => (
     AttractionApiUtil.deleteAttraction(id)
         .then(attraction => (dispatch(removeAttraction(attraction))),

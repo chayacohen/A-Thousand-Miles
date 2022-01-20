@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/itinerary/:itinerary_id', (req, res) => {
-    Attraction.find({ itinerary: req.params.itinerary_id })
+    Attraction.find({ itinerary: req.params.itinerary_id, isAdded: true })
         .then(attractions => res.json(attractions))
         .catch(err =>
             res.status(404).json({ message: 'No attractions found from that itinerary' }

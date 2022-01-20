@@ -9,9 +9,10 @@ import { logout } from './actions/session_actions';
 import { getItineraries, getUserItineraries, getItinerary, 
   createItinerary, editItinerary, deleteItinerary, clearItinerariesFromState } from "./actions/itinerary_actions"
 
-import { getAttractions, getAttraction, getItineraryAttractions, createAttraction, deleteAttraction, clearAttractionsFromState } from "./actions/attraction_actions"
+import { getAttractions, getAttraction, getItineraryAttractions, 
+  createAttraction, deleteAttraction, clearAttractionsFromState, editAttraction } from "./actions/attraction_actions"
 
-import {editUser} from "./actions/user_actions"
+import { editUser, getUser} from "./actions/user_actions"
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -45,9 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getItineraryAttractions = getItineraryAttractions;
   window.createAttraction = createAttraction;
   window.deleteAttraction = deleteAttraction;
+  window.editAttraction = editAttraction;
   window.clearAttractionsFromState = clearAttractionsFromState;
   //user
   window.editUser = editUser;
+  window.getUser = getUser;
   const root = document.getElementById('root');
 
   ReactDOM.render(<Root store={store} />, root);
