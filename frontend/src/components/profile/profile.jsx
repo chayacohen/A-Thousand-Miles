@@ -19,7 +19,6 @@ class Profile extends React.Component {
     // }   
     
     render() {
-      debugger
         if (this.state.itineraries.length === 0) {
           return (<div>This user has no travel plans!</div>)
         } else {

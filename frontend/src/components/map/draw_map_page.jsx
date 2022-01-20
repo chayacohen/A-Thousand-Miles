@@ -31,6 +31,7 @@ class DrawMapRoute extends React.Component {
     }
 
     componentDidMount() {
+        this.addGoogleMapScript()
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)
@@ -58,7 +59,7 @@ class DrawMapRoute extends React.Component {
                 this.map.poly.getPath().insertAt((this.path.length - 1), this.end_pos); 
                 this.path = this.map.poly.getPath().xd 
                 this.pathForDB = this.convertPath(); 
-                // this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB} ).then(response => {debugger }); 
+                this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB} )
                 
                 this.receiveResults().then(() => { 
                     let increment = Math.floor(this.state.totalResults.length / 15)
@@ -67,10 +68,7 @@ class DrawMapRoute extends React.Component {
                     }
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
-                        debugger 
-                        const itineraryResults = this.state.itineraryResults.push(result); 
                         this.setState({itineraryResults: this.state.itineraryResults.concat([result])});
-                        debugger 
                         this.service.getDetails({placeId: result.place_id}, (response, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 this.setState({attractionAddress: response.formatted_address}) 
@@ -115,6 +113,19 @@ class DrawMapRoute extends React.Component {
             path.push(e.latLng)
         }
     }
+
+    addGoogleMapScript() {
+        const head = document.head
+        const googleMapScript = document.querySelector('.google');
+        if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
+            const googleScript = document.createElement('script')
+            googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
+            googleScript.className = "google";
+            debugger
+            head.appendChild(googleScript);
+        }
+    }
+
 
     receiveResults() {
         const promises = [];

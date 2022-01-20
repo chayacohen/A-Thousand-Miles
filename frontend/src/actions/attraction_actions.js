@@ -65,7 +65,7 @@ export const getAttraction = (id) => dispatch => (
 export const getItineraryAttractions = (itineraryId) => dispatch => (
     AttractionApiUtil.getItineraryAttractions(itineraryId)
         .then(attractions => dispatch(receiveItineraryAttractions(attractions)))
-        // .catch(err => console.log(err))
+        .catch(err => console.log(err))
 );
 
 export const createAttraction = (itineraryId, data) => dispatch => (

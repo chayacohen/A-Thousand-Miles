@@ -3,6 +3,7 @@ import Map from './map';
 import MarkerManager from "./marker_manager";
 import { Link } from "react-router-dom";
 import '../../assets/css/map.scss';
+const KEYS = require('../../keys');
 
 class EnterAddress extends React.Component {
 
@@ -14,6 +15,7 @@ class EnterAddress extends React.Component {
     }
 
     componentDidMount() {
+        this.addGoogleMapScript()
         this.map = new Map(this.mapNode); 
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
@@ -35,6 +37,19 @@ class EnterAddress extends React.Component {
         } 
         
     }
+
+    addGoogleMapScript() {
+        const head = document.head
+        const googleMapScript = document.querySelector('.google');
+        if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
+            const googleScript = document.createElement('script')
+            googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
+            googleScript.className = "google";
+            debugger
+            head.appendChild(googleScript);
+        }
+    }
+
 
     componentDidUpdate(prevProps) {
         if (this.props.match.params.id !== prevProps.match.params.id) {

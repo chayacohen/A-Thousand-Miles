@@ -13,15 +13,19 @@ import NavbarContainer from './nav/navbar_container';
 import PlannerContainer from './planner/planner_container';
 import EnterAddressContainer from './map/enter_address_container';
 import StartItineraryContainer from './itinerary/start_itinerary_container'
-
+import EditItineraryContainer from './itinerary/edit_itinerary_container';
 const KEYS = require("../keys");
 
 const App = () => {
     
     const head = document.head
-    const googleScript = document.createElement('script')
-    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`
-    head.appendChild(googleScript);
+    const googleMapScript = document.querySelector('.google');
+    if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
+        const googleScript = document.createElement('script')
+        googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`; 
+        googleScript.className = "google"; 
+        head.appendChild(googleScript);
+    }
     
     return(
     <div>
@@ -31,6 +35,7 @@ const App = () => {
             <AuthRoute exact path="/" component={Splash} /> 
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute exact path="/itinerary/:id/edit" component={EditItineraryContainer}/>
             <ProtectedRoute exact path="/itinerary/:id/draw" component={DrawMapContainer}/>
             <ProtectedRoute exact path = "/map/:id" component={EnterAddressContainer}/>
             <ProtectedRoute exact path="/trip/new" component={StartItineraryContainer}/>
