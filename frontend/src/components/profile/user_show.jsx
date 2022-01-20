@@ -11,7 +11,7 @@ class UserShow extends React.Component{
             main: true,
         }
         this.userShowToggle = this.userShowToggle.bind(this);
-        this.userSettings = this.userSettings.bind(this);
+        // this.userSettings = this.userSettings.bind(this);
         this.changeUsername = this.changeUsername.bind(this);
         this.changeAddress = this.changeAddress.bind(this);
         }
@@ -37,14 +37,13 @@ class UserShow extends React.Component{
     }
 
     updateUser() {
+        // debugger
         this.props.editUser(this.props.currentUser.id, {username: this.state.username, address: this.state.address})
         
         this.userShowToggle();
     }
 
-    userSettings() {
-       
-    }
+    
         
     render(){
         if (this.state.load) return (<h1> Loading </h1>);
@@ -66,7 +65,7 @@ class UserShow extends React.Component{
                 );
             } else {
                 return (
-                    <div user-edit>
+                    <div className="user-edit">
                     <ul className='user-container'>
                         <li><img onClick={() => this.userShowToggle()} src="https://cdn-icons-png.flaticon.com/512/900/900834.png" alt="" /></li>
                         <li className='user-bubble'><h1>{initials}</h1></li>

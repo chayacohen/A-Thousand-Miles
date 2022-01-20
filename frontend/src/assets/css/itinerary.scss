@@ -2,7 +2,8 @@
     border: 2px solid red;
     height: 490px;
     overflow: scroll;
-    width: 870px;
+    min-width: 700px;
+    width: 60vw;
 }
 
 .itinerary-inner-container{
@@ -21,6 +22,13 @@
     display: flex;
     height: 100%;
 }
+
+.link-container{
+    display: flex;
+    width: calc(100% - 90px);
+    min-width: 580px;
+}
+
 //map tbd
 .map-temp{
     // border:2px solid purple;
@@ -30,7 +38,7 @@
 //button
 .button-container{
     // border: 2px solid brown;
-    width: 120px;
+    min-width: 90px;
     display: flex;
     flex-direction: column;
 }
@@ -62,6 +70,7 @@
     display: flex;
     flex-direction: column;
 }
+
 
 .itinerary-title{
     // border: 2px solid red;
@@ -109,6 +118,7 @@
         overflow: hidden;
         // white-space: nowrap;
         text-overflow: ellipsis;
+        padding-bottom: 2px;
     }
 }
 

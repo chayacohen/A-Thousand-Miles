@@ -1,12 +1,10 @@
-.attraction-wrapper{
-    position: relative;
-}
 
 .attraction-container{
     border: 2px solid red;
     height: 490px;
     overflow: scroll;
     width: 870px;
+    position: relative;
 }
 
 .attraction-inner-container{
@@ -16,9 +14,21 @@
 .back-arrow{
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     cursor: pointer;
     transition-duration: 0.2s;
+
+    img{
+        opacity: 0.25;
+        // border: 1px solid black;
+        width: 20px;
+        height: 30px;
+        transition-duration: 0.2s;
+    }
+    
+    img:hover{
+        opacity: 0.6;
+    }
 }
 
 .attraction-item-container{
