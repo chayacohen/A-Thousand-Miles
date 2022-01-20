@@ -26,7 +26,7 @@ class Attraction extends React.Component{
                 </li>
         })
         return(
-            <div className="attraction-wrapper">
+            // <div className="attraction-wrapper">
                 <div className="attraction-container">
                     <div className="attraction-inner-container">
                         <ul>
@@ -37,7 +37,7 @@ class Attraction extends React.Component{
                         <button onClick={this.handleSubmit}>go back</button>
                     </div>
                 </div>
-            </div>
+            // </div>
         )
     }
 }

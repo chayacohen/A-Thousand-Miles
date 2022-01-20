@@ -13,7 +13,7 @@ class UserShow extends React.Component{
         this.userSettings = this.userSettings.bind(this);
         this.changeUsername = this.changeUsername.bind(this);
         this.changeAddress = this.changeAddress.bind(this);
-        debugger
+        // debugger
         }
 
     userShowToggle(){
@@ -42,14 +42,14 @@ class UserShow extends React.Component{
     // }
 
     updateUser() {
-        debugger
+        // debugger
         this.props.editUser(this.props.currentUser.id, {username: this.state.username, address: this.state.address})
         
         this.userShowToggle();
     }
 
     userSettings() {
-        debugger
+        // debugger
 
         const {username, email, address} = this.props.currentUser
         const initials = username.split().map(word => word[0]).join().toUpperCase()
