@@ -57,17 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.editUser = editUser;
   window.getUser = getUser;
 
-  const head = document.head
-  const googleMapScript = document.querySelector('.google');
-  if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
-    const googleScript = document.createElement('script')
-    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
-    googleScript.className = "google";
-    head.appendChild(googleScript);
-  }
-
   const root = document.getElementById('root');
-  isGoogle().then(() => {
-      ReactDOM.render(<Root store={store} />, root);
-  })
+  ReactDOM.render(<Root store={store} />, root);
 });
