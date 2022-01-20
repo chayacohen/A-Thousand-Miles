@@ -1,5 +1,6 @@
 import React from "react";
 import AttractionItemContainer from "./attraction_item_container"
+import '../../assets/css/attraction.scss';
 class Attraction extends React.Component{
     constructor(props){
         super(props);
@@ -25,13 +26,14 @@ class Attraction extends React.Component{
                 </li>
         })
         return(
-            <div>
-                attractions
-                please show
-                <ul>
-                    {attractionitems}   
-                </ul>
-                <button onClick={this.handleSubmit}>go back</button>
+            <div className="attraction-container">
+                    attractions
+                    <button onClick={this.handleSubmit}>go back</button>
+                <div className="attraction-inner-container">
+                    <ul>
+                        {attractionitems}   
+                    </ul>
+                </div>
             </div>
         )
     }

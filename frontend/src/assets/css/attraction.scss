@@ -1,0 +1,56 @@
+.attraction-container{
+    border: 2px solid red;
+    height: 490px;
+    overflow: scroll;
+    width: 870px;
+}
+
+.attraction-inner-container{
+    border: 2px solid orange;
+}
+
+.attraction-item-container{
+    border: 2px solid green;
+    // display: flex;
+    height: 120px;
+    margin-bottom: 10px;
+}
+
+.attraction-item{
+    border: 2px solid indianred;
+    display: flex;
+    height: 100%;
+}
+//img tbd
+.photo-temp{
+    border: 2px solid brown;
+    width: 120px;
+    background-color: rgb(241, 219, 200);
+}
+//button
+.attraction-delete-button{
+    border: 2px solid brown;
+    width: 70px;
+}
+//attraction content
+.attraction-item-content-container{
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.attraction-title{
+    border: 2px solid red;
+    font-size: 32px;
+    h1{
+        padding: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.attraction-rating{
+
+}
