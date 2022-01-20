@@ -3,7 +3,6 @@ import Map from './map';
 import MarkerManager from "./marker_manager";
 import { Link } from "react-router-dom";
 import '../../assets/css/map.scss';
-const KEYS = require('../../keys');
 
 class EnterAddress extends React.Component {
 

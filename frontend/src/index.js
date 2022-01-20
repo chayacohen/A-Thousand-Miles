@@ -15,7 +15,6 @@ import { getAttractions, getAttraction, getItineraryAttractions,
 
 import { editUser, getUser} from "./actions/user_actions"
 
-const KEYS = require("./keys");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //user
   window.editUser = editUser;
   window.getUser = getUser;
-
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });

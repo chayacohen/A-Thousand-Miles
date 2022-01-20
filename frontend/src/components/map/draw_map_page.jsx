@@ -3,7 +3,6 @@ import Map from './map';
 import MarkerManager from "./marker_manager";
 import ItineraryAttractionItem from "../itinerary/itinerary_attraction_item";
 import ItineraryAttractionIndex from "../itinerary/itinerary_attraction_index";
-const KEYS = require('../../keys')
 
 class DrawMapRoute extends React.Component {
     constructor(props) {
