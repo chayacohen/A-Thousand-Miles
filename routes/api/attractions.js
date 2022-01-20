@@ -9,14 +9,14 @@ const validateAttractionInput = require("../../validation/attraction");
 router.get('/', (req, res) => {
     Attraction.find()
         .then(attractions => res.json(attractions))
-        .catch(err => res.status(404).json({ notweetsfound: 'No attractions found' }));
+        .catch(err => res.status(404).json({ message: 'No attractions found' }));
 });
 
 router.get('/itinerary/:itinerary_id', (req, res) => {
-    Attraction.find({ itinerary: req.params.itinerary_id })
+    Attraction.find({ itinerary: req.params.itinerary_id, isAdded: true })
         .then(attractions => res.json(attractions))
         .catch(err =>
-            res.status(404).json({ notweetsfound: 'No attractions found from that itinerary' }
+            res.status(404).json({ message: 'No attractions found from that itinerary' }
             )
         );
 });
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
     Attraction.findById(req.params.id)
         .then(attraction => res.json(attraction))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No attraction found with that ID' })
+            res.status(404).json({ message: 'No attraction found with that ID' })
         );
 });
 
@@ -46,10 +46,27 @@ router.post('/itinerary/:itinerary_id',
             photoUrl: req.body.photoUrl,
             googleMapLink: req.body.googleMapLink,
             placeId: req.body.placeId,
+            // isAdded: false
         });
         newAttraction.save().then(attraction => res.json(attraction));
     }
 );
+
+router.put('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Attraction.findById(req.params.id)
+            .then(attraction => {
+                attraction.isAdded = (!req.body.isAdded) ? attraction.isAdded : req.body.isAdded;
+                attraction.save()
+                res.json(attraction);
+            })
+            .catch(err =>
+                res.status(404).json({ message: 'No attraction found with that ID' })
+            );
+    }
+);
+
 
 router.delete('/:id',
     passport.authenticate('jwt', { session: false }),

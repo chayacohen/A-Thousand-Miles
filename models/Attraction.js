@@ -34,6 +34,10 @@ const AttractionSchema = new Schema({
         type: String,
         // required: true
     },
+    isAdded: {
+        type: Boolean,
+        default: false
+    }
     
 }, {
     timestamps: true

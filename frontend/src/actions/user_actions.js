@@ -11,3 +11,8 @@ export const editUser = (id, data) => dispatch => (
     UserApiUtil.editUser(id, data)
         .then(user => (dispatch(receiveUser(user))))
 );
+
+export const getUser = (id) => dispatch => (
+    UserApiUtil.editUser(id)
+        .then(user => (dispatch(receiveUser(user))))
+);

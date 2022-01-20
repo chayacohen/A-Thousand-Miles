@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { editUser } from '../../actions/user_actions';
+import { editUser, getUser } from '../../actions/user_actions';
 import { login } from '../../actions/session_actions';
 import UserShow from './user_show';
 
@@ -15,6 +15,7 @@ const mSTP = (state) => {
 const mDTP = dispatch => {
   return {
     editUser: (id, data) => dispatch(editUser(id, data)),
+    getUser: id => dispatch(getUser(id)),
     login: user => dispatch(login(user))
   };
 };
