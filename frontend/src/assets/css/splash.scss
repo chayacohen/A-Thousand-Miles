@@ -183,6 +183,9 @@ margin-right: 10%;
         .splash-final-content > div:hover{
             background: #ffb560;
         }
+        .splash-final-content div a{
+            scroll-behavior: smooth;
+        }
         
         .splash-final-image{
             position: relative;

@@ -27,23 +27,24 @@ class UserShow extends React.Component{
         this.setState({address: e.target.value})
     }
 
-    componentWillReceiveProps(nextProps) {
+    // componentWillReceiveProps(nextProps) {
         
-        let user = {
-            email: this.state.email,
-            password: this.state.password,
-        };
+    //     let user = {
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //     };
 
-        if (nextProps.signedIn === true) {
-            this.props.login(user)
-        }
+    //     if (nextProps.signedIn === true) {
+    //         this.props.login(user)
+    //     }
 
-        this.setState({ errors: nextProps.errors })
-    }
+    //     this.setState({ errors: nextProps.errors })
+    // }
 
     updateUser() {
         debugger
         this.props.editUser(this.props.currentUser.id, {username: this.state.username, address: this.state.address})
+        
         this.userShowToggle();
     }
 
@@ -57,7 +58,7 @@ class UserShow extends React.Component{
             return (
                 <div className='user-main'>
                 <ul className='user-container'>
-                    <li><img onClick={() => this.userShowToggle()} src="https://cdn-icons.flaticon.com/png/512/561/premium/561772.png?token=exp=1642648209~hmac=2676bdbff6be93bcc2e2872a39c98f78" alt="" /></li>
+                    <li><img onClick={() => this.userShowToggle()} src="https://cdn-icons-png.flaticon.com/512/900/900834.png" alt="" /></li>
                     <li className='user-bubble'><h1>{initials}</h1></li>
                     <li>Hi, {username}</li>
                     <li>{email}</li>
@@ -69,7 +70,7 @@ class UserShow extends React.Component{
             return (
                 <div user-edit>
                 <ul className='user-container'>
-                    <li><img onClick={() => this.userShowToggle()} src="https://cdn-icons.flaticon.com/png/512/561/premium/561772.png?token=exp=1642648209~hmac=2676bdbff6be93bcc2e2872a39c98f78" alt="" /></li>
+                    <li><img onClick={() => this.userShowToggle()} src="https://cdn-icons-png.flaticon.com/512/900/900834.png" alt="" /></li>
                     <li className='user-bubble'><h1>{initials}</h1></li>
                     <li>Redefine yourself</li>
                     <li><input type="text" value={this.state.username} onChange={this.changeUsername}/></li>
