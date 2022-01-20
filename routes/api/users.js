@@ -97,6 +97,7 @@ router.put('/:id',
     (req, res) => {
         User.findById(req.params.id)
             .then(user => {
+                debugger
                 user.username = (!req.body.username) ? user.username : req.body.username;
                 // user.username = req.body.username;
                 user.address = (!req.body.address) ? user.address : req.body.address;
