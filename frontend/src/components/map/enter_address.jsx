@@ -15,7 +15,6 @@ class EnterAddress extends React.Component {
     }
 
     componentDidMount() {
-        this.addGoogleMapScript()
         this.map = new Map(this.mapNode); 
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
@@ -36,18 +35,6 @@ class EnterAddress extends React.Component {
             })
         } 
         
-    }
-
-    addGoogleMapScript() {
-        const head = document.head
-        const googleMapScript = document.querySelector('.google');
-        if (!googleMapScript || googleMapScript.src !== `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`) {
-            const googleScript = document.createElement('script')
-            googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEYS.googleAPI}&libraries=places,drawing`;
-            googleScript.className = "google";
-            debugger
-            head.appendChild(googleScript);
-        }
     }
 
 
@@ -121,7 +108,7 @@ class EnterAddress extends React.Component {
                 <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
             </div>
             <div className="map-container">
-                <div className="map" ref={map => this.mapNode = map}></div>
+                    <div className="map" ref={map => this.mapNode = map}></div>
             </div>
             <div>
                 <div className="next-container">
