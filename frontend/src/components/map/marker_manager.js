@@ -1,3 +1,4 @@
+const google = window.google;
 class MarkerManager {
 
     constructor(map){

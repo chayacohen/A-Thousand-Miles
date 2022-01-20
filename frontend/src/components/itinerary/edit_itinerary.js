@@ -2,7 +2,7 @@ import React from "react";
 import Map from "../map/map";
 import MarkerManager from "../map/marker_manager";
 import ItineraryAttractionItem from "./itinerary_attraction_item";
-
+const google = window.google;
 class EditItinerary extends React.Component {
 
     constructor(props) {

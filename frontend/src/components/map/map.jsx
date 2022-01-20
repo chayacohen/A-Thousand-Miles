@@ -1,3 +1,4 @@
+const google = window.google;
 class Map {
     constructor(mapNode) {
         this.mapNode = mapNode;

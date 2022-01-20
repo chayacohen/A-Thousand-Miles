@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../../assets/css/sessionform.scss';
-
+const google = window.google;
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
