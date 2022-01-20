@@ -88,9 +88,7 @@ class DrawMapRoute extends React.Component {
                         this.setState(resultInfo)
                         this.props.createAttraction(this.props.match.params.id, resultInfo)
                     }
-                    // debugger 
                     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                        // debugger 
                         this.setState({attractions: response.attractions.data})
                     })
                 })

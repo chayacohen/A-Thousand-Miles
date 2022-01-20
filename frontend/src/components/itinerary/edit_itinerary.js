@@ -53,18 +53,21 @@ class EditItinerary extends React.Component {
     // we have to find a way to store all attractions, unless we refetch based on the same algorithm. Possibly we can make an attribute of attraction a boolean of true or false and then based on if true, it is part of itinerary. Or keep two seperate attraction types?
     
     render () {
-        const map = <div className="map" ref={map => this.mapNode = map} ></div>
 
-        if (!this.state.itineraryAttractions || !this.props.itinerary) {
-            return null
-        }
+        // if (!this.state.itineraryAttractions || !this.props.itinerary) {
+        //     return(
+        //         <div className="edit-map-container" style={{ width: '300px', height: '300px' }}>
+        //             <div className="map" ref={map => this.mapNode = map} style={{height: '100%', width: '100%'}}></div>
+        //         </div>
+        //     ) 
+        // }
 
         return (
             <div>
-                <p>{this.props.itinerary.title}</p>
-                <p>{this.props.itinerary.description}</p>
-                <div className="edit-map-container" style={{width: '800px', height:'500px'}}>
-                    {map}
+                <p>{this.props.itinerary ? this.props.itinerary.title : ''}</p>
+                <p>{this.props.itinerary ? this.props.itinerary.description : ''}</p>
+                <div className="edit-map-container" style={{width: '300px', height:'300px'}}>
+                    <div className="map" ref={map => this.mapNode = map} style={{ height: '100%', width: '100%' }}></div>
                 </div>
                 <ul>
                     {this.state.itineraryAttractions.map((attraction, index) => (
