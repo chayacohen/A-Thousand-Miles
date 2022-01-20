@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 // We'll create this soon
 import App from './app';
-const KEYS = require("../keys");
 
 const Root = ({ store }) => {
     return  (
