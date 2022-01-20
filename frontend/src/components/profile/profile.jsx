@@ -2,44 +2,45 @@ import React from 'react';
 import UserShow from './user_show_container';
 import '../../assets/css/profile.scss';
 
+import ItineraryContainer from "../itineraryindex/itinerary_container"
+import AttractionContainer from "../attraction/attraction_container"
+import { Route, Switch } from "react-router-dom";
+import Attraction from "../attraction/attraction";
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            itineraries: []
-        }
     }
     
-    componentWillMount() {
+    componentDidMount() {
         // console.log(this.props.currentUser.id)
-        // this.props.fetchUserItineraries(this.props.currentUser.id);
+      this.props.getUserItineraries(this.props.currentUser.id);
     }
 
     // componentWillReceiveProps(newState) {
     //     this.setState({ itineraries: newState.itineraries });
     // }   
+
+    //userprofile profile/
+    //switch
+      //route path = / => itinerary => idxitems => link to profile/:id
+      //route path = /:id => attraction => attractionidx => profile/
+    //switch
     
     render() {
-        if (this.state.itineraries.length === 0) {
-          return (
-          <div>
-            <UserShow />
-              <h1>This user has no travel plans!</h1>
-            </div>)
-        } else {
-          return (
-            <div>
-              <UserShow />
-              <h2>All of your upcoming adventures</h2>
-              {/* {this.state.itineraries.map(tweet => (
-                <TweetBox key={itinerary._id} text={itinerary.text} />
-              ))} */}
-            </div>
-          );
-        }
-      }
+      // debugger
+      return(
+        <div>
+          {/* User Profile here, User ID: {this.props.currentUser.id} */}
+          <UserShow />
+          <Switch>
+            <Route path="/profile/:itineraryId" component={AttractionContainer}/>
+            <Route path="/profile" component={ItineraryContainer}/>
+          </Switch>
+          {/* <ItineraryContainer/> */}
+        </div>
+      )
+    }
 }
 
 export default Profile;
