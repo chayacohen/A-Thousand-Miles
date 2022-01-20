@@ -80,7 +80,7 @@ export const editItinerary = (id, data) => dispatch => (
   ItineraryApiUtil.editItinerary(id, data)
     .then(itinerary => (dispatch(receiveItinerary(itinerary))),
     err => (dispatch(receiveItineraryErrors(err.response.data))))
-);
+  );
 
 export const deleteItinerary = (id) => dispatch => (
   ItineraryApiUtil.deleteItinerary(id)
