@@ -8,7 +8,7 @@ class EnterAddress extends React.Component {
 
     constructor(props) {
         super(props); 
-        this.state = { location: ''}
+        this.state = { location: '', id: ''}
         this.onPlaceChanged = this.onPlaceChanged.bind(this); 
         this.handleSubmitItinerary = this.handleSubmitItinerary.bind(this); 
     }
@@ -84,10 +84,13 @@ class EnterAddress extends React.Component {
     }
 
     handleSubmitItinerary() {
-        const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()}; 
-        debugger 
-        this.props.createItinerary(itinerary); 
-        // this.props.clearItineraryForm(); 
+        const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()};  
+        this.props.createItinerary(itinerary).then(response => 
+        {
+                    // this.props.clearItineraryForm();
+                    this.setState({id: response.itinerary.data._id}) 
+                    this.props.history.push(`/itinerary/${this.state.id}/draw`)
+        })
 
     }
 
@@ -108,7 +111,7 @@ class EnterAddress extends React.Component {
             <div>
                 <div className="next-container">
                     { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button">Back</Link> : null}
-                  {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <Link to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</Link>} 
+                  {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <button to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</button>} 
                 </div>
             </div>
         </div>

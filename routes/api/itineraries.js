@@ -70,6 +70,7 @@ router.put('/:id',
                 itinerary.description = (!req.body.description) ? itinerary.description : req.body.description;
                 itinerary.start_date = (!req.body.start_date) ? itinerary.start_date : req.body.start_date;
                 itinerary.end_date = (!req.body.end_date) ? itinerary.end_date : req.body.end_date;
+                itinerary.line = (!req.body.line) ? Itinerary.line : req.body.line
                 itinerary.save();
                 res.json(itinerary);
             })

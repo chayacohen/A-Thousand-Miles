@@ -1,6 +1,7 @@
 import React from "react";
 import Map from './map';
 import MarkerManager from "./marker_manager";
+import ItineraryAttractionItem from "../itinerary/itinerary_attraction_item";
 const KEYS = require('../../keys')
 
 class DrawMapRoute extends React.Component {
@@ -24,6 +25,8 @@ class DrawMapRoute extends React.Component {
         this.end_pos = new google.maps.LatLng(this.props.endAddress.lat, this.props.endAddress.lng)
         this.addLatLng = this.addLatLng.bind(this);
         this.receiveResults = this.receiveResults.bind(this);
+        this.convertPath = this.convertPath.bind(this);
+        // this.handleAttractionClick = this.handleAttractionClick.bind(this);  
 
     }
 
@@ -54,15 +57,20 @@ class DrawMapRoute extends React.Component {
                 this.map.poly.getPath().insertAt(0,this.start_pos); 
                 this.map.poly.getPath().insertAt((this.path.length - 1), this.end_pos); 
                 this.path = this.map.poly.getPath().xd 
-                this.receiveResults().then(() => {
-                    debugger 
+                this.pathForDB = this.convertPath(); 
+                // this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB} ).then(response => {debugger }); 
+                
+                this.receiveResults().then(() => { 
                     let increment = Math.floor(this.state.totalResults.length / 15)
                     if (increment === 0) {
                         increment = 1
                     }
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
-                        this.state.itineraryResults.push(result);  
+                        debugger 
+                        const itineraryResults = this.state.itineraryResults.push(result); 
+                        this.setState({itineraryResults: this.state.itineraryResults.concat([result])});
+                        debugger 
                         this.service.getDetails({placeId: result.place_id}, (response, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 this.setState({attractionAddress: response.formatted_address}) 
@@ -89,6 +97,16 @@ class DrawMapRoute extends React.Component {
         this.markerManager.addMarker(this.end_pos, {
             url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
         })
+    }
+
+    convertPath() {
+        const path = []; 
+        this.path.forEach(location => {
+            const lat = location.lat().toString(); 
+            const lng = location.lng().toString(); 
+            path.push({lat: lat, lng: lng})
+        })
+        return path; 
     }
 
     addLatLng(e) {
@@ -123,15 +141,27 @@ class DrawMapRoute extends React.Component {
         return Promise.all(promises)
     }
 
-
     render() {
+        // this.state.itineraryResults.forEach(result => console.log(result)); 
         return (
-            <div className={this.state.mapName} >
-                <div className="map" ref={map => this.mapNode = map} ></div>
+            <div>
+                <div className={this.state.mapName} >
+                    <div className="map" ref={map => this.mapNode = map} ></div>
+                </div>
+                <div className="attraction-index">
+                    <ul>
+                        {this.state.itineraryResults.map((result, index)=> (
+                            <div>
+                                <ItineraryAttractionItem key={index} result={result} createAttraction={this.props.createAttraction} itineraryId={this.props.match.params.id}/>
+                            </div>
+                        ))}
+                    </ul>
+                </div>
             </div>
         )
-    }
+     }
 }
+
 
 
 export default DrawMapRoute; 

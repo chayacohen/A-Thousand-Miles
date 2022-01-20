@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import EnterAddress from "./enter_address";
 import { receiveStartingAddress , receiveEndAddress, clearItineraryForm } from "../../actions/itinerary_form_actions";
-import { createItinerary } from "../../actions/itinerary_actions";
+import { createItinerary, getItinerary } from "../../actions/itinerary_actions";
 
 
 const mapStateToProps = (state) => ({
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
     receiveStartingAddress: (address) => dispatch(receiveStartingAddress(address)), 
     receiveEndAddress: (address) => dispatch(receiveEndAddress(address)), 
     createItinerary: (itinerary) => dispatch(createItinerary(itinerary)), 
-    clearItineraryForm: () => dispatch(clearItineraryForm())
+    clearItineraryForm: () => dispatch(clearItineraryForm()), 
+    getItinerary: (itineraryId) => dispatch(getItinerary(itineraryId))
 })
 
 
