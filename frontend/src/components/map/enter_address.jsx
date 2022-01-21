@@ -2,7 +2,7 @@ import React from "react";
 import Map from './map';
 import MarkerManager from "./marker_manager";
 import { Link } from "react-router-dom";
-import '../../assets/css/map.scss';
+// import '../../assets/css/map.scss';
 import '../../assets/css/enteraddress.scss';
 const google = window.google;
 class EnterAddress extends React.Component {
@@ -107,13 +107,15 @@ class EnterAddress extends React.Component {
         <div className="map-start-container">
             <div>
                 <div className="next-container">
-                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button">Back</Link> : null}
-                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <button to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</button>} 
+                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">🡨&nbsp;🏃</Link> : null}
+                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">🗺&nbsp;🡪</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>✎&nbsp;🡪</a>} 
                 </div>
             </div>
-            <div className="questions">{this.props.match.params.id === '1' ? 'Where ✓✓✓✓ are you starting?' :  'Where are you going?'}</div>
-            <div className="address-fields">
-                <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
+            <div className="box">
+                <div className="questions">{this.props.match.params.id === '1' ? 'Where are you starting?' : 'Where do you want to go?'}</div>
+                <div className="address-fields">
+                    <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
+                </div>
             </div>
             <div className="map-container">
                     <div className="map_enter" ref={map => this.mapNode = map}></div>

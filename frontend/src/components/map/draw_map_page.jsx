@@ -46,7 +46,7 @@ class DrawMapRoute extends React.Component {
         this.props.getItinerary(this.props.match.params.id).then(response => { 
             this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
             this.markerManager.addMarker(this.state.start_pos, {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(40, 40)
+                url: 'https://cdn-icons-png.flaticon.com/512/5507/5507852.png', scaledSize: new google.maps.Size(40, 40)
             })
             this.markerManager.addMarker(this.state.end_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
