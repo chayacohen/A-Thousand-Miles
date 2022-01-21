@@ -18,12 +18,13 @@ class DrawMapRoute extends React.Component {
             rating: '',
             placeId: '', 
             googleLink: '', 
-            attractions: []
+            attractions: [], 
+            start_pos: '',
+            end_pos: ''
         }
         this.clicked = false;
         this.round = true;
-        this.props.itinerary ? this.start_pos = new google.maps.LatLng(this.props.itinerary.start_lat, this.props.itinerary.start_lng) : null;
-        this.props.itinerary ? this.end_pos = new google.maps.LatLng(this.props.itinerary.end_lat, this.props.itinerary.end_lng) : null;
+     
        
         this.addLatLng = this.addLatLng.bind(this);
         this.receiveResults = this.receiveResults.bind(this);
@@ -34,13 +35,24 @@ class DrawMapRoute extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getItinerary(this.props.match.params.id); 
+        this.props.clearItineraryForm(); 
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)
         this.map.map.addListener("mousedown", (e) => {
             this.clicked = !this.clicked
         });
+        this.markerManager = new MarkerManager(this.map)
+        this.props.getItinerary(this.props.match.params.id).then(response => { 
+            this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
+            this.markerManager.addMarker(this.state.start_pos, {
+                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(40, 40)
+            })
+            this.markerManager.addMarker(this.state.end_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
+            }) 
+        })
+
 
         this.drawListener = this.map.map.addListener("mousemove", e => {
             if (e.domEvent.type === "mouseup") {
@@ -58,8 +70,8 @@ class DrawMapRoute extends React.Component {
                 this.drawListener.remove();
                 
                 this.path = this.map.poly.getPath().xd 
-                this.map.poly.getPath().insertAt(0,this.start_pos); 
-                this.map.poly.getPath().insertAt((this.path.length - 1), this.end_pos); 
+                this.map.poly.getPath().insertAt(0,this.state.start_pos); 
+                this.map.poly.getPath().insertAt((this.path.length - 1), this.state.end_pos); 
                 this.path = this.map.poly.getPath().xd 
                 this.pathForDB = this.convertPath(); 
                 this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB} )
@@ -69,7 +81,6 @@ class DrawMapRoute extends React.Component {
                     if (increment === 0) {
                         increment = 1
                     }
-                    debugger 
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
                         this.setState({itineraryResults: this.state.itineraryResults.concat([result])});
@@ -103,13 +114,6 @@ class DrawMapRoute extends React.Component {
             
                 this.setState({mapName: 'after-draw-map-container'})
             }
-        })
-        this.markerManager = new MarkerManager(this.map)
-        this.markerManager.addMarker(this.start_pos, {
-            url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(40, 40)
-        })
-        this.markerManager.addMarker(this.end_pos, {
-            url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
         })
     }
 
