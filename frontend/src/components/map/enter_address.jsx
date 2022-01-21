@@ -18,8 +18,9 @@ class EnterAddress extends React.Component {
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
         if (this.props.startAddress) {
-            debugger 
-            this.MarkerManager.addMarker({ lat: this.props.startAddress.lat, lng: this.props.startAddress.lng})
+            this.MarkerManager.addMarker({ lat: this.props.startAddress.lat, lng: this.props.startAddress.lng }, {
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+            } )
         }
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
@@ -30,9 +31,8 @@ class EnterAddress extends React.Component {
 
         if (this.props.match.params.id === '1') {
             this.props.receiveStartingAddress({ address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] })
-            debugger 
-            this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0]}, {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)
+            this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }, {
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
             })
         } 
         
@@ -75,11 +75,11 @@ class EnterAddress extends React.Component {
 
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)})
+                    url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)})
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(30, 30)
+                    url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
                 })
             }
             

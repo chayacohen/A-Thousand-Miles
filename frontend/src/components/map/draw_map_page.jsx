@@ -1,7 +1,7 @@
 import React from "react";
 import Map from './map';
 import MarkerManager from "./marker_manager";
-import ItineraryAttractionItem from "../itinerary/itinerary_attraction_item";
+import '../../assets/css/draw_map.scss'
 import ItineraryAttractionIndex from "../itinerary/itinerary_attraction_index";
 const google = window.google;
 class DrawMapRoute extends React.Component {
@@ -17,7 +17,7 @@ class DrawMapRoute extends React.Component {
             attractionAddress: '', 
             rating: '',
             placeId: '', 
-            googleLink: '', 
+            googleMapLink: '', 
             attractions: [], 
             start_pos: '',
             end_pos: ''
@@ -46,17 +46,16 @@ class DrawMapRoute extends React.Component {
         this.props.getItinerary(this.props.match.params.id).then(response => { 
             this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
             this.markerManager.addMarker(this.state.start_pos, {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(40, 40)
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
             })
             this.markerManager.addMarker(this.state.end_pos, {
-                url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
+                url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
             }) 
         })
 
 
         this.drawListener = this.map.map.addListener("mousemove", e => {
             if (e.domEvent.type === "mouseup") {
-                // console.log("mouseup")
             }
             if (this.clicked && this.round) {
                 this.addLatLng(e)
@@ -92,7 +91,7 @@ class DrawMapRoute extends React.Component {
                                 photoUrl: result.photos ? result.photos[0].getUrl() : null,
                                 rating: result.rating ? result.rating.toString() : 'none',
                                 placeId: result.place_id,
-                                googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`, 
+                                googleMapLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`, 
                                 icon: result.icon,
                                 address: this.state.attractionAddress
                             }
@@ -104,7 +103,6 @@ class DrawMapRoute extends React.Component {
                         this.setState({ attractions: response.attractions.data })
                         this.getAddress(this.state.attractions).then(() => {
                             this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                                debugger 
                                 this.setState({attractions: response.attractions.data})
                             })
                         })
@@ -112,6 +110,7 @@ class DrawMapRoute extends React.Component {
                   
                 })
             
+                this.map.map.setOptions({ draggable: true });
                 this.setState({mapName: 'after-draw-map-container'})
             }
         })
@@ -180,14 +179,26 @@ class DrawMapRoute extends React.Component {
     }
 
     render() {
-        // this.state.itineraryResults.forEach(result => console.log(result)); 
+
+        const draw = this.state.mapName === "draw-map-container";
+        const itinerary = this.props.itinerary; 
         return (
-            <div>
-                <div className={this.state.mapName} >
-                    <div className="map" ref={map => this.mapNode = map} ></div>
-                </div>
-                <div className="attraction-index">
-                    <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
+            <div className="draw-map">
+                <div className={draw ? null : "map-and-attractions"}>
+                    <div className={draw ? null : "left-page"}>
+                        { draw ? null : <div>
+                            <h1 className="draw-title">{itinerary ? this.props.itinerary.title : null }</h1>
+                            <p className="draw-description">{itinerary ? this.props.itinerary.description : null}</p>
+                        </div>}
+                        <div className={this.state.mapName} >
+                            {draw ? <h1 className="h-draw">Draw a line from start to end location </h1> : null }
+                            <div className="map" id={draw ? "draw-map" : "done-draw-map"} ref={map => this.mapNode = map} ></div>
+                        </div>
+                    </div>
+                    {this.state.attractions.length === 0 ? null : 
+                    <div className="attraction-index">
+                        <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
+                    </div>}
                 </div>
             </div>
         )
