@@ -2,8 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom";
 import deleteIcon from '../../assets/images/delete.png';
 import pencilIcon from '../../assets/images/pencil.png'
-const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary }) => {
+const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary, history }) => {
     // debugger;
+
+    const sendToEdit = () => {
+        history.push(`/itinerary/${itinerary._id}/edit`)
+    }
+    // debugger
     return(
         <div className="itinerary-item-container">
                 <div className="itinerary-item">
@@ -44,7 +49,7 @@ const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary }) => {
                         <div className="delete-button" onClick={() => deleteItinerary(itinerary._id)}>
                                 <img alt="delete" src={deleteIcon} />
                             </div>
-                            <div className="edit-button">
+                            <div className="edit-button" onClick={sendToEdit}>
                                 <img alt="edit" src={pencilIcon}/>
                             </div>
                         <Link to={`/profile/${itinerary._id}`} className="empty"></Link>
