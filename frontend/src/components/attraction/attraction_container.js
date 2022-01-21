@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import Attraction from './attraction';
 import { getItineraryAttractions, clearAttractionsFromState } from "../../actions/attraction_actions"
 import { withRouter } from 'react-router-dom';
-const mSTP = (state) => {
+const mSTP = (state, ownProps) => {
     return {
         attractions: Object.values(state.entities.attractions),
+        itinerary: state.entities.itineraries[ownProps.match.params.itineraryId]
     };
 };
 

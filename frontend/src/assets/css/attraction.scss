@@ -1,18 +1,37 @@
-
-.attraction-container{
-    // border: 5px solid burlywood;
-    // border-radius: 15px;
+.attraction-wrapper{
     height: 90%;
+    // padding: 0 15px 0 15px;
+    // border: 2px solid cyan;
+}
+.attraction-container{
+    // border: 2px solid burlywood;
+    // border-radius: 15px;
+    height: calc(100% - 90px);
     overflow: scroll;
     min-width: 700px;
     width: 60vw;
     padding: 15px;
+    // padding: 15px;
     // position: relative;
 }
 
 .attraction-inner-container{
     // border: 2px solid orange;
     // position: relative;
+}
+
+.itinerary-index-title{
+    // border: 2px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+        padding-bottom: 10px;
+        font-size: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 
 @keyframes fade-in-a{
@@ -29,7 +48,7 @@
 
 
 .add-attraction-text{
-    // border: 2px solid black;
+    border: 2px solid black;
     animation: fade-in-a 3s;
     display: flex;
     justify-content: center;
@@ -42,7 +61,7 @@
 
 .back-arrow{
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 30px;
     cursor: pointer;
     transition-duration: 0.2s;

@@ -7,6 +7,7 @@ class Attraction extends React.Component{
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.checkAttractions = this.checkAttractions.bind(this)
+        this.checkItinerary = this.checkItinerary.bind(this)
     }
 
     componentDidMount(){
@@ -20,6 +21,8 @@ class Attraction extends React.Component{
     handleSubmit(){
         this.props.history.push("/profile")
     }
+
+    
 
     checkAttractions(){
         const attractionitems = this.props.attractions.map(attraction => {
@@ -44,6 +47,21 @@ class Attraction extends React.Component{
             )
         }
     }
+    
+    checkItinerary(){
+        if(!this.props.itinerary){
+            return (
+                <></>
+            )
+        } else {
+            return(
+                <div className="itinerary-index-title">
+                    <span>{this.props.itinerary.title}</span>
+                </div>
+            )
+        }
+
+    }
 
     render(){
         // const attractionitems = this.props.attractions.map(attraction => {
@@ -51,9 +69,12 @@ class Attraction extends React.Component{
         //         <AttractionItemContainer attraction={attraction}/>
         //         </li>
         // })
-
+        // debugger
         const attraction = this.checkAttractions()
+        const title = this.checkItinerary()
         return(
+            <div className="attraction-wrapper">
+                    {title}
                 <div className="attraction-container">
                     {/* <div className="attraction-inner-container"> */}
                         {attraction}
@@ -63,6 +84,7 @@ class Attraction extends React.Component{
                         {/* <button onClick={this.handleSubmit}>go back</button> */}
                     </div>
                 </div>
+            </div>
         )
     }
 }
