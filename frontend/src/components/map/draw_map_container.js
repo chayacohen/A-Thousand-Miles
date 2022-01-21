@@ -1,14 +1,11 @@
 import { connect } from "react-redux";
 import DrawMap from "./draw_map_page";
-import { editItinerary } from "../../actions/itinerary_actions";
+import { editItinerary, getItinerary } from "../../actions/itinerary_actions";
 import { createAttraction, editAttraction, getItineraryAttractions} from "../../actions/attraction_actions";
+import { clearItineraryForm } from "../../actions/itinerary_form_actions";
 
-const mapStateToProps = (state) => ({
-    // address: state.currentUser.address, 
-    // lat: state.currentUser.lat, 
-    // lng: state.currentUser.lng
-    startAddress: state.ui.starting,
-    endAddress: state.ui.ending
+const mapStateToProps = (state, ownProps) => ({
+    itinerary: state.entities.itineraries[ownProps.match.params.id]
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,6 +13,8 @@ const mapDispatchToProps = (dispatch) => ({
     createAttraction: (itineraryId, data) => dispatch(createAttraction(itineraryId, data)), 
     editAttraction: (attractionId, data) => dispatch(editAttraction(attractionId, data)), 
     getItineraryAttractions: (itineraryId, data) => dispatch(getItineraryAttractions(itineraryId, data)), 
+    clearItineraryForm: () => dispatch(clearItineraryForm()), 
+    getItinerary: (id) => dispatch(getItinerary(id))
 })
 
 
