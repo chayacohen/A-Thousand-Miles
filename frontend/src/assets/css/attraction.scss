@@ -1,5 +1,19 @@
+@keyframes render-attraction{
+    0%{
+        opacity: 0%;
+        // transform: scale(0.7)
+    }
+
+    100%{
+        opacity: 100%;
+        // transform: scale(1)
+    }
+}
+
+
 .attraction-wrapper{
     height: 90%;
+    animation: render-attraction 0.8s;
     // padding: 0 15px 0 15px;
     // border: 2px solid cyan;
 }

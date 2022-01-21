@@ -1,4 +1,18 @@
+
+@keyframes render-user{
+    0%{
+        opacity: 0%;
+        transform: scale(0.5)
+    }
+
+    100%{
+        opacity: 100%;
+        transform: scale(1)
+    }
+}
+
 .user-container{
+    animation: render-user 0.6s;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -1,6 +1,20 @@
+@keyframes render-itinerary{
+    0%{
+        opacity: 0%;
+        transform: scale(0.5)
+    }
+
+    100%{
+        opacity: 100%;
+        transform: scale(1)
+    }
+}
+
+
 .itinerary-container{
     // border: 5px solid burlywood;
     // border-radius: 15px;
+    animation: render-itinerary 1.3s;
     height: 90%;
     overflow: scroll;
     min-width: 700px;
