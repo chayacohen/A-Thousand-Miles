@@ -1,0 +1,47 @@
+.draw-attraction-item {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1%;
+}
+
+.draw-item {
+    height: 30vh;
+    width: 20vw;
+    border: black solid 1px;
+    padding: 2%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.draw-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.draw-image {
+    background-size: cover;
+    height: 15vh;
+    width: 15vw;
+    object-fit: cover;
+    text-align: center;
+    margin: auto;
+    z-index: 1;
+    box-shadow: 0 0 8px 3px white inset;
+    margin-bottom: 10px;
+}
+
+.draw-header button {
+    border: black solid 3px;
+    border-radius: 1px;
+    box-sizing: border-box;
+    background-color: transparent;
+    height: 30px;
+    width: 30px;
+    margin-left: 5px;
+}
+

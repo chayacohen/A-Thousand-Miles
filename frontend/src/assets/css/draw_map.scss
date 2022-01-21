@@ -1,0 +1,121 @@
+
+.draw-map-container > div {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px grey;
+    box-sizing: border-box;
+}
+.after-draw-map-container > div {
+    height: 100%;
+    width: 80%;
+    border-radius: 15px;
+}
+
+#draw-map {
+    height: 90%;
+    width: 80%;
+    border-radius: 15px;
+    margin-bottom: none;
+    margin-top: none;
+    margin: auto;
+}
+
+#done-draw-map {
+    box-shadow: none;
+    box-sizing: border-box;
+}
+.address-input {
+    // margin-top: 100px;
+    height: 50px;
+    width: 50vw;  
+    border-radius: 8px;
+    outline: none;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.draw-map-container {
+    height: 68vh;
+    width: 80vw;
+    margin: auto;
+    // margin-top: 100px;
+}
+
+.after-draw-map-container {
+    height: 50vh;
+    width: 35vw;
+    margin-bottom: 15%;
+    // margin-top: 100px;
+}
+
+.draw-map {
+    height: calc(100vh - 85px);
+    margin-top: 80px;
+    background-image: url('https://ak.picdn.net/shutterstock/videos/26246675/thumb/10.jpg');
+    overflow: hidden;
+}
+
+.h-draw {
+    text-align: center;
+    font-family: 'Sedgwick Ave', cursive;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.h-done {
+    text-align: left;
+    margin-left: 50px;
+    font-family: 'Sedgwick Ave', cursive;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.map-and-attractions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    width: 30vw;
+    height: calc(100vh - 100px);
+}
+
+.attraction-index {
+    height: calc(90vh - 100px);
+    width: 45vw;
+    overflow: scroll;
+    border: solid red 2px; 
+    margin: 0 5% 0 0;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px grey;
+    box-sizing: border-box;
+    background: white;
+    padding: 1%;
+}
+
+
+.draw-title {
+    text-align: center;
+    font-family: 'Sedgwick Ave', cursive;
+    font-size: 40px;
+    margin-left: 40%;
+    margin-top: 7%;
+}
+
+.draw-description {
+    text-align: center;
+    // font-family: 'Poppinds', cursive;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: 45%; 
+    margin-right: 10%;
+    flex-wrap: wrap;
+    font-weight: 350;
+}
