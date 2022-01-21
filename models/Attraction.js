@@ -40,6 +40,9 @@ const AttractionSchema = new Schema({
     }, 
     icon: {
         type: String,  
+    }, 
+    address: {
+        type: String,
     }
     
 }, {

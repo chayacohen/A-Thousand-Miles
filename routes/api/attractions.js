@@ -69,6 +69,7 @@ router.put('/:id',
         Attraction.findById(req.params.id)
             .then(attraction => {
                 attraction.isAdded = (!req.body.isAdded) ? attraction.isAdded : req.body.isAdded;
+                attraction.address = (!req.body.address) ? '' : req.body.address;
                 attraction.save()
                 res.json(attraction);
             })

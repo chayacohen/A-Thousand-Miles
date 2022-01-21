@@ -9,6 +9,7 @@ class ItineraryAttractionItem extends React.Component {
 
     handleAttractionClick() {
         if (this.props.attraction.isAdded === false) {
+            debugger 
             this.props.editAttraction(this.props.attraction._id, {isAdded: true})
         }
         else {

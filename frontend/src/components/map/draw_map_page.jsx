@@ -66,30 +66,41 @@ class DrawMapRoute extends React.Component {
                     if (increment === 0) {
                         increment = 1
                     }
+                    debugger 
                     for (let i = 0; i < this.state.totalResults.length; i += increment) {
                         const result = this.state.totalResults[i];
                         this.setState({itineraryResults: this.state.itineraryResults.concat([result])});
-                        this.service.getDetails({placeId: result.place_id}, (response, status) => {
-                            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                this.setState({attractionAddress: response.formatted_address}) 
-                            }
-                        })
                         this.markerManager.addMarker({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() }, { url: result.icon, scaledSize: new google.maps.Size(20, 20)})
-                        const resultInfo = {
-                            title: result.name,
-                            lat: result.geometry.location.lat().toString(),
-                            lng: result.geometry.location.lng().toString(),
-                            photoUrl: result.photos ? result.photos[0].getUrl() : null,
-                            rating: result.rating ? result.rating.toString() : 'none',
-                            placeId: result.place_id,
-                            googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`, 
-                            icon: result.icon}
-                        this.setState(resultInfo)
-                        this.props.createAttraction(this.props.match.params.id, resultInfo)
+                            const resultInfo = {
+                                title: result.name,
+                                lat: result.geometry.location.lat().toString(),
+                                lng: result.geometry.location.lng().toString(),
+                                photoUrl: result.photos ? result.photos[0].getUrl() : null,
+                                rating: result.rating ? result.rating.toString() : 'none',
+                                placeId: result.place_id,
+                                googleLink: `https://www.google.com/maps/place/?q=place_id:${result.place_id}`, 
+                                icon: result.icon,
+                                address: this.state.attractionAddress
+                            }
+                            this.setState(resultInfo)
+                            this.props.createAttraction(this.props.match.params.id, resultInfo)
                     }
+
                     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                        this.setState({attractions: response.attractions.data})
+                        this.setState({ attractions: response.attractions.data })
+                        this.state.attractions.forEach(attraction => {
+                            debugger 
+                            this.service.getDetails({ placeId: attraction.placeId }, (response, status) => {
+                                debugger 
+                                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                    this.setState({ attractionAddress: response.formatted_address })
+                                    this.props.editAttraction(attraction._id, {address: this.state.attractionAddress})
+                                    debugger
+                                }
+                            })
+                        })
                     })
+                  
                 })
             
                 this.setState({mapName: 'after-draw-map-container'})
@@ -102,6 +113,19 @@ class DrawMapRoute extends React.Component {
         this.markerManager.addMarker(this.end_pos, {
             url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(40, 40)
         })
+    }
+
+    getAddress(result) {
+        return new Promise((resolve, reject) => {
+            this.service.getDetails({ placeId: result.placeId }, (response, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                this.setState({ attractionAddress: response.formatted_address })
+                resolve(); 
+            }
+            else {
+                reject(); 
+            }
+        })  })
     }
 
     convertPath() {
