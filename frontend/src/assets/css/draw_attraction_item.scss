@@ -85,3 +85,24 @@
     font-weight: 300;
 }
 
+#edit-title-draw, #edit-description-draw{
+    border: black solid 1px;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.draw-edit-property input{
+    text-decoration: done;
+    outline: none;
+    border: none;
+}
+.draw-edit-property {
+    display: flex;
+    justify-content: center;
+    gap: 5%; 
+}
+
+
