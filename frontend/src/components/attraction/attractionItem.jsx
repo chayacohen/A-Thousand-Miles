@@ -1,4 +1,6 @@
 import React from "react"
+import deleteIcon from '../../assets/images/delete.png';
+import star from '../../assets/images/star.png'
 const AttractionItem = ({ attraction, deleteAttraction }) => {
     // debugger;
     return (
@@ -12,11 +14,16 @@ const AttractionItem = ({ attraction, deleteAttraction }) => {
                         <h1>{attraction.title}</h1>
                     </div>
                     <div className="attraction-rating">
-                        <span>Rating: {attraction.rating}</span>
+                        <span>Rating: <img alt="star" src={star} /> {attraction.rating}</span>
+                    </div>
+                    <div className="attraction-address">
+                        <span>Address: N/A</span>
                     </div>
                 </div>
-                <div className="attraction-delete-button" onClick={() => deleteAttraction(attraction._id)}>
-                    {/* <button onClick={() => deleteAttraction(attraction._id)}>Delete</button> */}
+                <div className="attraction-delete-button">
+                    <div className="delete-button-a" onClick={() => deleteAttraction(attraction._id)}>
+                        <img alt="delete" src={deleteIcon} />    
+                    </div>
                 </div>
             </div>
         </div>

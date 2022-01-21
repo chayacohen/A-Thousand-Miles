@@ -1,5 +1,5 @@
 .profile-container{
-    border: 2px solid red;
+    // border: 2px solid red;
     height: calc(100vh - 85px);
     display: grid;
     grid-template-columns: 3fr 7fr;
@@ -23,4 +23,5 @@
     // border: 2px solid blue;
     display: flex;
     align-items: center;
+    position: relative;
 }

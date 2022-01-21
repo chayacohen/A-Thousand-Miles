@@ -1,20 +1,24 @@
 
 .attraction-container{
-    border: 2px solid red;
-    height: 490px;
+    // border: 5px solid burlywood;
+    // border-radius: 15px;
+    height: 90%;
     overflow: scroll;
-    width: 870px;
-    position: relative;
+    min-width: 700px;
+    width: 60vw;
+    padding: 15px;
+    // position: relative;
 }
 
 .attraction-inner-container{
-    border: 2px solid orange;
+    // border: 2px solid orange;
+    // position: relative;
 }
 
 .back-arrow{
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 50px;
+    left: 30px;
     cursor: pointer;
     transition-duration: 0.2s;
 
@@ -32,34 +36,56 @@
 }
 
 .attraction-item-container{
-    border: 2px solid green;
+    // border: 2px solid green;
     // display: flex;
-    height: 120px;
-    margin-bottom: 10px;
+    box-shadow: 0px 10px 15px 1px rgb(105, 105, 105, 0.5);
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
 }
 
 .attraction-item{
-    border: 2px solid indianred;
+    // border: 2px solid indianred;
     display: flex;
     height: 100%;
+    // position: relative;
 }
 //img tbd
 .photo-temp{
-    border: 2px solid brown;
+    // border: 2px solid brown;
     width: 120px;
     background-color: rgb(241, 219, 200);
 }
 //button
 .attraction-delete-button{
-    border: 2px solid brown;
+    // border: 2px solid brown;
     width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     // height: 100%;    
-    background-color: rgb(230, 189, 189);
+    // background-color: rgb(230, 189, 189);
 }
 
-.attraction-delete-button:hover{
-    background-color: rgb(233, 143, 143);
+.delete-button-a{
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(253, 189, 189);
+    img{
+        width: 25px;
+        height: 25px;
+    }
 }
+
+.delete-button-a:hover{
+    background-color: rgb(250, 142, 142);
+}
+
 //attraction content
 .attraction-item-content-container{
     width: 100%;
@@ -69,10 +95,14 @@
 }
 
 .attraction-title{
-    border: 2px solid red;
+    // border: 2px solid red;
     font-size: 32px;
+    height: 30%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 20px;
     h1{
-        padding: 5px;
+        padding-bottom: 5px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -80,5 +110,29 @@
 }
 
 .attraction-rating{
+    height: 20%;
+    // border: 2px solid green;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    line-height: 20%;
+    font-size: 16px;
+    span{
 
+        img{
+            vertical-align: middle;     
+            // border: 1px solid black; 
+            width: 16px;
+            height: 16px;
+            padding-bottom: 4px;
+            margin-left: 5px;
+        }
+
+    }
+}
+
+.attraction-address{
+    height: 20%;
+    padding-left: 20px;
+    // border: 2px solid orange;
 }
