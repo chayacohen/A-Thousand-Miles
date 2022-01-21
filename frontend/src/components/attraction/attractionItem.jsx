@@ -3,11 +3,20 @@ import deleteIcon from '../../assets/images/delete.png';
 import star from '../../assets/images/star.png'
 const AttractionItem = ({ attraction, deleteAttraction }) => {
     // debugger;
+
+    const address = () => {
+        if (!attraction.address){
+            return <p>N/A</p>
+        } else {
+            return <p>{attraction.address}</p>
+        }
+    }
+
     return (
         <div className="attraction-item-container">
             <div className="attraction-item">
                 <div className="photo-temp">
-
+                    <img src={attraction.photoUrl}/>
                 </div>
                 <div className="attraction-item-content-container">
                     <div className="attraction-title">
@@ -17,7 +26,8 @@ const AttractionItem = ({ attraction, deleteAttraction }) => {
                         <span>Rating: <img alt="star" src={star} /> {attraction.rating}</span>
                     </div>
                     <div className="attraction-address">
-                        <span>Address: N/A</span>
+                        <span>Address:</span>
+                        {address()}
                     </div>
                 </div>
                 <div className="attraction-delete-button">
