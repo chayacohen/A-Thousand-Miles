@@ -2,6 +2,7 @@ import React from "react";
 import Map from "../map/map";
 import MarkerManager from "../map/marker_manager";
 import ItineraryAttractionItem from "./itinerary_attraction_item";
+import '../../assets/css/draw_attraction_item.scss'
 const google = window.google;
 class EditItinerary extends React.Component {
 
@@ -106,18 +107,18 @@ class EditItinerary extends React.Component {
                             </div>
                             : 
                             <div id="edit-title-draw">
+                                <p onClick={this.handleEditClick("editTitle")} className="draw-pencil">{'\u270E'}</p>
                                 <h1 className="draw-title">{this.props.itinerary ? this.props.itinerary.title : ''}</h1>
-                                <p onClick={this.handleEditClick("editTitle")}>{'\u270E'}</p>
                             </div> }
                             {this.state.editDes ? 
                             <div className="draw-edit-property">
-                                <input className="draw-description" value={this.state.description} onChange={this.handleInputChange('description')}/>{this.props.itinerary ? this.props.itinerary.description : ''}
+                                <input className="draw-description" value={this.state.description} onChange={this.handleInputChange('description')}/>
                                 <button onClick={this.handleSaveClick}>Save</button>
                             </div>
                             :
                             <div id="edit-description-draw">
-                                 <p className="draw-description" >{this.props.itinerary ? this.props.itinerary.description : ''}</p>
-                                    <p onClick={this.handleEditClick("editDes")}>{'\u270E'}</p>
+                                <p onClick={this.handleEditClick("editDes")} className="draw-pencil">{'\u270E'}</p>
+                                 <p className="draw-description">{this.props.itinerary ? this.props.itinerary.description : ''}</p>
                             </div>}
                         </div>
                     <div className="after-draw-map-container">
