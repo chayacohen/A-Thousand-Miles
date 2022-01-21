@@ -7,9 +7,11 @@ import {
 } from '../actions/attraction_actions';
 
 const addKeyToObject = (state, action) => {
-    let nextState = Object.assign({}, state);
+    let nextState = {};
     action.attractions.data.forEach(attraction => {
-        nextState[attraction._id] = attraction;
+        if(attraction.isAdded){
+            nextState[attraction._id] = attraction;
+        }
     })
     return nextState;
 }

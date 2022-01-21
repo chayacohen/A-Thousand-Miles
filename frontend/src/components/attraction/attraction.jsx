@@ -12,6 +12,7 @@ class Attraction extends React.Component{
 
     componentDidMount(){
         this.props.getItineraryAttractions(this.props.match.params.itineraryId, {boolean: true})
+        // debugger
     }
 
     componentWillUnmount(){
