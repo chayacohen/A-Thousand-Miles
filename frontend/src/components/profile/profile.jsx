@@ -16,28 +16,19 @@ class Profile extends React.Component {
         // console.log(this.props.currentUser.id)
       this.props.getUserItineraries(this.props.currentUser.id);
     }
-
-    // componentWillReceiveProps(newState) {
-    //     this.setState({ itineraries: newState.itineraries });
-    // }   
-
-    //userprofile profile/
-    //switch
-      //route path = / => itinerary => idxitems => link to profile/:id
-      //route path = /:id => attraction => attractionidx => profile/
-    //switch
     
     render() {
-      // debugger
       return(
-        <div>
-          {/* User Profile here, User ID: {this.props.currentUser.id} */}
-          <UserShow />
-          <Switch>
-            <Route path="/profile/:itineraryId" component={AttractionContainer}/>
-            <Route path="/profile" component={ItineraryContainer}/>
-          </Switch>
-          {/* <ItineraryContainer/> */}
+        <div className="profile-container">
+          <div className="user-show-container">
+            <UserShow />
+          </div>
+          <div className="index-container">
+            <Switch>
+              <Route path="/profile/:itineraryId" component={AttractionContainer}/>
+              <Route path="/profile" component={ItineraryContainer}/>
+            </Switch>
+          </div>
         </div>
       )
     }

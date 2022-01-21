@@ -1,6 +1,6 @@
 .itinerary-container{
     border: 2px solid red;
-    height: 490px;
+    height: 90%;
     overflow: scroll;
     min-width: 700px;
     width: 60vw;
@@ -12,9 +12,11 @@
 
 .itinerary-item-container{
     border: 2px solid green;
+    border-radius: 15px;
     // display: flex;
-    height: 180px;
+    height: 350px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .itinerary-item{
@@ -24,49 +26,84 @@
 }
 
 .link-container{
-    display: flex;
-    width: calc(100% - 90px);
-    min-width: 580px;
+    height: 100%;
 }
 
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
 //map tbd
 .map-temp{
+    height: 100%;
     // border:2px solid purple;
-    width: 230px;
+    min-width: 370px;
     background-color: rgb(241, 219, 200);
 }
 //button
 .button-container{
     // border: 2px solid brown;
-    min-width: 90px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding-bottom: 10px;
 }
 
 .delete-button{
-    // border: 2px solid gold;
-    height: 50%;
-    background-color: rgb(230, 189, 189);
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    background-color: rgb(253, 189, 189);
+    img{
+        width: 25px;
+        height: 25px;
+    }
 }
 
 .delete-button:hover{
-    background-color: rgb(233, 143, 143);
+    background-color: rgb(250, 142, 142);
 }
 
 .edit-button{
-    // border: 2px solid blue;
-    height: 50%;
-    background-color: rgb(250, 250, 189);
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    background-color: rgb(199, 226, 157);
+    img{
+        width: 25px;
+        height: 25px;
+    }
 }
 
 .edit-button:hover{
-    background-color: rgb(253, 253, 146);
+    background-color: rgb(172, 224, 88);
 }
+
+.empty{
+    // border: 2px solid black;
+    height: 100%;
+    width: 100%;
+}
+
 //itinerary content
 .itinerary-item-content-container{
     // border: 2px solid cyan;
     width: 100%;
-    min-width: 400px;
+    height: 100%;
+    // min-width: 400px;
     display: flex;
     flex-direction: column;
 }
@@ -74,9 +111,13 @@
 
 .itinerary-title{
     // border: 2px solid red;
-    font-size: 40px;
+    font-size: 45px;
+    display: flex;
+    align-items: center;
+    height: 34%;
+    padding-left: 20px;
     h1{
-        padding: 5px;
+        padding-bottom: 6px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -86,35 +127,38 @@
 .itinerary-address{
     // border: 2px solid green;
     display: flex;
+    height: 33%;
+    padding-left: 20px;
 }
 
 .address{
-    padding: 5px;
     width: 50%;
     // border: 2px solid orange;
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     h3{
-        font-size: 16px;
+        font-size: 20px;
     }
 
     span{
-        font-size: 13px;
+        font-size: 16px;
     }
 }
 
 
 .itinerary-description{
-    padding: 5px;
+    padding: 20px;
     // border: 2px solid blue;
-    height: 100%;
+    height: 33%;
     overflow-y: scroll;
     // display: inline-block;
     h3{
-        font-size: 16px;
+        font-size: 20px;
         margin-bottom: 4px;
     }
     p{
-        font-size: 13px;
+        font-size: 15px;
         overflow: hidden;
         // white-space: nowrap;
         text-overflow: ellipsis;

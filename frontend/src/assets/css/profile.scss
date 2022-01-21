@@ -1,0 +1,16 @@
+.profile-container{
+    border: 2px solid red;
+    height: calc(100vh - 105px);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.user-show-container{
+    border: 2px solid greenyellow;
+}
+
+.index-container{
+    border: 2px solid blue;
+    // height: 100%;
+}
