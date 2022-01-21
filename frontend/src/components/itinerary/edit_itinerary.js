@@ -7,8 +7,38 @@ class EditItinerary extends React.Component {
 
     constructor(props) {
         super(props); 
-        this.state = {itineraryAttractions: [], line: []}
+        this.state = {itineraryAttractions: [], line: [], 
+            editDes: false, 
+            editTitle: false, 
+            title: this.props.itinerary ? this.props.itinerary.title : '', 
+            description: this.props.itinerary ? this.props.itinerary.description : '' 
+        }
         this.changeLineForMap = this.changeLineForMap.bind(this); 
+        this.handleInputChange = this.handleInputChange.bind(this); 
+        this.handleSaveClick = this.handleSaveClick.bind(this); 
+    }
+
+    handleInputChange(field) {
+        return (e) => {
+            this.setState({[field]: e.currentTarget.value})
+        }
+    }
+
+    handleEditClick(field) {
+        return () => {
+            this.setState({[field]: true})
+        }
+    }
+
+    handleSaveClick() {
+        const data = {
+            title: this.state.title, 
+            description: this.state.description
+        }
+        debugger 
+        this.props.editItinerary(this.props.itinerary._id, data).then(() => {
+            this.setState({editTitle: false, editDes: false})
+        })
     }
 
     componentDidMount() {
@@ -16,7 +46,9 @@ class EditItinerary extends React.Component {
         this.markerManager = new MarkerManager(this.map)
         this.map.instantiateMap();
         this.map.map.setZoom(4)
-        this.props.getItinerary(this.props.match.params.id).then(() => {
+        this.props.getItinerary(this.props.match.params.id).then((response) => {
+            const itinerary = response.itinerary.data; 
+            this.setState({title: itinerary.title, description: itinerary.description})
             this.itineraryAttractions = '';
             this.props.getItineraryAttractions(this.props.match.params.id, {boolean: false}).then(response => {
                 this.setState({ itineraryAttractions: response.attractions.data})
@@ -63,17 +95,46 @@ class EditItinerary extends React.Component {
         // }
 
         return (
-            <div>
-                <p>{this.props.itinerary ? this.props.itinerary.title : ''}</p>
-                <p>{this.props.itinerary ? this.props.itinerary.description : ''}</p>
-                <div className="edit-map-container" style={{width: '300px', height:'300px'}}>
-                    <div className="map" ref={map => this.mapNode = map} style={{ height: '100%', width: '100%' }}></div>
+            <div className="draw-map">
+                <div className="map-and-attractions">
+                    <div className="left-page">
+                        <div>
+                            {this.state.editTitle ? 
+                            <div className="draw-edit-property">
+                                <input className="draw-title" value={this.state.title} onChange={this.handleInputChange("title")}/>
+                                <button onClick={this.handleSaveClick}>Save</button>
+                            </div>
+                            : 
+                            <div id="edit-title-draw">
+                                <h1 className="draw-title">{this.props.itinerary ? this.props.itinerary.title : ''}</h1>
+                                <p onClick={this.handleEditClick("editTitle")}>{'\u270E'}</p>
+                            </div> }
+                            {this.state.editDes ? 
+                            <div className="draw-edit-property">
+                                <input className="draw-description" value={this.state.description} onChange={this.handleInputChange('description')}/>{this.props.itinerary ? this.props.itinerary.description : ''}
+                                <button onClick={this.handleSaveClick}>Save</button>
+                            </div>
+                            :
+                            <div id="edit-description-draw">
+                                 <p className="draw-description" >{this.props.itinerary ? this.props.itinerary.description : ''}</p>
+                                    <p onClick={this.handleEditClick("editDes")}>{'\u270E'}</p>
+                            </div>}
+                        </div>
+                    <div className="after-draw-map-container">
+                        <div className="map" id="done-draw-map" ref={map => this.mapNode = map}></div>
+                    </div>
                 </div>
-                <ul>
-                    {this.state.itineraryAttractions.map((attraction, index) => (
-                        <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itinerary.id} />
-                    ))}
-                </ul>
+                    <div className="attraction-index">
+                        <div className="draw-attraction-item">
+                            {this.state.itineraryAttractions.map((attraction, index) => (
+                                <div className="draw-item">
+                                    <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} getAttraction={this.props.getAttraction}
+                                    itineraryId={this.props.itinerary.id} />
+                                </div>
+                            ))}
+                        </div >
+                    </div>
+                </div>
             </div> 
         )
     }

@@ -41,7 +41,7 @@ class StartItinerary extends React.Component {
                     </label>
                     <input type="textarea" rows="2" wrap="hard" onChange={this.handleInputChange('description')}/>
                     { this.state.title && this.state.description ? 
-                    <a onClick={this.handleNextClick}>Next</a> : null }
+                    <a onClick={this.handleNextClick}>🗺&nbsp;🡪</a> : null }
                 </section>
             </div>
         )

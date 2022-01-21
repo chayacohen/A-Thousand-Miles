@@ -197,7 +197,7 @@ class DrawMapRoute extends React.Component {
                     </div>
                     {this.state.attractions.length === 0 ? null : 
                     <div className="attraction-index">
-                        <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
+                        <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} getAttraction={this.props.getAttraction} />
                     </div>}
                 </div>
             </div>

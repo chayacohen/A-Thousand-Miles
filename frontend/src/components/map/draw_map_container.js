@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import DrawMap from "./draw_map_page";
 import { editItinerary, getItinerary } from "../../actions/itinerary_actions";
-import { createAttraction, editAttraction, getItineraryAttractions} from "../../actions/attraction_actions";
+import { createAttraction, editAttraction, getItineraryAttractions, getAttraction} from "../../actions/attraction_actions";
 import { clearItineraryForm } from "../../actions/itinerary_form_actions";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -14,7 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
     editAttraction: (attractionId, data) => dispatch(editAttraction(attractionId, data)), 
     getItineraryAttractions: (itineraryId, data) => dispatch(getItineraryAttractions(itineraryId, data)), 
     clearItineraryForm: () => dispatch(clearItineraryForm()), 
-    getItinerary: (id) => dispatch(getItinerary(id))
+    getItinerary: (id) => dispatch(getItinerary(id)),
+    getAttraction: (id) => dispatch(getAttraction(id))
 })
 
 

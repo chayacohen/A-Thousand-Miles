@@ -6,14 +6,8 @@ class ItineraryAttractionIndex extends React.Component {
 
     constructor(props) {
         super(props); 
-        // this.state = {attractions: this.props.attractions}
+        
     }
-
-    // componentDidUpdate(prevState) {
-    //     if (prevState.attractions !== this.state.attractions){
-
-    //     }
-    // }
 
     render() {
 
@@ -26,7 +20,7 @@ class ItineraryAttractionIndex extends React.Component {
             <div className="draw-attraction-item">
                 {this.props.attractions.map((attraction, index) => (
                     <div className="draw-item">
-                        <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itineraryId} />
+                        <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itineraryId} getAttraction={this.props.getAttraction} />
                     </div>
                 ))}
             </div>
