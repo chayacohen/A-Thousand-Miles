@@ -104,7 +104,6 @@ class DrawMapRoute extends React.Component {
                         this.setState({ attractions: response.attractions.data })
                         this.getAddress(this.state.attractions).then(() => {
                             this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                                debugger 
                                 this.setState({attractions: response.attractions.data})
                             })
                         })
@@ -180,14 +179,25 @@ class DrawMapRoute extends React.Component {
     }
 
     render() {
-        // this.state.itineraryResults.forEach(result => console.log(result)); 
+
+        const draw = this.state.mapName === "draw-map-container";
+        const itinerary = this.props.itinerary; 
         return (
-            <div>
-                <div className={this.state.mapName} >
-                    <div className="map" ref={map => this.mapNode = map} ></div>
-                </div>
-                <div className="attraction-index">
-                    <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
+            <div className="draw-map">
+                <div className={draw ? null : "map-and-attractions"}>
+                    <div className={draw ? null : "left-page"}>
+                        { draw ? null : <div>
+                            <h1 className="draw-title">{itinerary ? this.props.itinerary.title : null }</h1>
+                            <p className="draw-description">{itinerary ? this.props.itinerary.description : null}</p>
+                        </div>}
+                        <div className={this.state.mapName} >
+                            {draw ? <h1 className="h-draw">Draw a line from start to end location </h1> : null }
+                            <div className="map" ref={map => this.mapNode = map} ></div>
+                        </div>
+                    </div>
+                    <div className="attraction-index">
+                        <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} />
+                    </div>
                 </div>
             </div>
         )

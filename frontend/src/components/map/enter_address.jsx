@@ -18,7 +18,6 @@ class EnterAddress extends React.Component {
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
         if (this.props.startAddress) {
-            debugger 
             this.MarkerManager.addMarker({ lat: this.props.startAddress.lat, lng: this.props.startAddress.lng }, {
                 url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
             } )
