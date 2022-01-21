@@ -6,6 +6,7 @@ class Attraction extends React.Component{
     constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.checkAttractions = this.checkAttractions.bind(this)
     }
 
     componentDidMount(){
@@ -20,19 +21,43 @@ class Attraction extends React.Component{
         this.props.history.push("/profile")
     }
 
-    render(){
+    checkAttractions(){
         const attractionitems = this.props.attractions.map(attraction => {
             return <li key={attraction._id}>
-                <AttractionItemContainer attraction={attraction}/>
-                </li>
+                <AttractionItemContainer attraction={attraction} />
+            </li>
         })
+
+        if(this.props.attractions.length === 0){
+            return (
+                <div className="add-attraction-text">
+                    <span>Edit your itinerary and add some attractions!</span>
+                </div>
+            )
+        } else {
+            return (
+                <div className="attraction-inner-container">
+                    <ul>
+                        {attractionitems}
+                    </ul>
+                </div>
+            )
+        }
+    }
+
+    render(){
+        // const attractionitems = this.props.attractions.map(attraction => {
+        //     return <li key={attraction._id}>
+        //         <AttractionItemContainer attraction={attraction}/>
+        //         </li>
+        // })
+
+        const attraction = this.checkAttractions()
         return(
                 <div className="attraction-container">
-                    <div className="attraction-inner-container">
-                        <ul>
-                            {attractionitems}   
-                        </ul>
-                    </div>
+                    {/* <div className="attraction-inner-container"> */}
+                        {attraction}
+                    {/* </div> */}
                     <div className="back-arrow">
                     <img alt="travel" src={backArrow} onClick={this.handleSubmit}/>
                         {/* <button onClick={this.handleSubmit}>go back</button> */}
