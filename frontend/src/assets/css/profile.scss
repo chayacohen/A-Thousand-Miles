@@ -1,16 +1,24 @@
 .profile-container{
     border: 2px solid red;
-    height: calc(100vh - 105px);
-    display: flex;
+    height: calc(100vh - 85px);
+    display: grid;
+    grid-template-columns: 3fr 7fr;
     justify-content: space-around;
-    padding-top: 20px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
 }
 
 .user-show-container{
+    height: calc(100vh - 85px);
     border: 2px solid greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .index-container{
+    height: calc(100vh - 85px);
     border: 2px solid blue;
-    // height: 100%;
+    display: flex;
+    align-items: center;
 }
