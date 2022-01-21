@@ -3,6 +3,7 @@ import Map from './map';
 import MarkerManager from "./marker_manager";
 import { Link } from "react-router-dom";
 import '../../assets/css/map.scss';
+import '../../assets/css/enteraddress.scss';
 const google = window.google;
 class EnterAddress extends React.Component {
 
@@ -32,7 +33,7 @@ class EnterAddress extends React.Component {
             this.props.receiveStartingAddress({ address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] })
             debugger 
             this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0]}, {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)
+                url: 'https://cdn-icons-png.flaticon.com/512/5507/5507852.png', scaledSize: new google.maps.Size(30, 30)
             })
         } 
         
@@ -75,7 +76,7 @@ class EnterAddress extends React.Component {
 
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)})
+                    url: 'https://cdn-icons-png.flaticon.com/512/5507/5507852.png', scaledSize: new google.maps.Size(30, 30)})
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
@@ -103,19 +104,19 @@ class EnterAddress extends React.Component {
         }
 
         return (
-        <div style={{height: "100vh", width: "100vw"}} className="starting-map">
-            <div className="question">{this.props.match.params.id === '1' ? 'Where are you starting?' :  'Where are you going?'}</div>
-            <div className="address-input">
-                <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
-            </div>
-            <div className="map-container">
-                    <div className="map" ref={map => this.mapNode = map}></div>
-            </div>
+        <div className="map-start-container">
             <div>
                 <div className="next-container">
                     { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button">Back</Link> : null}
-                  {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <button to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</button>} 
+                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button">Next</Link> : <button to="/map/draw" className="next-button" onClick={this.handleSubmitItinerary}>Next</button>} 
                 </div>
+            </div>
+            <div className="questions">{this.props.match.params.id === '1' ? 'Where ✓✓✓✓ are you starting?' :  'Where are you going?'}</div>
+            <div className="address-fields">
+                <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
+            </div>
+            <div className="map-container">
+                    <div className="map_enter" ref={map => this.mapNode = map}></div>
             </div>
         </div>
             

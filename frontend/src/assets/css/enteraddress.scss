@@ -1,0 +1,50 @@
+.map-start-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    height: calc(100vh - 85px);
+    width: 100vw;
+    border: 1px solid red;
+
+    
+    .map_enter{
+        border-radius: 25px;
+        box-shadow: 0px, ;
+        height:100%;
+        width: 100%;
+        border: 1px solid blue;
+    }
+    
+    .next-container{
+        border: 1px solid rgb(6, 170, 0);
+        font-family: 'Poppins', sans-serif;
+        
+        a{
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid rgb(140, 0, 255);
+        }
+    }
+    
+    .questions {
+        font-family: 'Poppins', sans-serif;
+        font-size: 35px;
+        border: 1px solid rgb(51, 160, 18);
+        
+    }
+    
+    .address-fields{
+
+        input{
+            margin-bottom: 10px;
+            margin-top: 5px;
+            height:40px;
+            // width:350px;
+            width:60%;
+            border: 1px solid rgb(207, 207, 207);
+            border-radius: 15px;
+            // border: 1px solid rgb(255, 0, 13);
+        }
+    }
+}
