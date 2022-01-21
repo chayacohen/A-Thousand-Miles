@@ -18,7 +18,8 @@ class EnterAddress extends React.Component {
         this.map.instantiateMap(); 
         this.MarkerManager = new MarkerManager(this.map)
         if (this.props.startAddress) {
-            this.MarkerManager.addMarker(this.props.startAddress.latLng)
+            debugger 
+            this.MarkerManager.addMarker({ lat: this.props.startAddress.lat, lng: this.props.startAddress.lng})
         }
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
@@ -29,6 +30,7 @@ class EnterAddress extends React.Component {
 
         if (this.props.match.params.id === '1') {
             this.props.receiveStartingAddress({ address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] })
+            debugger 
             this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0]}, {
                 url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(30, 30)
             })

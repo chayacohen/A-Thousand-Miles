@@ -3,12 +3,11 @@ import DrawMap from "./draw_map_page";
 import { editItinerary } from "../../actions/itinerary_actions";
 import { createAttraction, editAttraction, getItineraryAttractions} from "../../actions/attraction_actions";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     // address: state.currentUser.address, 
     // lat: state.currentUser.lat, 
     // lng: state.currentUser.lng
-    startAddress: state.ui.starting,
-    endAddress: state.ui.ending
+    itinerary: state.entities.itineraries[ownProps.match.params.id]
 })
 
 const mapDispatchToProps = (dispatch) => ({

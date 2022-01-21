@@ -22,16 +22,19 @@ class DrawMapRoute extends React.Component {
         }
         this.clicked = false;
         this.round = true;
-        this.start_pos = new google.maps.LatLng(this.props.startAddress.lat, this.props.startAddress.lng)
-        this.end_pos = new google.maps.LatLng(this.props.endAddress.lat, this.props.endAddress.lng)
+        this.props.itinerary ? this.start_pos = new google.maps.LatLng(this.props.itinerary.start_lat, this.props.itinerary.start_lng) : null;
+        this.props.itinerary ? this.end_pos = new google.maps.LatLng(this.props.itinerary.end_lat, this.props.itinerary.end_lng) : null;
+       
         this.addLatLng = this.addLatLng.bind(this);
         this.receiveResults = this.receiveResults.bind(this);
         this.convertPath = this.convertPath.bind(this);
+        this.getAddress = this.getAddress.bind(this); 
         // this.handleAttractionClick = this.handleAttractionClick.bind(this);  
 
     }
 
     componentDidMount() {
+        this.props.getItinerary(this.props.match.params.id); 
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)
@@ -88,15 +91,10 @@ class DrawMapRoute extends React.Component {
 
                     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
                         this.setState({ attractions: response.attractions.data })
-                        this.state.attractions.forEach(attraction => {
-                            debugger 
-                            this.service.getDetails({ placeId: attraction.placeId }, (response, status) => {
+                        this.getAddress(this.state.attractions).then(() => {
+                            this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
                                 debugger 
-                                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                    this.setState({ attractionAddress: response.formatted_address })
-                                    this.props.editAttraction(attraction._id, {address: this.state.attractionAddress})
-                                    debugger
-                                }
+                                this.setState({attractions: response.attractions.data})
                             })
                         })
                     })
@@ -115,17 +113,24 @@ class DrawMapRoute extends React.Component {
         })
     }
 
-    getAddress(result) {
-        return new Promise((resolve, reject) => {
-            this.service.getDetails({ placeId: result.placeId }, (response, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                this.setState({ attractionAddress: response.formatted_address })
-                resolve(); 
-            }
-            else {
-                reject(); 
-            }
-        })  })
+    getAddress(attractions) {
+        const promises = []; 
+        attractions.forEach(attraction => {
+            promises.push(new Promise((resolve, reject) => {
+               this.service.getDetails({ placeId: attraction.placeId }, (response, status) => {
+               if (status === google.maps.places.PlacesServiceStatus.OK) {
+                   this.setState({ attractionAddress: response.formatted_address })
+                   this.props.editAttraction(attraction._id, {address: this.state.attractionAddress}).then(() => {
+                       resolve(); 
+                   })
+               }
+               else {
+                   resolve(); 
+               }
+           })  
+        }))
+        })
+        return Promise.all(promises)
     }
 
     convertPath() {
