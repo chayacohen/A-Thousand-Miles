@@ -22,9 +22,9 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <div className='navbar'>
-                    <NavLink to={'/profile'}>Profile</NavLink>
-                    <NavLink to={'/planner'}>Trip Planner</NavLink>
-                    <button onClick={this.logoutUser}>Logout</button>
+                    <NavLink activeClassName="nav-l" to={'/profile'}>Profile</NavLink>
+                    <NavLink activeClassName="nav-l" to={'/trip/new'}>Trip Planner</NavLink>
+                    <a onClick={this.logoutUser}>Logout</a>
                 </div>
             );
         } else {
