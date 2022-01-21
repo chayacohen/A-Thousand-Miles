@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ItineraryItem from './itineraryItem';
 import { deleteItinerary, editItinerary } from '../../actions/itinerary_actions';
+import { withRouter } from 'react-router-dom';
 const mSTP = (state) => {
     return {
         // itineraries: Object.values(state.entities.itineraries),
@@ -14,4 +15,4 @@ const mDTP = dispatch => {
     };
 };
 
-export default connect(mSTP, mDTP)(ItineraryItem);
+export default withRouter(connect(mSTP, mDTP)(ItineraryItem));
