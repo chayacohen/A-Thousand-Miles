@@ -86,7 +86,7 @@
 }
 
 #edit-title-draw, #edit-description-draw{
-    border: black solid 1px;
+    // border: black solid 1px;
     display: flex;
     justify-content: center;
     gap: 5%;
@@ -98,11 +98,38 @@
     text-decoration: done;
     outline: none;
     border: none;
+    margin-right: 10%;
+    width: 30%;
+
 }
 .draw-edit-property {
     display: flex;
     justify-content: center;
-    gap: 5%; 
+    align-items: flex-end;
+    // border: black solid 1px; 
+    // gap: 5%; 
+    box-sizing: border-box;
+    // width: 50%;
 }
 
+.draw-pencil {
+    font-size: 22px;
+}
 
+.draw-edit-property button {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: 500px;
+    margin-bottom: 1%;
+    margin-left: none;
+    border: none;
+    height: 50%;
+    padding: 10px; 
+    border-radius: 30px;
+    // font-family:
+}
+
+.draw-description {
+    font-weight: 300;
+}

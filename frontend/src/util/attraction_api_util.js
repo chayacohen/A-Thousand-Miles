@@ -4,7 +4,7 @@ export const getAttractions = () => {
     return axios.get('/api/attractions')
 };
 
-export const getItineraryAttractions = (itineraryId,data) => {
+export const getItineraryAttractions = (itineraryId, data) => {
     return axios.get(`/api/attractions/itinerary/${itineraryId}`, data)
 };
 
