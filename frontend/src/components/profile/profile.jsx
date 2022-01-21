@@ -1,7 +1,7 @@
 import React from 'react';
 import UserShow from './user_show_container';
 import '../../assets/css/profile.scss';
-
+import background from '../../assets/images/profile-background.png'
 import ItineraryContainer from "../itineraryindex/itinerary_container"
 import AttractionContainer from "../attraction/attraction_container"
 import { Route, Switch } from "react-router-dom";
@@ -20,6 +20,9 @@ class Profile extends React.Component {
     render() {
       return(
         <div className="profile-container">
+          <div className="profile-background">
+            <img className="profile-background-img" src={background} />
+          </div>
           <div className="user-show-container">
             <UserShow />
           </div>

@@ -12,6 +12,14 @@ const AttractionItem = ({ attraction, deleteAttraction }) => {
         }
     }
 
+    const googleLink = () => {
+        if (!attraction.googleMapLink) {
+            return <p>N/A</p>
+        } else {
+            return <a href={attraction.googleMapLink} target="_blank">{attraction.title}</a>
+        }
+    }
+
     return (
         <div className="attraction-item-container">
             <div className="attraction-item">
@@ -28,6 +36,10 @@ const AttractionItem = ({ attraction, deleteAttraction }) => {
                     <div className="attraction-address">
                         <span>Address:</span>
                         {address()}
+                    </div>
+                    <div className="attraction-googlelink">
+                        <span>Link to:</span>
+                        {googleLink()}
                     </div>
                 </div>
                 <div className="attraction-delete-button">

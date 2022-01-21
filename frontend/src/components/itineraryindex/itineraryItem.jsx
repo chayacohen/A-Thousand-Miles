@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom";
 import deleteIcon from '../../assets/images/delete.png';
 import pencilIcon from '../../assets/images/pencil.png'
+import mapImg from '../../assets/images/map-temp.png'
 const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary, history }) => {
     // debugger;
 
@@ -14,7 +15,7 @@ const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary, history }) =
                 <div className="itinerary-item">
                     <Link to={`/profile/${itinerary._id}`} className="link-container">
                         <div className="map-temp">
-
+                            <img alt="map" src={mapImg} />
                         </div>
                     </Link>
                     <div className="card-container">
