@@ -63,17 +63,27 @@ class EditItinerary extends React.Component {
         // }
 
         return (
-            <div>
-                <p>{this.props.itinerary ? this.props.itinerary.title : ''}</p>
-                <p>{this.props.itinerary ? this.props.itinerary.description : ''}</p>
-                <div className="edit-map-container" style={{width: '300px', height:'300px'}}>
-                    <div className="map" ref={map => this.mapNode = map} style={{ height: '100%', width: '100%' }}></div>
+            <div className="draw-map">
+                <div className="map-and-attractions">
+                    <div className="left-page">
+                        <div>
+                            <h1 className="draw-title">{this.props.itinerary ? this.props.itinerary.title : ''}</h1>
+                            <p className="draw-description">{this.props.itinerary ? this.props.itinerary.description : ''}</p>
+                        </div>
+                    <div className="after-draw-map-container">
+                        <div className="map" id="done-draw-map" ref={map => this.mapNode = map}></div>
+                    </div>
                 </div>
-                <ul>
-                    {this.state.itineraryAttractions.map((attraction, index) => (
-                        <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itinerary.id} />
-                    ))}
-                </ul>
+                    <div className="attraction-index">
+                        <div className="draw-attraction-item">
+                            {this.state.itineraryAttractions.map((attraction, index) => (
+                                <div className="draw-item">
+                                    <ItineraryAttractionItem key={index} attraction={attraction} editAttraction={this.props.editAttraction} itineraryId={this.props.itinerary.id} />
+                                </div>
+                            ))}
+                        </div >
+                    </div>
+                </div>
             </div> 
         )
     }

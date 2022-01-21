@@ -24,16 +24,19 @@ class ItineraryAttractionItem extends React.Component {
         return (
             <div className="draw-index-item">
                 <div className="draw-header">
+                    <div className="draw-image" style={{ backgroundImage: `url(${attraction.photoUrl})` }}>
+                        {/* <img src={attraction.photoUrl}></img> */}
+                    </div>
+                    <button onClick={this.handleAttractionClick}>{this.state.clicked ? `\u2713` : null}</button>
+                </div>
+                <div className="draw-bottom-half">
                     <p className="draw-index-title">{attraction.title}</p>
-                    <button onClick={this.handleAttractionClick}>
-                        <img src={this.state.clicked ? Checkmark : null}></img></button>
+                    <p className="draw-address">{attraction.address ? attraction.address : null }</p>
+                    <div className="draw-footer">
+                        <p>{attraction.rating}</p>
+                        <a href={attraction.googleMapLink}>Learn more</a>
+                    </div>
                 </div>
-                <div className="draw-image" style={{backgroundImage: `url(${attraction.photoUrl})`}}>
-                    {/* <img src={attraction.photoUrl}></img> */}
-                </div>
-                <p>{attraction.address ? attraction.address : null }</p>
-                <p>{attraction.rating}</p>
-                <a href={attraction.googleMapLink}></a>
             </div>
         )
     }
