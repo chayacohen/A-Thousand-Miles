@@ -76,6 +76,14 @@
     // border:2px solid purple;
     min-width: 370px;
     background-color: rgb(241, 219, 200);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    img{
+        max-width: 370px;
+        // filter: invert(100%);
+    }
 }
 //button
 .button-container{
