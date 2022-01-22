@@ -3,53 +3,58 @@ body {
 }
 
 .splash-container {
-// border:3px solid blue;
-padding-top: 80px;
-margin-left: 10%;
-margin-right: 10%;
+    padding-top: 5vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    // border:1px solid blue;
 // max-width: 1300px;
+
+.splash-intro-bar{
+    // border:3px solid rgb(255, 0, 0);
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    width: 100vw;
+    margin-left: -13%;
     
-    .splash-intro-bar{
-        // border:3px solid rgb(255, 0, 0);
-        height: 0px;
-        display: flex;
-        justify-content: center;
-        align-content: center;
+    .splash-intro-inner{
         position: relative;
+        top: 7vh;
         width: 100vw;
-        margin-left: -13%;
-        
-        .splash-intro-inner{
-            position: relative;
-            top: 8vh;
-            width: 100vw;
-            height: 50vh;
-            min-height: 500px;
-            // border:3px solid #009632;
-            background-color: rgba(255, 229, 195, 0.753);
-            z-index: -1;
+        height: 50vh;
+        min-height: 510px;
+        background-color: rgba(255, 229, 195, 0.753);
+        z-index: -1;
+        // border:1px solid #ff6600;
         }
     }
-
+    
     .splash-intro{
         height: 75vh;
+        min-height: 620px;
         width: 100%;
         z-index: -1;
+        // border:1px solid #f300be;
         
         .splash-intro-content{
             display: flex;
+            // min-height: 600px;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: space-around;
             align-content: center;
+            // border:1px solid #009632;
             
             .splash-intro-content2{
-                min-width: 650px;
-                min-height: 600px;
+                min-width: 500px;
+                // min-height: 400px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-content: center;
-                padding: 30px;
+                // padding: 30px;
+                // border:1px solid #007f96;
 
                 h1 {
                     color: rgb(49, 49, 49);
@@ -62,39 +67,42 @@ margin-right: 10%;
                 }
 
                 h5 {
-                    // border:3px solid blue;
                     margin: 30px;
                     font-size: 23px;
+                    text-align: center;
                 }
             }
         }
-
+        
         .splash-one-image{
             height: 65vh;
             width: 50%;
             max-width: 600px;
+            min-height: 600px;
             object-fit: cover;
             border-radius: 20px;
             object-position: 0% 0%;
-
+            // border:1px solid rgb(212, 0, 255);
         }
-
+        
     }
-
+    
     .splash-second,.splash-third{
         padding-top: 30px;
         padding-bottom: 30px;
         height: 100%;
-        min-height: 450px;
+        min-height: 420px;
         width: 100%;
         display:flex;
         justify-content: space-around;
         align-items: center;
+        // border:1px solid rgb(212, 0, 255);
 
         img {
             height: 100%;
             max-height: 350px;
-            min-width: 500px;
+            // min-height: 250px;
+            // min-width: 300px;
             max-width: 600px;
             object-fit: cover;
             border-radius: 20px;
@@ -105,8 +113,8 @@ margin-right: 10%;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            width: 500px;
-            min-width: 410px;
+            // width: 500px;
+            min-width: 310px;
             margin: 10px;
         }
 
@@ -145,8 +153,9 @@ margin-right: 10%;
     }
 
     .splash-final{
-        min-height: 400px;
+        min-height: 300px;
         width: 100%;
+
         
         h2 {
             color: rgb(37, 37, 37);
@@ -158,6 +167,7 @@ margin-right: 10%;
             z-index: 10;
             position: relative;
             top: 100px;
+            text-align: center;
         }
 
         .splash-final-content > .sfl{
@@ -179,21 +189,28 @@ margin-right: 10%;
             font-weight: 500;        
             box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
 
+
         }
         .splash-final-content > div:hover{
             background: #ffb560;
         }
         .splash-final-content div a{
             scroll-behavior: smooth;
+            
         }
         
         .splash-final-image{
             position: relative;
-            top: -135px;
-            height: 400px;
+            // position: sticky;
+            bottom: 0px;
+            top: -140px;
+            // height: 400px;
+            height: 30vh;
+            min-height: 350px;
             width:100vw;
             object-fit: cover;
             z-index: -1;
+
         }
     }
 
