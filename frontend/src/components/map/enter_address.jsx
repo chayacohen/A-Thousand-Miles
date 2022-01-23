@@ -89,6 +89,7 @@ class EnterAddress extends React.Component {
 
     handleSubmitItinerary() {
         const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()};  
+        debugger
         this.props.createItinerary(itinerary).then(response => 
         {
                     // this.props.clearItineraryForm();
@@ -108,7 +109,7 @@ class EnterAddress extends React.Component {
             <div>
                 <div className="next-container">
                     { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">&nbsp;{'<'}🏃</Link> : null}
-                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">&nbsp;🗺&nbsp;{'>'}&nbsp;</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>&nbsp;✎&nbsp;{'>'}&nbsp;</a>} 
+                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}&nbsp;</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>&nbsp;✎&nbsp;{'>'}&nbsp;</a>} 
                 </div>
             </div>
             <div className="box">

@@ -36,7 +36,6 @@
     a, button {
         display: flex;
         flex-direction: row;
-        // border: 3px solid rgb(0, 0, 0);    
         color: black;
         text-decoration: none;
         margin: 10px;
@@ -46,23 +45,19 @@
         height: 20px;
         padding-bottom: 2px;
         border-bottom: 2px solid rgba(255, 255, 255, 0);
+        // border: 3px solid rgb(0, 0, 0);    
     }
 
-    a:hover {
-        
+    // a:hover {
         // padding-bottom: 2px;
         // border-bottom: 2px solid rgb(255, 145, 0);
         // line-height: 23px;
-    }
+    // }
 
     .nav-l {
         color: #e66f00;
         font-size: 25px;
         padding-bottom: 6px;
-        // border-bottom: 2px solid rgba(255, 150, 13, 0.911);
         text-shadow: 1px 1px 1px rgb(192, 192, 192);
-
     }
- 
-
 }

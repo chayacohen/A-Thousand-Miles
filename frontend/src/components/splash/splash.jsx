@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { withRouter, Link} from 'react-router-dom';
 import Navbar from '../nav/navbar_container';
 import Modal from '../modal/modal_container'
 import '../../assets/css/splash.scss';
@@ -54,7 +54,7 @@ class Splash extends React.Component{
     )}     
 }
 
-export default Splash;
+export default withRouter(Splash);
 
 // Extra features
 // Optimize your route

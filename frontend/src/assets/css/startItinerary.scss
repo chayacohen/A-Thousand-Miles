@@ -2,6 +2,7 @@
     display: flex;
     top: -85px;
     height: 90vh;
+    min-height: 550px;
     z-index: -1;
     justify-content: center;
     align-items: center;
@@ -18,12 +19,17 @@ section{
     
     height: 400px;
     width: 600px;
+    min-width: 300px;
     padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 1vh;
     
     border-radius: 25px;
     background-color: rgba(245, 245, 245, 0.842);
     box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.274);
 
+    border: 2px solid green;
     img {
         height: 35px;
         width: 35px;
@@ -88,13 +94,13 @@ section{
     .burn{
         position:absolute;
         z-index: -1;
-        top: -25px;
+        top: -5px;
         height: 100%;
         .start-it-image{
-            border-radius: 150px;
+            // border-radius: 150px;
             box-shadow: 0 0 200px 80px white inset;
             height: 100vh;
-            width: 99vw;
+            width: 100vw;
             background-image: url(../images/whitedesert.jpg);
             box-shadow: 0 0 200px 80px white inset;
         }

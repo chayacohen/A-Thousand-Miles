@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import '../../assets/css/navbar.scss';
 
 class NavBar extends React.Component {
@@ -20,14 +20,27 @@ class NavBar extends React.Component {
         this.props.openModal(modal);
     }
     getLinks() {
+        debugger
         if (this.props.loggedIn) {
+            debugger
+            const { pathname } = this.props.location
+            
+            if ( pathname === '/map/1' || pathname === '/map/2') {
+                return (
+                <div className='navbar'>
+                    <NavLink to={'/profile'}>Profile</NavLink>
+                    <NavLink className="nav-l" to={'/trip/new'}>Trip Planner</NavLink>
+                    <a onClick={this.logoutUser}>Logout</a>
+                </div>
+            )} else {
             return (
                 <div className='navbar'>
                     <NavLink activeClassName="nav-l" to={'/profile'}>Profile</NavLink>
                     <NavLink activeClassName="nav-l" to={'/trip/new'}>Trip Planner</NavLink>
                     <a onClick={this.logoutUser}>Logout</a>
                 </div>
-            );
+            )}
+
         } else {
             return (
                 <div className='links'>
