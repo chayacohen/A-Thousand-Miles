@@ -45,6 +45,7 @@ class LoginForm extends React.Component {
     }
 
     renderErrors() {
+        debugger
         return (
             <ul>
                 {Object.keys(this.state.errors).map((error, i) => (
@@ -68,6 +69,7 @@ class LoginForm extends React.Component {
                             placeholder="Email"
                         />
                         <br />
+                        <div className='login-errors-password'></div> 
                         <input type="password"
                             value={this.state.password}
                             onChange={this.update('password')}

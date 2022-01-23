@@ -1,13 +1,11 @@
 .profile-container{
     // border: 2px solid red;
     height: calc(100vh - 85px);
+    min-width: 1040px;
     display: grid;
     grid-template-columns: 3fr 7fr;
     justify-content: space-around;
-    // box-shadow: 0px 0px 50px 20px rgb(105, 105, 105, 1) inset;
     z-index: 5;
-    // padding-top: 20px;
-    // padding-bottom: 20px;
 }
 
 .profile-background{
@@ -28,10 +26,12 @@
 
 .user-show-container{
     height: calc(100vh - 85px);
+    min-height: 480px;
     // border: 2px solid greenyellow;
     display: flex;
     justify-content: center;
     align-items: center;
+    // padding-top: 100px;
 }
 
 .index-container{
