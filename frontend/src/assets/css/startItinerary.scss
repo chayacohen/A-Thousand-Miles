@@ -54,7 +54,7 @@ section{
         padding-left: 20px;
     }
 
-    a{
+    .a-active{
         font-size: 23px;
         color: white;
         background-color: #ff8800;
@@ -62,11 +62,27 @@ section{
         
         border-radius: 30px;
         width: 120px;
-        height: 38px;
+        height: 53px;
         text-align: center;
-        padding-top: 15px;
-
+        border: none;
         
+        
+    }
+
+    .a-active:hover {background: #c56900;}
+
+    .a-inactive{
+        font-size: 23px;
+        color: white;
+        background-color: #a7a7a7;
+        box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.274);
+        
+        border-radius: 30px;
+        width: 120px;
+        height: 53px;
+        text-align: center;
+        outline: none;
+        border: none;
     }
     
     .burn{
