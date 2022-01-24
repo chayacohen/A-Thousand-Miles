@@ -108,7 +108,7 @@ class EnterAddress extends React.Component {
         <div className="map-start-container">
             <div className="controls-container">
                 <div className="back-container">
-                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">{'<'}</Link> : <a className="back-button-2">{'<'}</a>}
+                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">{'<'}</Link> : <a className="back-button-3">{'<'}</a>}
                 </div>
 
                 <div className="questions-box">

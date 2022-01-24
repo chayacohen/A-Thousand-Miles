@@ -31,7 +31,7 @@
         border: 1px solid rgb(170, 62, 0);
     }
 
-    .next-button-2, .back-button-2, .next-button-3{
+    .next-button-2, .next-button-3, .back-button-2, .back-button-3{
         font-family: 'Poppins', sans-serif;
         font-size: 50px;
         color: white;
@@ -50,6 +50,10 @@
         margin-right:20px;
         
         // border: 1px solid rgb(170, 62, 0);
+    }
+
+    .back-button-3 {
+        background-color: #a7a7a7;
     }
 
     .next-container, .back-container{
