@@ -60,5 +60,12 @@
     input[type="submit"]:active {
         background: #a35700;
     }
+
+    .form-errors{
+        font-size: 14px;
+        color: red;
+        border: 2px solid rgb(255, 174, 0);
+        min-height: 18px;
+    }
 }
 

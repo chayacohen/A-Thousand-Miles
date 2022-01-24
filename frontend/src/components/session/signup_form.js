@@ -19,6 +19,7 @@ class SignupForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.clearedErrors = false;
         this.onPlaceChanged = this.onPlaceChanged.bind(this);
+        this.renderLineErrors = this.renderLineErrors.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -60,16 +61,9 @@ class SignupForm extends React.Component {
         this.props.signup(user, this.props.history);
     }
 
-    renderErrors() {
-        // debugger
+    renderLineErrors(field) {
         return (
-            <ul>
-                {Object.keys(this.state.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {this.state.errors[error]}
-                    </li>
-                ))}
-            </ul>
+            <div className="form-errors">{this.state.errors[field]}</div>
         );
     }
 
@@ -104,32 +98,37 @@ class SignupForm extends React.Component {
                 <form className='session-form' onSubmit={this.handleSubmit}>
                     <div className="session-form-inner">
                         <h2>Let's get you started</h2>
+
+                        {this.renderLineErrors('username')}
                         <input type="text"
                             value={this.state.username}
                             onChange={this.update('username')}
                             placeholder="Username"
                         />
+                        {this.renderLineErrors('email')}
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
                         />
+                        {this.renderLineErrors('address')}
                         <input type="text"
                             placeholder="Address"
                             id='autocomplete'
                         />
+                        {this.renderLineErrors('password')}
                         <input type="password"
                             value={this.state.password}
                             onChange={this.update('password')}
                             placeholder="Password"
                         />
+                        {this.renderLineErrors('password2')}
                         <input type="password"
                             value={this.state.password2}
                             onChange={this.update('password2')}
                             placeholder="Confirm Password"
                         />
                         <input type="submit" value="Sign Up" />
-                        {this.renderErrors()}
                     </div>
                 </form>
             </div>

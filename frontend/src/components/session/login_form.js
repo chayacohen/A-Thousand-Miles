@@ -13,7 +13,6 @@ class LoginForm extends React.Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
         this.renderLineErrors = this.renderLineErrors.bind(this);
     }
 
@@ -46,21 +45,9 @@ class LoginForm extends React.Component {
         this.props.login(user)
     }
 
-    renderErrors() {
-        return (
-            <ul>
-                {Object.keys(this.state.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {this.state.errors[error]}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
     renderLineErrors(field) {
-        debugger
         return (
-            <div>{this.state.errors[field]}</div>
+            <div className="form-errors">{this.state.errors[field]}</div>
         );
     }
 
@@ -84,9 +71,8 @@ class LoginForm extends React.Component {
                             onChange={this.update('password')}
                             placeholder="Password"
                         />
-                        <br />
+
                         <input type="submit" value="Login" />
-                        {/* {this.renderErrors()} */}
                     </div>
                 </form>
             </div>
