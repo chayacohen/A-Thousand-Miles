@@ -14,6 +14,7 @@ class LoginForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.renderLineErrors = this.renderLineErrors.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,6 +25,7 @@ class LoginForm extends React.Component {
     }
 
     componentWillUnmount(){
+        // this.props.clearErrors();
         this.props.inactiveModal()
     }
 
@@ -45,7 +47,6 @@ class LoginForm extends React.Component {
     }
 
     renderErrors() {
-        debugger
         return (
             <ul>
                 {Object.keys(this.state.errors).map((error, i) => (
@@ -56,6 +57,12 @@ class LoginForm extends React.Component {
             </ul>
         );
     }
+    renderLineErrors(field) {
+        debugger
+        return (
+            <div>{this.state.errors[field]}</div>
+        );
+    }
 
     render() {
         return (
@@ -63,13 +70,15 @@ class LoginForm extends React.Component {
                 <form className='session-form' onSubmit={this.handleSubmit}>
                     <div>
                         <h2>Welcome Back</h2>
+                        
+                        {this.renderLineErrors('email')}
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
                         />
-                        <br />
-                        <div className='login-errors-password'></div> 
+
+                        {this.renderLineErrors('password')}
                         <input type="password"
                             value={this.state.password}
                             onChange={this.update('password')}
@@ -77,7 +86,7 @@ class LoginForm extends React.Component {
                         />
                         <br />
                         <input type="submit" value="Login" />
-                        {this.renderErrors()}
+                        {/* {this.renderErrors()} */}
                     </div>
                 </form>
             </div>
