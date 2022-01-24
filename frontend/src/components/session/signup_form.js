@@ -109,7 +109,7 @@ class SignupForm extends React.Component {
                 <form className='session-form' onSubmit={this.handleSubmit}>
                     <div className="session-form-inner">
                         <h2>Let's get you started</h2>
-                        
+
                         <div className='form-split'>
                         <div className='form-right'>
                             {this.renderLineErrors('username')}
