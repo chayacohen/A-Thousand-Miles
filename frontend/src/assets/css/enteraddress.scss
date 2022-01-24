@@ -17,18 +17,7 @@
         width: 80vw;
         min-width: 600px;
         max-width: 900px;
-        border: 1px solid rgb(170, 62, 0);
-    }
-
-    
-    a {
-        // margin: 10px;
-        // position: relative;
-        // top: 12.5vh;
-        // left:45vh;
-        // left: -450px;
-
-        border: 1px solid rgb(170, 62, 0);
+        // border: 1px solid rgb(170, 62, 0);
     }
 
     .next-button-2, .next-button-3, .back-button-2, .back-button-3{
@@ -62,7 +51,7 @@
         justify-content: center;
         align-content: center;
         font-family: 'Poppins', sans-serif;
-        border: 1px solid rgb(170, 62, 0);
+        // border: 1px solid rgb(170, 62, 0);
         
     }
     
@@ -82,11 +71,11 @@
             height:40px;
             width:34vw;
             min-width:310px;
-            max-width:600px;
+            max-width:460px;
             border: 1px solid rgb(207, 207, 207);
             border-radius: 15px;
             // border: 1px solid rgb(255, 0, 13);
-        border: 1px solid rgb(170, 62, 0);
+        // border: 1px solid rgb(170, 62, 0);
 
 
             input[type="text"] {
@@ -100,7 +89,7 @@
         width: 90%;
         margin-top: 30px;
         margin-bottom: 30px;
-        border: 1px solid rgb(170, 62, 0);
+        // border: 1px solid rgb(170, 62, 0);
 
     }
     
@@ -110,7 +99,7 @@
         height:100%;
         width: 100%;
         box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.274);
-        border: 1px solid blue;
+        // border: 1px solid blue;
     }
 }
 

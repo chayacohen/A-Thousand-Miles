@@ -14,6 +14,8 @@ class LoginForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderLineErrors = this.renderLineErrors.bind(this);
+        this.demoUserSignIn = this.demoUserSignIn.bind(this);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,7 +26,6 @@ class LoginForm extends React.Component {
     }
 
     componentWillUnmount(){
-        // this.props.clearErrors();
         this.props.inactiveModal()
     }
 
@@ -51,11 +52,21 @@ class LoginForm extends React.Component {
         );
     }
 
+    demoUserSignIn() {
+
+        let user = {
+            email: 'demo@users.com',
+            password: 'password'
+        };
+
+        this.props.login(user)
+    }
+
     render() {
         return (
             <div className='session-form-container'>
                 <form className='session-form' onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className='login-form-inner'>
                         <h2>Welcome Back</h2>
                         
                         {this.renderLineErrors('email')}
@@ -73,8 +84,11 @@ class LoginForm extends React.Component {
                         />
 
                         <input type="submit" value="Login" />
+        
+                        <button className='demo-user' onClick={this.demoUserSignIn}>Demo User</button>
                     </div>
                 </form>
+
             </div>
         );
     }

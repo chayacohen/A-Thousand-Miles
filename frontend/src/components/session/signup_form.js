@@ -20,6 +20,7 @@ class SignupForm extends React.Component {
         this.clearedErrors = false;
         this.onPlaceChanged = this.onPlaceChanged.bind(this);
         this.renderLineErrors = this.renderLineErrors.bind(this);
+        this.demoUserSignIn = this.demoUserSignIn.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -92,45 +93,65 @@ class SignupForm extends React.Component {
         autocomplete.addListener('place_changed', this.onPlaceChanged)
     }
 
+    demoUserSignIn() {
+
+        let user = {
+            email: 'demo@users.com',
+            password: 'password'
+        };
+
+        this.props.login(user)
+    }
+
     render() {
         return (
             <div className="session-form-container">
                 <form className='session-form' onSubmit={this.handleSubmit}>
                     <div className="session-form-inner">
                         <h2>Let's get you started</h2>
+                        
+                        <div className='form-split'>
+                        <div className='form-right'>
+                            {this.renderLineErrors('username')}
+                            <input type="text"
+                                value={this.state.username}
+                                onChange={this.update('username')}
+                                placeholder="Username"
+                            />
+                            {this.renderLineErrors('email')}
+                            <input type="text"
+                                value={this.state.email}
+                                onChange={this.update('email')}
+                                placeholder="Email"
+                            />
+                            {this.renderLineErrors('address')}
+                            <input type="text"
+                                placeholder="Address"
+                                id='autocomplete'
+                            />
+                            {this.renderLineErrors('password')}
+                            <input type="password"
+                                value={this.state.password}
+                                onChange={this.update('password')}
+                                placeholder="Password"
+                            />
+                            {this.renderLineErrors('password2')}
+                            <input type="password"
+                                value={this.state.password2}
+                                onChange={this.update('password2')}
+                                placeholder="Confirm Password"
+                            />
+                        </div>
 
-                        {this.renderLineErrors('username')}
-                        <input type="text"
-                            value={this.state.username}
-                            onChange={this.update('username')}
-                            placeholder="Username"
-                        />
-                        {this.renderLineErrors('email')}
-                        <input type="text"
-                            value={this.state.email}
-                            onChange={this.update('email')}
-                            placeholder="Email"
-                        />
-                        {this.renderLineErrors('address')}
-                        <input type="text"
-                            placeholder="Address"
-                            id='autocomplete'
-                        />
-                        {this.renderLineErrors('password')}
-                        <input type="password"
-                            value={this.state.password}
-                            onChange={this.update('password')}
-                            placeholder="Password"
-                        />
-                        {this.renderLineErrors('password2')}
-                        <input type="password"
-                            value={this.state.password2}
-                            onChange={this.update('password2')}
-                            placeholder="Confirm Password"
-                        />
-                        <input type="submit" value="Sign Up" />
+                        <div className='form-right'>
+                            <input type="submit" value="Sign Up"/>
+                            <button className='demo-user' onClick={this.demoUserSignIn}>Demo User</button>
+                        </div>
+                        </div>
+
                     </div>
                 </form>
+
             </div>
         );
     }
