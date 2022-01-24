@@ -106,18 +106,23 @@ class EnterAddress extends React.Component {
 
         return (
         <div className="map-start-container">
-            <div>
+            <div className="controls-container">
+                <div className="back-container">
+                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">{'<'}</Link> : <a className="back-button-2">{'<'}</a>}
+                </div>
+
+                <div className="questions-box">
+                    <div className="questions">{this.props.match.params.id === '1' ? 'Where are you starting?' : 'Where do you want to go?'}</div>
+                    <div className="address-fields">
+                        <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
+                    </div>
+                </div>
+
                 <div className="next-container">
-                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">&nbsp;{'<'}🏃</Link> : null}
-                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}&nbsp;</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>&nbsp;✎&nbsp;{'>'}&nbsp;</a>} 
+                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>} 
                 </div>
             </div>
-            <div className="box">
-                <div className="questions">{this.props.match.params.id === '1' ? 'Where are you starting?' : 'Where do you want to go?'}</div>
-                <div className="address-fields">
-                    <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
-                </div>
-            </div>
+           
             <div className="map-container">
                     <div className="map_enter" ref={map => this.mapNode = map}></div>
             </div>
