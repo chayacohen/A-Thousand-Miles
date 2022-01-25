@@ -82,9 +82,11 @@ body {
             object-fit: cover;
             border-radius: 20px;
             object-position: 0% 0%;
-            // border:1px solid rgb(212, 0, 255);
         }
         
+        // .splash-final-image:hover {
+        //     transform: rotateY(180deg);
+        // }
     }
     
     .splash-second,.splash-third{
@@ -149,6 +151,7 @@ body {
             // border: 2px solid red;
             text-align: center;
             border-radius: 30px;
+            cursor: pointer;
         }
     }
 
@@ -164,7 +167,7 @@ body {
             font-size: 40px;
             font-weight: 700;
             margin: 20px;
-            z-index: 10;
+            z-index: 1;
             position: relative;
             top: 100px;
             text-align: center;
@@ -227,7 +230,6 @@ body {
             width: 150px;
             margin: 15px;
             height: 55px;
-            // padding-top:20px;
             
             display: flex;
             justify-content: center;
@@ -239,6 +241,7 @@ body {
             font-size: 16px;
             font-weight: 500;        
             box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.274);
+            cursor: pointer;
             
         }
 
