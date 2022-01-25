@@ -75,6 +75,7 @@
     }
     input[type="submit"]:hover {
         background: #c26700;
+        cursor: pointer;
     }
     input[type="submit"]:active {
         background: #a35700;
@@ -86,22 +87,23 @@
         min-height: 18px;
     }
 
-    .demo-user {
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        border: none;
-        color: white;
-        background-color: #009ce4;
-    
-        border-radius: 30px;
-        height:53px;
-        width: 263px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .demo-user:hover {
-        background-color: #006999;
-    }
+}
+.demo-user {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    border: none;
+    color: white;
+    background-color: #009ce4;
+
+    border-radius: 30px;
+    height:53px;
+    width: 263px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.demo-user:hover {
+    background-color: #006999;
+    cursor: pointer;
 }
 
 
