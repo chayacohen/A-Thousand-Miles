@@ -11,7 +11,7 @@ class ItineraryAttractionItem extends React.Component {
 
     componentDidMount() {
         this.props.getAttraction(this.props.attraction._id).then((response) => {
-            debugger 
+            // debugger 
             if (response.attraction.data.isAdded) {
                 this.setState({clicked: true})
             }
