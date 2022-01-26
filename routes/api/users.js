@@ -110,6 +110,7 @@ router.put('/:id',
                 user.username = (!req.body.username) ? user.username : req.body.username;
                 // user.username = req.body.username;
                 user.address = (!req.body.address) ? user.address : req.body.address;
+                user.address_coord = (!req.body.lng && !req.body.lat) ? user.address_coord : { type: "Point", coordinates: [req.body.lng, req.body.lat] }
                 // user.address = req.body.address;
                 user.save();
                 res.json(user)
