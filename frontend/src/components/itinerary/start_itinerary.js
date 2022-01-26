@@ -18,8 +18,6 @@ class StartItinerary extends React.Component {
     }
 
     handleNextClick() {
-        this.props.receiveDescription(this.state.description); 
-        this.props.receiveTitle(this.state.title); 
         this.props.createItinerary({title: this.state.title, description: this.state.description}).then(itinerary => {
             const id = itinerary.itinerary.data._id 
             this.props.history.push(`/itinerary/${id}/map/1`)

@@ -35,7 +35,6 @@ class DrawMapRoute extends React.Component {
     }
 
     componentDidMount() {
-        this.props.clearItineraryForm(); 
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
         this.map.map.setZoom(4.7)

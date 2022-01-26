@@ -11,9 +11,7 @@ class EnterAddress extends React.Component {
         super(props); 
         this.state = { location: '', id: '', address: ''}
         this.onPlaceChanged = this.onPlaceChanged.bind(this); 
-        // this.handleSubmitItinerary = this.handleSubmitItinerary.bind(this);
         this.handleEditStart = this.handleEditStart.bind(this); 
-        // this.handleEditEnd = this.handleEditEnd.bind(this); 
     }
 
     componentDidMount() {
@@ -40,7 +38,7 @@ class EnterAddress extends React.Component {
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
                  })
              }
         })
@@ -56,7 +54,6 @@ class EnterAddress extends React.Component {
 
 
     componentDidUpdate(prevProps) {
-        debugger 
         if (this.props.match.params.id !== prevProps.match.params.id) {
            const autocomplete = document.getElementById('autocomplete')
            if (this.props.match.params.id === '1') {
@@ -66,7 +63,6 @@ class EnterAddress extends React.Component {
                autocomplete.value = this.props.itinerary.end_address; 
            }
         }
-        debugger 
     }
 
     onPlaceChanged() {
@@ -111,26 +107,9 @@ class EnterAddress extends React.Component {
         }
     }
 
-    // handleSubmitItinerary() {
-    //     const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()}; 
-
-    //     this.props.createItinerary(itinerary).then(response => 
-    //     {
-    //                 // this.props.clearItineraryForm();
-    //                 this.setState({id: response.itinerary.data._id}) 
-    //                 this.props.history.push(`/itinerary/${this.state.id}/draw`)
-    //     })
-
-    // }
-
     handleEditStart() {
-        // this.props.editItinerary(this.props.itinerary._id, {start_address: this.state.address.address, start_lat: this.state.address.lat.toString(), start_lng: this.state.address.lng.toString()})
         this.setState({address: ''})
     }
-
-    // handleEditEnd() {
-    //     this.props.editItinerary(this.props.itinerary._id, { end_address: this.state.address.address, end_lat: this.state.address.lat.toString(), end_lng: this.state.address.lng.toString() })
-    // }
 
     render() {
 
@@ -166,7 +145,7 @@ class EnterAddress extends React.Component {
                 </div>
 
                 <div className="next-container">
-                        {this.props.match.params.id === '1' ? <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2" onClick={this.handleEditStart}>{'>'}</Link> : <a to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3">{'>'}</a>} 
+                        {this.props.match.params.id === '1' ? <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2" onClick={this.handleEditStart}>{'>'}</Link> : <Link to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3">{'>'}</Link>} 
                 </div>
             </div>
            
