@@ -72,7 +72,7 @@ class DrawMapRoute extends React.Component {
                 this.map.poly.getPath().insertAt((this.path.length - 1), this.state.end_pos); 
                 this.path = this.map.poly.getPath().xd 
                 this.pathForDB = this.convertPath(); 
-                this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB} )
+                this.props.editItinerary(this.props.match.params.id, {line: this.pathForDB, complete: true} )
                 
                 this.receiveResults().then(() => { 
                     let increment = Math.floor(this.state.totalResults.length / 15)

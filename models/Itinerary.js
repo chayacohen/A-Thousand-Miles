@@ -45,6 +45,10 @@ const ItinerarySchema = new Schema({
         type: Date,
         // default: () => Date.now() + 2 * 24 * 60 * 60 * 1000
     },
+    complete: {
+        type: Boolean,
+        default: false
+    }, 
     line: [
         {
             lat: Number,

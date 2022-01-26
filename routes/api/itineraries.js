@@ -76,6 +76,7 @@ router.put('/:id',
                 itinerary.end_lng = (!req.body.end_lng) ? itinerary.end_lng : req.body.end_lng;
                 itinerary.start_date = (!req.body.start_date) ? itinerary.start_date : req.body.start_date;
                 itinerary.end_date = (!req.body.end_date) ? itinerary.end_date : req.body.end_date;
+                itinerary.complete = (!req.body.complete) ? itinerary.complete : req.body.complete;
                 itinerary.line = (!req.body.line) ? Itinerary.line : req.body.line
                 itinerary.save();
                 res.json(itinerary);

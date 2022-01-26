@@ -90,7 +90,7 @@ class EnterAddress extends React.Component {
                     this.MarkerManager.removeMarker(this.props.itinerary.end_lat)
                 }
                 this.setState({address: address})
-                this.props.editItinerary(this.props.itinerary._id, { end_address: address.address, end_lat: lat, end_lng: lng })
+                this.props.editItinerary(this.props.itinerary._id, { end_address: address.address, end_lat: lat, end_lng: lng})
                 //save address into itinerary as well 
             }
 
