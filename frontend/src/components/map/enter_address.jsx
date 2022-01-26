@@ -9,42 +9,64 @@ class EnterAddress extends React.Component {
 
     constructor(props) {
         super(props); 
-        this.state = { location: '', id: ''}
+        this.state = { location: '', id: '', address: ''}
         this.onPlaceChanged = this.onPlaceChanged.bind(this); 
-        this.handleSubmitItinerary = this.handleSubmitItinerary.bind(this); 
+        // this.handleSubmitItinerary = this.handleSubmitItinerary.bind(this);
+        this.handleEditStart = this.handleEditStart.bind(this); 
+        // this.handleEditEnd = this.handleEditEnd.bind(this); 
     }
 
     componentDidMount() {
         this.map = new Map(this.mapNode); 
         this.map.instantiateMap(); 
-        this.MarkerManager = new MarkerManager(this.map)
-        if (this.props.startAddress) {
-            this.MarkerManager.addMarker({ lat: this.props.startAddress.lat, lng: this.props.startAddress.lng }, {
-                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
-            } )
-        }
+        this.map.map.setOptions({ draggable: true });
+        this.MarkerManager = new MarkerManager(this.map); 
+
+        this.props.getItinerary(this.props.match.params.itineraryId).then(itinerary => {
+             const itineraryInfo = itinerary.itinerary.data; 
+             if(itineraryInfo.start_address) {
+                 this.setState({address: {address: itineraryInfo.start_address, lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng}})
+                 this.MarkerManager.addMarker({ lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng }, {
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                 })
+             }
+             else {
+                 const address = { address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }
+                this.setState({ address: address })
+                this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
+                 this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                 })
+             }
+             if(itineraryInfo.end_address) {
+                 this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                 })
+             }
+        })
+     
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
             fields: ['place_id', 'geometry', 'name', 'formatted_address']
         })
         const autocomplete = this.autocomplete;
         autocomplete.addListener('place_changed', this.onPlaceChanged)
-
-        if (this.props.match.params.id === '1') {
-            this.props.receiveStartingAddress({ address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] })
-            this.MarkerManager.addMarker({ lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }, {
-                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
-            })
-        } 
         
     }
 
 
     componentDidUpdate(prevProps) {
+        debugger 
         if (this.props.match.params.id !== prevProps.match.params.id) {
            const autocomplete = document.getElementById('autocomplete')
-           autocomplete.value = ''; 
+           if (this.props.match.params.id === '1') {
+               autocomplete.value = this.props.itinerary.start_address; 
+           }
+           else if (this.props.match.params.id === '2') {
+               autocomplete.value = this.props.itinerary.end_address; 
+           }
         }
+        debugger 
     }
 
     onPlaceChanged() {
@@ -60,17 +82,19 @@ class EnterAddress extends React.Component {
             const address = {address: place.formatted_address, lat: lat, lng: lng}
 
             if (this.props.match.params.id === '1') {
-                if (this.props.startAddress) {
-                    this.MarkerManager.removeMarker(this.props.startAddress.lat)
+                if (this.props.itinerary.start_address) {
+                    this.MarkerManager.removeMarker(this.props.itinerary.start_lat)
                 }
-                this.props.receiveStartingAddress(address)
+                this.setState({address: address}); 
+                this.props.editItinerary(this.props.itinerary._id, {start_address: address.address, start_lat: lat, start_lng: lng})
                 // save address into itinerary as well 
             }
             else if (this.props.match.params.id === '2') {
-                if (this.props.endAddress) {
-                    this.MarkerManager.removeMarker(this.props.endAddress.lat)
+                if (this.props.itinerary.end_address) {
+                    this.MarkerManager.removeMarker(this.props.itinerary.end_lat)
                 }
-                this.props.receiveEndAddress(address)
+                this.setState({address: address})
+                this.props.editItinerary(this.props.itinerary._id, { end_address: address.address, end_lat: lat, end_lng: lng })
                 //save address into itinerary as well 
             }
 
@@ -87,19 +111,42 @@ class EnterAddress extends React.Component {
         }
     }
 
-    handleSubmitItinerary() {
-        const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()};  
-        debugger
-        this.props.createItinerary(itinerary).then(response => 
-        {
-                    // this.props.clearItineraryForm();
-                    this.setState({id: response.itinerary.data._id}) 
-                    this.props.history.push(`/itinerary/${this.state.id}/draw`)
-        })
+    // handleSubmitItinerary() {
+    //     const itinerary = {user: this.props.currentUser.id, title: this.props.title, description: this.props.description, start_address: this.props.startAddress.address, end_address: this.props.endAddress.address, start_lat: this.props.startAddress.lat.toString(), start_lng: this.props.startAddress.lng.toString(), end_lat: this.props.endAddress.lat.toString(), end_lng: this.props.endAddress.lng.toString()}; 
 
+    //     this.props.createItinerary(itinerary).then(response => 
+    //     {
+    //                 // this.props.clearItineraryForm();
+    //                 this.setState({id: response.itinerary.data._id}) 
+    //                 this.props.history.push(`/itinerary/${this.state.id}/draw`)
+    //     })
+
+    // }
+
+    handleEditStart() {
+        // this.props.editItinerary(this.props.itinerary._id, {start_address: this.state.address.address, start_lat: this.state.address.lat.toString(), start_lng: this.state.address.lng.toString()})
+        this.setState({address: ''})
     }
 
+    // handleEditEnd() {
+    //     this.props.editItinerary(this.props.itinerary._id, { end_address: this.state.address.address, end_lat: this.state.address.lat.toString(), end_lng: this.state.address.lng.toString() })
+    // }
+
     render() {
+
+        let autocompleteDefault = null; 
+        if (this.props.match.params.id === '1') {
+            if (this.props.itinerary && this.props.itinerary.start_address) {
+                autocompleteDefault = this.props.itinerary.start_address 
+            }
+        }
+
+        if (this.props.match.params.id === '2') {
+            if (this.props.itinerary) {
+                autocompleteDefault = this.props.itinerary.end_address
+            }
+        }
+
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
         }
@@ -108,18 +155,18 @@ class EnterAddress extends React.Component {
         <div className="map-start-container">
             <div className="controls-container">
                 <div className="back-container">
-                    { this.props.match.params.id === '2' ? <Link to="/map/1" className="back-button-2">{'<'}</Link> : <a className="back-button-3">{'<'}</a>}
+                        {this.props.match.params.id === '2' ? <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/1`} className="back-button-2">{'<'}</Link> : <a className="back-button-3">{'<'}</a>}
                 </div>
 
                 <div className="questions-box">
                     <div className="questions">{this.props.match.params.id === '1' ? 'Where are you starting?' : 'Where do you want to go?'}</div>
                     <div className="address-fields">
-                        <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={this.props.match.params.id === '1' ? this.props.currentUser.address : null }/>
+                        <input id="autocomplete" placeholder="Enter an address" type="text" className="address-input" defaultValue={autocompleteDefault}/>
                     </div>
                 </div>
 
                 <div className="next-container">
-                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>} 
+                        {this.props.match.params.id === '1' ? <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2" onClick={this.handleEditStart}>{'>'}</Link> : <a to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3">{'>'}</a>} 
                 </div>
             </div>
            

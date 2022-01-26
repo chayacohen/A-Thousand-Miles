@@ -68,6 +68,12 @@ router.put('/:id',
             .then(itinerary => {
                 itinerary.title = (!req.body.title) ? itinerary.title : req.body.title;
                 itinerary.description = (!req.body.description) ? itinerary.description : req.body.description;
+                itinerary.start_address = (!req.body.start_address) ? itinerary.start_address : req.body.start_address;
+                itinerary.start_lat = (!req.body.start_lat) ? itinerary.start_lat : req.body.start_lat;
+                itinerary.start_lng = (!req.body.start_lng) ? itinerary.start_lng : req.body.start_lng;
+                itinerary.end_address = (!req.body.end_address) ? itinerary.end_address : req.body.end_address;
+                itinerary.end_lat = (!req.body.end_lat) ? itinerary.end_lat : req.body.end_lat;
+                itinerary.end_lng = (!req.body.end_lng) ? itinerary.end_lng : req.body.end_lng;
                 itinerary.start_date = (!req.body.start_date) ? itinerary.start_date : req.body.start_date;
                 itinerary.end_date = (!req.body.end_date) ? itinerary.end_date : req.body.end_date;
                 itinerary.line = (!req.body.line) ? Itinerary.line : req.body.line
