@@ -49,17 +49,26 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let user = {
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password,
-            password2: this.state.password2,
-            address: this.state.address,
-            lat: this.state.lat,
-            lng: this.state.lng
-        };
 
-        this.props.signup(user, this.props.history);
+        if (this.state.email === 'demo@users.com' && this.state.password === 'password') {
+            let user = {
+                email: this.state.email,
+                username: this.state.username,
+                password: this.state.password
+            }
+            this.props.login(user);
+        } else {
+            let user = {
+                email: this.state.email,
+                username: this.state.username,
+                password: this.state.password,
+                password2: this.state.password2,
+                address: this.state.address,
+                lat: this.state.lat,
+                lng: this.state.lng
+            };
+            this.props.signup(user);
+        }
     }
 
     renderLineErrors(field) {
@@ -94,13 +103,10 @@ class SignupForm extends React.Component {
     }
 
     demoUserSignIn() {
-
-        let user = {
+        this.setState({
             email: 'demo@users.com',
             password: 'password'
-        };
-
-        this.props.login(user)
+        })            
     }
 
     render() {
