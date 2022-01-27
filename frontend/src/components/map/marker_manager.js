@@ -16,7 +16,13 @@ class MarkerManager {
             // custom the markers 
             // hover to see the name 
         });
-        this.markers[position.lat] = marker; 
+        debugger 
+        if (typeof position.lat === 'function' ) {
+            this.markers[position.lat()] = marker; 
+        }
+        else {
+            this.markers[position.lat] = marker; 
+        }
     }
 
     removeMarker(lat) {

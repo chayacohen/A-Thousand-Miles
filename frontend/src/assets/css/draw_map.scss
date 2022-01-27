@@ -14,7 +14,7 @@
 
 #draw-map {
     height: 90%;
-    width: 80%;
+    width: 100%;
     border-radius: 15px;
     margin-bottom: none;
     margin-top: none;
@@ -38,23 +38,28 @@
 
 .draw-map-container {
     height: 68vh;
-    width: 80vw;
-    margin: auto;
-    // margin-top: 100px;
+    width: 70vw;
+    // margin: auto;
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid red;
 }
 
 .after-draw-map-container {
     height: 50vh;
-    width: 35vw;
-    margin-bottom: 15%;
-    // margin-top: 100px;
+    width: 50vw;
+    // margin-bottom: 10%;
+    margin-top: 100px;
 }
 
 .draw-map {
-    height: calc(100vh - 85px);
-    margin-top: 80px;
+    height: 90vh;
+    margin-top: 5px;
     background-image: url('https://ak.picdn.net/shutterstock/videos/26246675/thumb/10.jpg');
     overflow: hidden;
+    z-index: -1;
+    border: 1px solid black;
 }
 
 .h-draw {
@@ -119,4 +124,44 @@
     // margin-right: 10%;
     flex-wrap: wrap;
     font-weight: 350;
+}
+
+.draw-map-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 2%;
+    margin-top: 10%;
+    // margin-top: 40px;
+}
+
+.draw-map-buttons > button, .drag-draw > button {
+    background-color: #e6a964; 
+    border: none;
+    border-radius: 30px;
+    width: 6vw;
+    height: 5.5vh; 
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.274);
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.draw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black solid 1px;
+}
+
+.drag-draw {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 2%;
+    margin-top: 10%;
 }

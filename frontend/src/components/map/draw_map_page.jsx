@@ -33,23 +33,40 @@ class DrawMapRoute extends React.Component {
         this.handleSaveClick = this.handleSaveClick.bind(this); 
         this.handleResetLine = this.handleResetLine.bind(this);
         this.addMapListeners = this.addMapListeners.bind(this);
+        this.handleMapBounds = this.handleMapBounds.bind(this); 
     }
 
     componentDidMount() {
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
-        this.map.map.setZoom(4.7)
-        this.markerManager = new MarkerManager(this.map)
+        // this.map.map.setZoom(4.7)
+        this.markerManager = new MarkerManager(this.map); 
         this.props.getItinerary(this.props.match.params.id).then(response => { 
             this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
             this.markerManager.addMarker(this.state.start_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
             })
+            debugger 
             this.markerManager.addMarker(this.state.end_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
-            }) 
+            })
+
+            debugger 
+
+            this.handleMapBounds() 
+        
         })
         this.addMapListeners(); 
+    }
+
+    handleMapBounds() {
+        const bounds = new google.maps.LatLngBounds();
+        const markers = Object.values(this.markerManager.markers);
+        debugger 
+        markers.forEach(marker => {
+            bounds.extend(marker.position)
+        });
+        this.map.map.fitBounds(bounds);
     }
 
     getAddress(attractions) {
@@ -167,6 +184,7 @@ class DrawMapRoute extends React.Component {
                 }
                 this.setState(resultInfo)
                 this.props.createAttraction(this.props.match.params.id, resultInfo)
+                this.handleMapBounds();
             }
 
             this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
@@ -204,17 +222,27 @@ class DrawMapRoute extends React.Component {
         return (
             <div className="draw-map">
                 <div className={draw ? null : "map-and-attractions"}>
-                    <div className={draw ? null : "left-page"}>
+                    <div className={draw ? "draw" : "left-page"}>
                         { draw ? null : <div>
                             <h1 className="draw-title">{itinerary ? this.props.itinerary.title : null }</h1>
                             <p className="draw-description">{itinerary ? this.props.itinerary.description : null}</p>
                         </div>}
+                        {draw ? 
+                        <div className="drag-draw">
+                                <button>DRAW</button>
+                                <button>DRAG</button>
+                        </div> : null }
                         <div className={this.state.mapName} >
-                            {draw ? <h1 className="h-draw">Draw a line from start to end location </h1> : null }
-                            <div className="map" id={draw ? "draw-map" : "done-draw-map"} ref={map => this.mapNode = map} ></div>
-                            <button onClick={this.handleSaveClick}>Save</button>
-                            <button onClick={this.handleResetLine}>Redraw line</button>
+                                {draw ? <h1 className="h-draw">Draw a line from start to end </h1> : null }
+                                <div className="map" id={draw ? "draw-map" : "done-draw-map"} ref={map => this.mapNode = map} ></div>
                         </div>
+                         {draw ?
+                            <div className="draw-map-buttons">
+                                <button onClick={this.handleResetLine}>RESET</button>
+                                <button onClick={this.handleSaveClick}>SAVE</button>
+                            </div>
+                                : null}
+                    
                     </div>
                     {this.state.attractions.length === 0 ? null : 
                     <div className="attraction-index">

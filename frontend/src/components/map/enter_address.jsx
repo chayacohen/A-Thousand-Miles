@@ -11,7 +11,8 @@ class EnterAddress extends React.Component {
         super(props); 
         this.state = { location: '', id: '', address: ''}
         this.onPlaceChanged = this.onPlaceChanged.bind(this); 
-        this.handleEditStart = this.handleEditStart.bind(this); 
+        this.handleEditStart = this.handleEditStart.bind(this);
+        this.handleMapBounds = this.handleMapBounds.bind(this);  
     }
 
     componentDidMount() {
@@ -27,6 +28,8 @@ class EnterAddress extends React.Component {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng }, {
                      url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
                  })
+                 this.handleMapBounds();
+                 this.map.map.setZoom(5)
              }
              else {
                  const address = { address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }
@@ -35,11 +38,14 @@ class EnterAddress extends React.Component {
                  this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
                      url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
                  })
+                 this.handleMapBounds();
+                 this.map.map.setZoom(5)
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
                      url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
                  })
+                 this.handleMapBounds();
              }
         })
      
@@ -63,6 +69,15 @@ class EnterAddress extends React.Component {
                autocomplete.value = this.props.itinerary.end_address; 
            }
         }
+    }
+
+    handleMapBounds() {
+        const bounds = new google.maps.LatLngBounds(); 
+        const markers = Object.values(this.MarkerManager.markers); 
+        markers.forEach(marker => {
+            bounds.extend(marker.position)
+        }); 
+        this.map.map.fitBounds(bounds); 
     }
 
     onPlaceChanged() {
@@ -97,11 +112,13 @@ class EnterAddress extends React.Component {
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)})
+                this.handleMapBounds()
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
                 })
+                this.handleMapBounds()
             }
             
         }

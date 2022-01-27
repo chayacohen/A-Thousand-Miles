@@ -12,11 +12,14 @@ class EditItinerary extends React.Component {
             editDes: false, 
             editTitle: false, 
             title: this.props.itinerary ? this.props.itinerary.title : '', 
-            description: this.props.itinerary ? this.props.itinerary.description : '' 
+            description: this.props.itinerary ? this.props.itinerary.description : '', 
+            start_pos: '', 
+            end_pos: '' 
         }
         this.changeLineForMap = this.changeLineForMap.bind(this); 
         this.handleInputChange = this.handleInputChange.bind(this); 
         this.handleSaveClick = this.handleSaveClick.bind(this); 
+        this.handleMapBounds = this.handleMapBounds.bind(this); 
     }
 
     handleInputChange(field) {
@@ -58,18 +61,30 @@ class EditItinerary extends React.Component {
             })
             // this.setState({line: this.props.itinerary.line})
             this.changeLineForMap();
-            this.markerManager.addMarker(this.state.line[0], {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(15, 15)
+            this.setState({ start_pos: new google.maps.LatLng(itinerary.start_lat, itinerary.start_lng), end_pos: new google.maps.LatLng(itinerary.end_lat, itinerary.end_lng) }) 
+            this.markerManager.addMarker(this.state.start_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
             })
-            this.markerManager.addMarker(this.state.line[this.state.line.length - 1], {
-                url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(15, 15)
+            this.markerManager.addMarker(this.state.end_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
             })
             this.state.line.forEach((location, index) => {
                 this.map.poly.getPath().insertAt(index, location); 
             })
+            this.handleMapBounds(); 
 
 
         })
+    }
+    
+    handleMapBounds() {
+        const bounds = new google.maps.LatLngBounds();
+        const markers = Object.values(this.markerManager.markers);
+        debugger
+        markers.forEach(marker => {
+            bounds.extend(marker.position)
+        });
+        this.map.map.fitBounds(bounds);
     }
 
     changeLineForMap() {
