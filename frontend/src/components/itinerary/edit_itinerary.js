@@ -36,7 +36,6 @@ class EditItinerary extends React.Component {
             title: this.state.title, 
             description: this.state.description
         }
-        debugger 
         this.props.editItinerary(this.props.itinerary._id, data).then(() => {
             this.setState({editTitle: false, editDes: false})
         })
