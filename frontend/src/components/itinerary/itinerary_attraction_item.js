@@ -18,11 +18,11 @@ class ItineraryAttractionItem extends React.Component {
     }
 
     handleAttractionClick() {
-        if (this.props.attraction.isAdded === false) {
+        if (!this.state.clicked) {
             this.props.editAttraction(this.props.attraction._id, {isAdded: true})
         }
         else {
-            this.props.editAttraction(this.props.attraction._id, { isAdded: false }) 
+            this.props.editAttraction(this.props.attraction._id, {isAdded: 'false'})
         }
         this.setState({ clicked: !this.state.clicked })
     }
