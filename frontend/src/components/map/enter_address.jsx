@@ -39,13 +39,15 @@ class EnterAddress extends React.Component {
                      url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
                  })
                  this.handleMapBounds();
-                 this.map.map.setZoom(5)
+                 this.map.map.setZoom(5);
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
                      url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
                  })
                  this.handleMapBounds();
+                 this.map.map.setZoom(5);
+
              }
         })
      
@@ -112,7 +114,8 @@ class EnterAddress extends React.Component {
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)})
-                this.handleMapBounds()
+                this.handleMapBounds(); 
+                this.map.map.setZoom(5); 
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
