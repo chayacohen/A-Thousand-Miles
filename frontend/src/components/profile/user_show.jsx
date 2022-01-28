@@ -37,7 +37,6 @@ class UserShow extends React.Component{
     }
 
     updateUser() {
-        // debugger
         this.props.editUser(this.props.currentUser.id, {username: this.state.username, address: this.state.address})
         
         this.userShowToggle();

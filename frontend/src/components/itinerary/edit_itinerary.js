@@ -12,11 +12,17 @@ class EditItinerary extends React.Component {
             editDes: false, 
             editTitle: false, 
             title: this.props.itinerary ? this.props.itinerary.title : '', 
-            description: this.props.itinerary ? this.props.itinerary.description : '' 
+            description: this.props.itinerary ? this.props.itinerary.description : '', 
+            start_pos: '', 
+            end_pos: '', 
+            focusTitle: false, 
+            focusDes: false 
         }
         this.changeLineForMap = this.changeLineForMap.bind(this); 
         this.handleInputChange = this.handleInputChange.bind(this); 
         this.handleSaveClick = this.handleSaveClick.bind(this); 
+        this.handleMapBounds = this.handleMapBounds.bind(this); 
+        this.handleFocus = this.handleFocus.bind(this); 
     }
 
     handleInputChange(field) {
@@ -31,15 +37,16 @@ class EditItinerary extends React.Component {
         }
     }
 
-    handleSaveClick() {
-        const data = {
-            title: this.state.title, 
-            description: this.state.description
+    handleSaveClick(field) {
+
+        return () => {
+            const data = {
+                title: this.state.title, 
+                description: this.state.description
+            }
+            this.props.editItinerary(this.props.itinerary._id, data)
+            this.setState({[field]: false})
         }
-        debugger 
-        this.props.editItinerary(this.props.itinerary._id, data).then(() => {
-            this.setState({editTitle: false, editDes: false})
-        })
     }
 
     componentDidMount() {
@@ -57,20 +64,31 @@ class EditItinerary extends React.Component {
                     this.markerManager.addMarker({lat: attraction.lat, lng: attraction.lng}, {url: attraction.icon, scaledSize: new google.maps.Size(20,20)})
                 }) 
             })
-            // this.setState({line: this.props.itinerary.line})
             this.changeLineForMap();
-            this.markerManager.addMarker(this.state.line[0], {
-                url: 'https://cdn-icons.flaticon.com/png/512/550/premium/550907.png?token=exp=1642621415~hmac=4d71282433f291f628c8da9d4b7508b6', scaledSize: new google.maps.Size(15, 15)
+            this.setState({ start_pos: new google.maps.LatLng(itinerary.start_lat, itinerary.start_lng), end_pos: new google.maps.LatLng(itinerary.end_lat, itinerary.end_lng) }) 
+            this.markerManager.addMarker(this.state.start_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
             })
-            this.markerManager.addMarker(this.state.line[this.state.line.length - 1], {
-                url: 'https://cdn-icons-png.flaticon.com/512/2906/2906719.png', scaledSize: new google.maps.Size(15, 15)
+            this.markerManager.addMarker(this.state.end_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
             })
             this.state.line.forEach((location, index) => {
                 this.map.poly.getPath().insertAt(index, location); 
             })
+            this.handleMapBounds(); 
 
 
         })
+    }
+    
+    handleMapBounds() {
+        const bounds = new google.maps.LatLngBounds();
+        const markers = Object.values(this.markerManager.markers);
+        debugger
+        markers.forEach(marker => {
+            bounds.extend(marker.position)
+        });
+        this.map.map.fitBounds(bounds);
     }
 
     changeLineForMap() {
@@ -83,43 +101,45 @@ class EditItinerary extends React.Component {
         this.setState({line: newLine})
     };
 
-    // we have to find a way to store all attractions, unless we refetch based on the same algorithm. Possibly we can make an attribute of attraction a boolean of true or false and then based on if true, it is part of itinerary. Or keep two seperate attraction types?
+    handleFocus(field) {
+        return () => {
+            this.setState({[field]: true})
+        }
+    }
     
     render () {
 
-        // if (!this.state.itineraryAttractions || !this.props.itinerary) {
-        //     return(
-        //         <div className="edit-map-container" style={{ width: '300px', height: '300px' }}>
-        //             <div className="map" ref={map => this.mapNode = map} style={{height: '100%', width: '100%'}}></div>
-        //         </div>
-        //     ) 
-        // }
+        const des = this.state.editDes; 
+        const title = this.state.editTitle;
+        const focusTitle =  this.state.focusTitle; 
+        const focusDes = this.state.focusDes; 
+
 
         return (
             <div className="draw-map">
                 <div className="map-and-attractions">
                     <div className="left-page">
                         <div>
-                            {this.state.editTitle ? 
-                            <div className="draw-edit-property">
-                                <input className="draw-title" value={this.state.title} onChange={this.handleInputChange("title")}/>
-                                <button onClick={this.handleSaveClick}>Save</button>
+                            {/* {this.state.editTitle ?  */}
+                            <div className="edit-title-draw">
+                                <input className="draw-title" value={this.state.title} onFocus={this.handleFocus("focusTitle")} onChange={focusTitle ? this.handleInputChange("title") : null }/>
+                                {focusTitle ? <button onClick={this.handleSaveClick('focusTitle')}>✓</button> : null } 
                             </div>
-                            : 
-                            <div id="edit-title-draw">
-                                <p onClick={this.handleEditClick("editTitle")} className="draw-pencil">{'\u270E'}</p>
-                                <h1 className="draw-title">{this.props.itinerary ? this.props.itinerary.title : ''}</h1>
-                            </div> }
-                            {this.state.editDes ? 
-                            <div className="draw-edit-property">
-                                <input className="draw-description" value={this.state.description} onChange={this.handleInputChange('description')}/>
-                                <button onClick={this.handleSaveClick}>Save</button>
+                             {/* :  */}
+                            {/* <div id="edit-title-draw"> */}
+                                {/* <p onClick={this.handleEditClick("editTitle")} className="draw-pencil">{'\u270E'}</p>
+                                <input className="draw-title" value={this.props.itinerary ? this.props.itinerary.title : ''} onChange={this.handleInputChange('title')}/> */}
+                            {/* </div>  */}
+                            {/* {this.state.editDes ?  */}
+                            <div className="edit-description-draw">
+                                <input className="draw-description" value={this.state.description} onFocus={this.handleFocus("focusDes")}  onChange={focusDes ? this.handleInputChange("description") : null}/>
+                                {focusDes ? <button onClick={this.handleSaveClick('focusDes')}>✓</button> : null}
                             </div>
-                            :
+                            {/* :
                             <div id="edit-description-draw">
                                 <p onClick={this.handleEditClick("editDes")} className="draw-pencil">{'\u270E'}</p>
                                  <p className="draw-description">{this.props.itinerary ? this.props.itinerary.description : ''}</p>
-                            </div>}
+                            </div>} */}
                         </div>
                     <div className="after-draw-map-container">
                         <div className="map" id="done-draw-map" ref={map => this.mapNode = map}></div>

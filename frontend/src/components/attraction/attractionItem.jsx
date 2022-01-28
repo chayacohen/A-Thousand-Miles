@@ -2,7 +2,6 @@ import React from "react"
 import deleteIcon from '../../assets/images/delete.png';
 import star from '../../assets/images/star.png'
 const AttractionItem = ({ attraction, deleteAttraction }) => {
-    // debugger;
 
     const address = () => {
         if (!attraction.address){
