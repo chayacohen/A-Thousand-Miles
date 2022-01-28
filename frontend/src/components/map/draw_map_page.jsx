@@ -62,7 +62,6 @@ class DrawMapRoute extends React.Component {
     handleMapBounds() {
         const bounds = new google.maps.LatLngBounds();
         const markers = Object.values(this.markerManager.markers);
-        debugger 
         markers.forEach(marker => {
             bounds.extend(marker.position)
         });

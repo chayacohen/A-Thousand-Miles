@@ -16,7 +16,6 @@ class MarkerManager {
             // custom the markers 
             // hover to see the name 
         });
-        debugger 
         if (typeof position.lat === 'function' ) {
             this.markers[position.lat()] = marker; 
         }
