@@ -11,7 +11,6 @@ class ItineraryAttractionItem extends React.Component {
 
     componentDidMount() {
         this.props.getAttraction(this.props.attraction._id).then((response) => {
-            // debugger 
             if (response.attraction.data.isAdded) {
                 this.setState({clicked: true})
             }
@@ -19,11 +18,11 @@ class ItineraryAttractionItem extends React.Component {
     }
 
     handleAttractionClick() {
-        if (this.props.attraction.isAdded === false) {
+        if (!this.state.clicked) {
             this.props.editAttraction(this.props.attraction._id, {isAdded: true})
         }
         else {
-            this.props.editAttraction(this.props.attraction._id, { isAdded: false }) 
+            this.props.editAttraction(this.props.attraction._id, {isAdded: 'false'})
         }
         this.setState({ clicked: !this.state.clicked })
     }
@@ -43,7 +42,7 @@ class ItineraryAttractionItem extends React.Component {
                     <p className="draw-address">{attraction.address ? attraction.address : null }</p>
                     <div className="draw-footer">
                         <p>{attraction.rating}</p>
-                        <a href={attraction.googleMapLink}>Learn more</a>
+                        <a href={attraction.googleMapLink} target="_blank">Learn more</a>
                     </div>
                 </div>
             </div>

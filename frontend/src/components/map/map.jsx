@@ -9,7 +9,7 @@ class Map {
     instantiateMap() {
         const mapOptions = {
             center: { lat: 38.0902, lng: -96.5129 },
-            zoom: 4.9,
+            zoom: 4.7,
             draggable: false
         };
         this.map = new google.maps.Map(this.mapNode, mapOptions);

@@ -4,12 +4,10 @@ import deleteIcon from '../../assets/images/delete.png';
 import pencilIcon from '../../assets/images/pencil.png'
 import mapImg from '../../assets/images/map-temp.png'
 const ItineraryItem = ({ itinerary, deleteItinerary, editItinerary, history }) => {
-    // debugger;
 
     const sendToEdit = () => {
         history.push(`/itinerary/${itinerary._id}/edit`)
     }
-    // debugger
     return(
         <div className="itinerary-item-container">
                 <div className="itinerary-item">
