@@ -20,7 +20,9 @@ class DrawMapRoute extends React.Component {
             googleMapLink: '', 
             attractions: [], 
             start_pos: '',
-            end_pos: ''
+            end_pos: '', 
+            draggable: true, 
+            save: false
         }
         this.clicked = false;
         this.round = true;
@@ -34,11 +36,14 @@ class DrawMapRoute extends React.Component {
         this.handleResetLine = this.handleResetLine.bind(this);
         this.addMapListeners = this.addMapListeners.bind(this);
         this.handleMapBounds = this.handleMapBounds.bind(this); 
+        this.handleDragClick = this.handleDragClick.bind(this);
+        this.handleDrawClick = this.handleDrawClick.bind(this); 
     }
 
     componentDidMount() {
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
+        this.map.map.setOptions({ draggable: true });
         // this.map.map.setZoom(4.7)
         this.markerManager = new MarkerManager(this.map); 
         this.props.getItinerary(this.props.match.params.id).then(response => { 
@@ -46,17 +51,12 @@ class DrawMapRoute extends React.Component {
             this.markerManager.addMarker(this.state.start_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
             })
-            debugger 
             this.markerManager.addMarker(this.state.end_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
             })
-
-            debugger 
-
             this.handleMapBounds() 
         
         })
-        this.addMapListeners(); 
     }
 
     handleMapBounds() {
@@ -151,6 +151,7 @@ class DrawMapRoute extends React.Component {
                 this.map.poly.getPath().insertAt(0, this.state.start_pos);
                 this.map.poly.getPath().insertAt((this.path.length - 1), this.state.end_pos);
                 this.path = this.map.poly.getPath().xd
+                this.setState({save: true}); 
             }
         });
     }
@@ -213,9 +214,25 @@ class DrawMapRoute extends React.Component {
             } 
             this.setState({ mapName: 'draw-map-container', attractions: []}); 
         }); 
+        this.setState({save: false})
+    }
+
+    handleDrawClick() {
+        this.map.map.setOptions({ draggable: false });
+        this.addMapListeners(); 
+        this.setState({draggable: false})
+    }
+
+    handleDragClick() {
+        this.map.map.setOptions({ draggable: true });
+        this.drawListener.remove(); 
+        this.setState({draggable: true}); 
     }
 
     render() {
+
+        const draggable = this.state.draggable; 
+        const save = this.state.save; 
 
         const draw = this.state.mapName === "draw-map-container";
         const itinerary = this.props.itinerary; 
@@ -229,8 +246,8 @@ class DrawMapRoute extends React.Component {
                         </div>}
                         {draw ? 
                         <div className="drag-draw">
-                                <button>DRAW</button>
-                                <button>DRAG</button>
+                                <button onClick={this.handleDragClick} id = {draggable === true ? "non-active" : null }>DRAG</button>
+                                <button onClick={this.handleDrawClick} id={draggable !== true ? "non-active" : null}>DRAW</button>
                         </div> : null }
                         <div className={this.state.mapName} >
                                 {draw ? <h1 className="h-draw">Draw a line from start to end </h1> : null }
@@ -239,7 +256,7 @@ class DrawMapRoute extends React.Component {
                          {draw ?
                             <div className="draw-map-buttons">
                                 <button onClick={this.handleResetLine}>RESET</button>
-                                <button onClick={this.handleSaveClick}>SAVE</button>
+                                <button onClick={this.handleSaveClick} id={save === false ? "non-active" : null}>SAVE</button>
                             </div>
                                 : null}
                     
