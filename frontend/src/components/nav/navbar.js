@@ -20,7 +20,7 @@ class NavBar extends React.Component {
         this.props.openModal(modal);
     }
     getLinks() {
-        debugger
+        // debugger
         if (this.props.loggedIn) {
             debugger
             const { pathname } = this.props.location

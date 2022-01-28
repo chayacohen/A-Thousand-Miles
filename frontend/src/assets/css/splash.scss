@@ -74,17 +74,93 @@ body {
             }
         }
         
-        .splash-one-image{
+        .splash-card{
             height: 65vh;
             width: 50%;
             max-width: 600px;
             min-height: 600px;
-            object-fit: cover;
+            overflow: hidden;
             border-radius: 20px;
-            object-position: 0% 0%;
-            // border:1px solid rgb(212, 0, 255);
+            background-color: transparent;
         }
-        
+
+        .splash-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .splash-card:hover .splash-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .splash-card-front, .splash-card-back {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .splash-card-front{
+            img{
+                object-fit: cover;
+                object-position: 0% 0%;
+                max-width: 600px;
+                min-height: 600px;
+            }
+        }
+
+        .splash-card-back{
+            background-color: #EAB575;
+            transform: rotateY(180deg);
+
+            .person{
+                border: 2px solid blue;
+            }
+
+            .person-info{
+                border: 2px solid cyan;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .person-info-name{
+                border: 2px solid red;
+            }
+
+            .person-info-links-container{
+                border: 2px solid green;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .person-info-link-item{
+                border: 2px solid purple;
+            }
+
+            .person-info-link-header{
+                border: 2px solid greenyellow;
+            }
+
+            .person-info-link{
+                border: 2px solid yellow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 75px;
+                    height: 75px;
+                }
+            }
+
+
+        }
     }
     
     .splash-second,.splash-third{

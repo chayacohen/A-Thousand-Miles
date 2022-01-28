@@ -7,9 +7,31 @@ import splashOne from '../../assets/images/splashroad.jpg';
 import splashTwo from '../../assets/images/splashballoonsmall.jpg';
 import splashThree from '../../assets/images/splashplanningsmall.jpg';
 import splashFinal from '../../assets/images/contourmap.jpg'
-
+import github from '../../assets/images/github.png';
+import linkedin from '../../assets/images/linkedin.png';
+import angellist from '../../assets/images/angellist.png';
+import portfolio from '../../assets/images/portfolio.png';
 class Splash extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            about: false
+        }
+        this.splashOrAbout = this.splashOrAbout.bind(this)
+    }
+
+    splashOrAbout(){
+        if (!this.state.about) {
+            return <img alt="travel" src={splashOne} className='splash-one-image' />
+        } else {
+            return <div className='splash-one-image'></div>
+        }
+    }
+
     render(){
+
+        // const splashOne = this.splashOrAbout();
         return(
             <div className='splash-container'>
                 <div className='splash-intro'>
@@ -22,7 +44,139 @@ class Splash extends React.Component{
                             <Navbar className='splash-signup'/>
                             <Modal />
                         </div>
-                        <img alt="travel" src={splashOne} className='splash-one-image' />
+                        <div className='splash-card'>
+                            <div className='splash-card-inner'>
+                                <div className='splash-card-front'>
+                                    <img alt="travel" src={splashOne}/>
+                                </div>
+                                <div className='splash-card-back'>
+                                    <h2>Check us out!</h2>
+                                    <div className='person'>
+                                        <div className='person-info'>
+
+                                            <div className='person-info-name'>
+                                                <h3>Chaya Cohen</h3>
+                                            </div>
+                                            <div className='person-info-links-container'>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Github
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={github}/> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        LinkedIn
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin}/> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        AngelList
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist}/> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Portfolio
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={portfolio}/> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='person-info'>
+                                            <div className='person-info-name'>
+                                                <h3>Nicholas Barrameda</h3>
+                                            </div>
+                                            <div className='person-info-links-container'>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Github
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={github} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        LinkedIn
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        AngelList
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Portfolio
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={portfolio} /> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='person-info'>
+                                            <div className='person-info-name'>
+                                                <h3>Brian Lin</h3>
+                                            </div>
+                                            <div className='person-info-links-container'>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Github
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={github} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        LinkedIn
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        AngelList
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist} /> </a>
+                                                    </div>
+                                                </div>
+                                                <div className='person-info-link-item'>
+                                                    <div className='person-info-link-header'>
+                                                        Portfolio
+                                                    </div>
+                                                    <div className='person-info-link'>
+                                                        <a href="https://github.com/linb1" target="_blank"> <img src={portfolio} /> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* {splashOne}  */}
                     </div>
                 </div>
                 <div className='splash-second'>
