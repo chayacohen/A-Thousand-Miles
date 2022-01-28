@@ -66,6 +66,7 @@ class EnterAddress extends React.Component {
 
 
     componentDidUpdate(prevProps) {
+        debugger
         if (this.props.match.params.id !== prevProps.match.params.id) {
            const autocomplete = document.getElementById('autocomplete')
            if (this.props.match.params.id === '1') {
@@ -87,6 +88,8 @@ class EnterAddress extends React.Component {
     }
 
     onPlaceChanged() {
+        debugger
+
         const place = this.autocomplete.getPlace();
         if (!place.geometry) {
             document.getElementById('autocomplete').placeholder = 'Enter an address'
@@ -129,6 +132,7 @@ class EnterAddress extends React.Component {
             }
             
         }
+        
     }
 
     handleEditStart() {
@@ -136,7 +140,7 @@ class EnterAddress extends React.Component {
     }
 
     render() {
-
+debugger
         let autocompleteDefault = null; 
         if (this.props.match.params.id === '1') {
             if (this.props.itinerary && this.props.itinerary.start_address) {
@@ -152,6 +156,16 @@ class EnterAddress extends React.Component {
 
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
+        }
+debugger
+        let next;
+
+        if (this.props.match.params.id === '1') {
+            next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2">{'>'}</Link>
+        } else if (this.props.match.params.id === '2' && this.props.itinerary.end_address) {
+            next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</Link>
+        } else {
+            next = <a className="next-button-empty">{'>'}</a>
         }
 
         return (
@@ -169,7 +183,10 @@ class EnterAddress extends React.Component {
                 </div>
 
                 <div className="next-container">
-                        {this.props.match.params.id === '1' ? <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2" onClick={this.handleEditStart}>{'>'}</Link> : <Link to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3">{'>'}</Link>} 
+                    {/* {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : null} 
+                    {(this.props.match.params.id === '2' && this.props.endAddress.lat !== '') ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>}  */}
+                    {/* {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>}   */}
+                    {next}
                 </div>
             </div>
            

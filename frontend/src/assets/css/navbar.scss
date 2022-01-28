@@ -48,16 +48,18 @@
         // border: 3px solid rgb(0, 0, 0);    
     }
 
-    // a:hover {
-        // padding-bottom: 2px;
-        // border-bottom: 2px solid rgb(255, 145, 0);
-        // line-height: 23px;
-    // }
+    a:hover {
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgb(255, 145, 0);
+        line-height: 23px;
+        cursor: pointer;
+    }
 
     .nav-l {
         color: #e66f00;
         font-size: 25px;
-        padding-bottom: 6px;
+        padding-bottom: 9px;
         text-shadow: 1px 1px 1px rgb(192, 192, 192);
     }
+
 }

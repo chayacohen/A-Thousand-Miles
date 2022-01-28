@@ -13,7 +13,6 @@ const mDTP = (dispatch) => {
     return {
         login: user => dispatch(login(user)),
         inactiveModal: () => dispatch(inactiveModal()),
-        clearSessionErrors: () => dispatch(clearSessionErrors())
     }
 }
 

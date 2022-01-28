@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
     }
 
     componentWillUnmount(){
-        this.props.inactiveModal()
+        this.props.inactiveModal();
     }
 
     update(field) {
@@ -35,6 +35,8 @@ class LoginForm extends React.Component {
         });
     }
 
+    
+    
     handleSubmit(e) {
         e.preventDefault();
 
@@ -42,10 +44,10 @@ class LoginForm extends React.Component {
             email: this.state.email,
             password: this.state.password
         };
-
+        
         this.props.login(user)
     }
-
+    
     renderLineErrors(field) {
         return (
             <div className="form-errors">{this.state.errors[field]}</div>
@@ -53,13 +55,10 @@ class LoginForm extends React.Component {
     }
 
     demoUserSignIn() {
-
-        let user = {
+        this.setState({
             email: 'demo@users.com',
             password: 'password'
-        };
-
-        this.props.login(user)
+        })            
     }
 
     render() {
@@ -85,7 +84,6 @@ class LoginForm extends React.Component {
 
                         <input type="submit" value="Login" />
                         <button className='demo-user' onClick={this.demoUserSignIn}>Demo User</button>
-        
                     </div>
                 </form>
 
