@@ -3,6 +3,8 @@ import Map from './map';
 import MarkerManager from "./marker_manager";
 import '../../assets/css/draw_map.scss'
 import ItineraryAttractionIndex from "../itinerary/itinerary_attraction_index";
+import { Link } from "react-router-dom";
+
 const google = window.google;
 class DrawMapRoute extends React.Component {
     constructor(props) {
@@ -245,8 +247,8 @@ class DrawMapRoute extends React.Component {
                         </div>}
                         {draw ? 
                         <div className="drag-draw">
-                                <button onClick={this.handleDragClick} id = {draggable === true ? "non-active" : null }>DRAG</button>
-                                <button onClick={this.handleDrawClick} id={draggable !== true ? "non-active" : null}>DRAW</button>
+                                <button onClick={this.handleDragClick} id = {draggable !== true ? "non-active" : null }>DRAG</button>
+                                <button onClick={this.handleDrawClick} id={draggable === true ? "non-active" : null}>DRAW</button>
                         </div> : null }
                         <div className={this.state.mapName} >
                                 {draw ? <h1 className="h-draw">Draw a line from start to end </h1> : null }
@@ -255,9 +257,12 @@ class DrawMapRoute extends React.Component {
                          {draw ?
                             <div className="draw-map-buttons">
                                 <button onClick={this.handleResetLine}>RESET</button>
-                                <button onClick={this.handleSaveClick} id={save === false ? "non-active" : null}>SAVE</button>
+                                <button onClick={this.handleSaveClick} id={save === false ? "non-active" : "green"}>SAVE</button>
                             </div>
                                 : null}
+                        {draw ? null : <Link to="/profile" className="draw-save-button">
+                            SAVE ITINERARY
+                        </Link>}
                     
                     </div>
                     {this.state.attractions.length === 0 ? null : 

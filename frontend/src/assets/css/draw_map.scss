@@ -40,7 +40,7 @@
     height: 68vh;
     width: 70vw;
     // margin: auto;
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -49,7 +49,7 @@
     height: 50vh;
     width: 50vw;
     // margin-bottom: 10%;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .draw-map {
@@ -88,7 +88,7 @@
     margin-left: 30px;
     width: 40%;
     height: calc(100% - 100px);
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .attraction-index {
@@ -172,4 +172,32 @@
 
 #non-active:hover {
     background-color: rgb(199, 194, 194);
+}
+
+#green {
+    background-color: #9fd6ad;
+}
+
+#green:hover {
+    background-color: #86b491;
+}
+
+.draw-save-button {
+    // height: 6vh;
+    // width: 10vw;
+    margin-top: 8%;
+    border: none;
+    border-radius: 30px;
+    font-size: 100%;
+    font-weight: 600;
+    background-color: #e6a964;
+    // box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.274);
+    cursor: pointer;
+    // letter-spacing: 2px;
+    padding: 3%;
+    margin-left: 75%;
+}
+
+.draw-save-button:hover {
+    background-color: #df923b;
 }
