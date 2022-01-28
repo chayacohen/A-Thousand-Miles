@@ -52,7 +52,6 @@ class UserShow extends React.Component{
 
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
-        
         if (!place.geometry) {
             document.getElementById('autocomplete')
         }
@@ -66,7 +65,6 @@ class UserShow extends React.Component{
     }
 
     updateUser() {
-        debugger
         this.props.editUser(this.props.currentUser.id, {
             username: this.state.username,
             address: this.state.address,
@@ -82,7 +80,6 @@ class UserShow extends React.Component{
     render(){
         if (this.state.load) return (<h1> Loading </h1>);
 
-        debugger
             const {username, email, address} = this.props.user[0]
             const initials = username.split().map(word => word[0]).join().toUpperCase()
             
