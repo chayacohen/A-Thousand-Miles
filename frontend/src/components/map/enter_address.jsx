@@ -32,14 +32,18 @@ class EnterAddress extends React.Component {
                  this.map.map.setZoom(5)
              }
              else {
-                 const address = { address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }
-                this.setState({ address: address })
-                this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
-                 this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
-                 })
-                 this.handleMapBounds();
-                 this.map.map.setZoom(5);
+                 this.props.getUser(this.props.currentUser._id).then(userData => {
+                     const user = userData.user.data; 
+                     const address = { address: user.address, lat: user.address_coord.coordinates[1], lng: user.address_coord.coordinates[0] }
+                     this.setState({ address: address })
+                     this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
+                      this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
+                          url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                      })
+                      this.handleMapBounds();
+                      this.map.map.setZoom(5);
+                    }
+                 )
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {

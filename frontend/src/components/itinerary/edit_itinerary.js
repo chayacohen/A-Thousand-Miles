@@ -2,7 +2,8 @@ import React from "react";
 import Map from "../map/map";
 import MarkerManager from "../map/marker_manager";
 import ItineraryAttractionItem from "./itinerary_attraction_item";
-import '../../assets/css/draw_attraction_item.scss'
+import '../../assets/css/draw_attraction_item.scss'; 
+import { Link } from "react-router-dom";
 const google = window.google;
 class EditItinerary extends React.Component {
 
@@ -53,7 +54,8 @@ class EditItinerary extends React.Component {
         this.map = new Map(this.mapNode)
         this.markerManager = new MarkerManager(this.map)
         this.map.instantiateMap();
-        this.map.map.setZoom(4)
+        // this.map.map.setZoom(5); 
+        this.map.map.setOptions({draggable: true})
         this.props.getItinerary(this.props.match.params.id).then((response) => {
             const itinerary = response.itinerary.data; 
             this.setState({title: itinerary.title, description: itinerary.description})
@@ -76,8 +78,6 @@ class EditItinerary extends React.Component {
                 this.map.poly.getPath().insertAt(index, location); 
             })
             this.handleMapBounds(); 
-
-
         })
     }
     
@@ -143,6 +143,9 @@ class EditItinerary extends React.Component {
                     <div className="after-draw-map-container">
                         <div className="map" id="done-draw-map" ref={map => this.mapNode = map}></div>
                     </div>
+                    <Link to="/profile" className="draw-save-button">
+                            SAVE ITINERARY
+                    </Link>
                 </div>
                     <div className="attraction-index">
                         <div className="draw-attraction-item">
