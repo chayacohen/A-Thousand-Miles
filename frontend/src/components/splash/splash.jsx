@@ -22,7 +22,7 @@ class Splash extends React.Component{
                             <Navbar className='splash-signup'/>
                             <Modal />
                         </div>
-                        <img alt="travel" src={splashOne} className='splash-one-image' />
+                            <img alt="travel" src={splashOne} className='splash-one-image' />
                     </div>
                 </div>
                 <div className='splash-second'>
