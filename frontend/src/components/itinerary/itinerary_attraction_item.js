@@ -42,7 +42,7 @@ class ItineraryAttractionItem extends React.Component {
                     <p className="draw-address">{attraction.address ? attraction.address : null }</p>
                     <div className="draw-footer">
                         <p>{attraction.rating}</p>
-                        <a href={attraction.googleMapLink}>Learn more</a>
+                        <a href={attraction.googleMapLink} target="_blank">Learn more</a>
                     </div>
                 </div>
             </div>
