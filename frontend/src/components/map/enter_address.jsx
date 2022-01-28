@@ -85,6 +85,7 @@ class EnterAddress extends React.Component {
             }
             
         }
+        debugger
     }
 
     handleSubmitItinerary() {
@@ -103,6 +104,23 @@ class EnterAddress extends React.Component {
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
         }
+debugger
+        let next;
+
+        if (this.props.match.params.id === '1') {
+            next = <Link to="/map/2" className="next-button-2">{'>'}</Link>
+        } else if (this.props.match.params.id === '2' && this.props.endAddress) {
+            next = <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>
+        } else {
+            next = <a className="next-button-empty">{'>'}</a>
+        }
+        // if (this.props.match.params.id === '1') {
+        //     next = <Link to="/map/2" className="next-button-2">{'>'}</Link>
+        // } else if (this.props.match.params.id === '2' && this.props.endAddress.lat !== '') {
+        //     next = <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>
+        // } else {
+        //     next = <a className="next-button-empty">{'>'}</a>
+        // }
 
         return (
         <div className="map-start-container">
@@ -119,7 +137,10 @@ class EnterAddress extends React.Component {
                 </div>
 
                 <div className="next-container">
-                    {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>} 
+                    {/* {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : null}  */}
+                    {/* {(this.props.match.params.id === '2' && this.props.endAddress.lat !== '') ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>}  */}
+                    {/* {this.props.match.params.id === '1' ? <Link to="/map/2" className="next-button-2">{'>'}</Link> : <a to="/map/draw" className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</a>}  */}
+                    {next}
                 </div>
             </div>
            

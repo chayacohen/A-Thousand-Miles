@@ -20,7 +20,7 @@
         // border: 1px solid rgb(170, 62, 0);
     }
 
-    .next-button-2, .next-button-3, .back-button-2, .back-button-3{
+    .next-button-2, .next-button-3, .back-button-2, .back-button-3, .next-button-empty{
         font-family: 'Poppins', sans-serif;
         font-size: 50px;
         color: white;
@@ -37,11 +37,12 @@
         padding-right:10px;
         margin-left:20px;
         margin-right:20px;
+        cursor: pointer;
         
         // border: 1px solid rgb(170, 62, 0);
     }
 
-    .back-button-3 {
+    .back-button-3, .next-button-empty {
         background-color: #a7a7a7;
     }
 
