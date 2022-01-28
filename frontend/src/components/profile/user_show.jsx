@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../assets/css/userShow.scss';
+const google = window.google;
 
 class UserShow extends React.Component{
     constructor(props){
@@ -14,6 +15,7 @@ class UserShow extends React.Component{
         // this.userSettings = this.userSettings.bind(this);
         this.changeUsername = this.changeUsername.bind(this);
         this.changeAddress = this.changeAddress.bind(this);
+        this.onPlaceChanged = this.onPlaceChanged.bind(this);
         }
 
     userShowToggle(){
@@ -36,9 +38,41 @@ class UserShow extends React.Component{
             })})
     }
 
+    componentDidUpdate(){
+
+        if (this.state.main === false) {
+            this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
+                componentRestrictions: { 'country': ['US'] },
+                fields: ['place_id', 'geometry', 'formatted_address']
+            })
+            const autocomplete = this.autocomplete;
+            autocomplete.addListener('place_changed', this.onPlaceChanged)
+        }
+    }
+
+    onPlaceChanged() {
+        const place = this.autocomplete.getPlace();
+        
+        if (!place.geometry) {
+            document.getElementById('autocomplete')
+        }
+        else {
+            const lat = place.geometry.location.lat();
+            const lng = place.geometry.location.lng();
+            const address = place.formatted_address;
+            this.setState({address: address, lat: lat, lng: lng});
+            this.autocomplete.value = address;
+        }
+    }
+
     updateUser() {
-        // debugger
-        this.props.editUser(this.props.currentUser.id, {username: this.state.username, address: this.state.address})
+        debugger
+        this.props.editUser(this.props.currentUser.id, {
+            username: this.state.username,
+            address: this.state.address,
+            lat: this.state.lat,
+            lng: this.state.lng
+        })
         
         this.userShowToggle();
     }
@@ -47,7 +81,8 @@ class UserShow extends React.Component{
         
     render(){
         if (this.state.load) return (<h1> Loading </h1>);
-        
+
+        debugger
             const {username, email, address} = this.props.user[0]
             const initials = username.split().map(word => word[0]).join().toUpperCase()
             
@@ -71,7 +106,7 @@ class UserShow extends React.Component{
                         <li className='user-bubble'><h1>{initials}</h1></li>
                         <li>Redefine yourself</li>
                         <li><input type="text" value={this.state.username} onChange={this.changeUsername}/></li>
-                        <li><input type="text" value={this.state.address} onChange={this.changeAddress}/></li>
+                        <li><input type="text" value={this.state.address} id='autocomplete' onChange={this.changeAddress}/></li>
                         <li><button onClick={() => this.updateUser()}>Save Changes</button></li>
                     </ul>
                 </div>
