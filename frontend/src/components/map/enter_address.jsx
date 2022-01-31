@@ -62,7 +62,7 @@ class EnterAddress extends React.Component {
 
 
     componentDidUpdate(prevProps) {
-        debugger
+        // debugger
         if (this.props.match.params.id !== prevProps.match.params.id) {
            const autocomplete = document.getElementById('autocomplete')
            if (this.props.match.params.id === '1') {
@@ -84,7 +84,7 @@ class EnterAddress extends React.Component {
     }
 
     onPlaceChanged() {
-        debugger
+        // debugger
 
         const place = this.autocomplete.getPlace();
         if (!place.geometry) {
@@ -136,7 +136,7 @@ class EnterAddress extends React.Component {
     }
 
     render() {
-debugger
+// debugger
         let autocompleteDefault = null; 
         if (this.props.match.params.id === '1') {
             if (this.props.itinerary && this.props.itinerary.start_address) {
@@ -153,7 +153,7 @@ debugger
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
         }
-debugger
+// debugger
         let next;
 
         if (this.props.match.params.id === '1') {
