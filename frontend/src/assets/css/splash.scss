@@ -6,8 +6,28 @@ body {
     padding-top: 5vh;
     margin-left: 10%;
     margin-right: 10%;
+    position: relative;
     // border:1px solid blue;
 // max-width: 1300px;
+
+.about-us-button{
+    position: absolute;
+    padding: 10px;
+    border-radius: 20px;
+    top: 15px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    background-color: #FF982F;
+    border: none;
+    transition-duration: 0.3s;
+}
+
+.about-us-button:hover{
+    cursor: pointer;
+    background-color: #fcbd7e;
+    box-shadow: 0 10px 3px -3px rgba(0, 0, 0, 0.274);
+
+}
 
 .splash-intro-bar{
     // border:3px solid rgb(255, 0, 0);
@@ -76,19 +96,171 @@ body {
             }
         }
         
-        .splash-one-image{
+        .splash-card{
             height: 65vh;
             width: 50%;
             max-width: 600px;
+            min-width: 350px;
             min-height: 600px;
-            object-fit: cover;
+            overflow: hidden;
             border-radius: 20px;
+<<<<<<< HEAD
             object-position: 0% 0%;
         }
         
         // .splash-final-image:hover {
         //     transform: rotateY(180deg);
         // }
+=======
+            background-color: transparent;
+        }
+
+        .splash-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .splash-card.flipped .splash-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .splash-card-front, .splash-card-back {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .splash-card-front{
+            img{
+                object-fit: cover;
+                object-position: 0% 0%;
+                max-width: 600px;
+                min-height: 600px;
+            }
+        }
+
+        .splash-card-back{
+            background-color: #fcbd7e;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            .splash-card-header-container{
+                // border: 2px solid yellow;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .splash-card-header{
+                // border: 2px solid cyan;
+                width: 90%;
+                padding-top: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid black;
+                h2{
+                    font-family: 'Rock Salt', cursive;
+                    font-weight: 700;
+                    text-align: center;
+                    font-size: 18px;
+                    line-height: 1.85;
+                    a{
+                        display: inline-block;
+                        // border: 1px solid black;
+                        font-family: 'Rock Salt', cursive;
+                        color: rgb(95, 95, 238);
+                        // text-align: center;
+                        transition-duration: 0.2s;
+                    }
+
+                    a:hover{
+                        cursor: pointer;
+                        color: rgb(161, 161, 245);
+                    }
+                }
+            }
+
+            .person{
+                width: 100%;
+                // border: 2px solid blue;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .person-info{
+                // border: 2px solid cyan;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .divider{
+                border-bottom: 2px solid black;
+                width: 40%;
+            }
+
+            .person-info-name{
+                // border: 2px solid red;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                h3{
+                    // font-family: 'Rock Salt', cursive;
+                    font-size: 24px;
+                }
+            }
+
+            .person-info-links-container{
+                // border: 2px solid green;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            .person-info-link-item{
+                // border: 2px solid purple;
+            }
+
+            .person-info-link-header{
+                // border: 2px solid greenyellow;
+                text-align: center;
+                font-size: 13px;
+                padding: 5px;
+            }
+
+            .person-info-link{
+                // border: 2px solid yellow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 65px;
+                    height: 65px;
+                    transition-duration: 0.3s;
+                }
+                img:hover{
+                    filter: invert(40%);
+                }
+            }
+
+
+        }
+>>>>>>> about
     }
     
     .splash-second,.splash-third{
