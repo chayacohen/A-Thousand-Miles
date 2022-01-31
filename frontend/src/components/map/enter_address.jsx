@@ -32,7 +32,9 @@ class EnterAddress extends React.Component {
                  this.map.map.setZoom(5)
              }
              else {
-                 this.props.getUser(this.props.currentUser._id).then(userData => {
+                 debugger 
+                 this.props.getUser(this.props.currentUser.id).then(userData => {
+                     debugger 
                      const user = userData.user.data; 
                      const address = { address: user.address, lat: user.address_coord.coordinates[1], lng: user.address_coord.coordinates[0] }
                      this.setState({ address: address })
