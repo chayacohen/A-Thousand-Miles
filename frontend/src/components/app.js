@@ -27,7 +27,7 @@ const App = () => {
             <ProtectedRoute path="/profile" component={ProfileContainer} />
             <ProtectedRoute exact path="/itinerary/:id/edit" component={EditItineraryContainer}/>
             <ProtectedRoute exact path="/itinerary/:id/draw" component={DrawMapContainer}/>
-            <ProtectedRoute exact path = "/map/:id" component={EnterAddressContainer}/>
+            <ProtectedRoute exact path = "/itinerary/:itineraryId/map/:id" component={EnterAddressContainer}/>
             <ProtectedRoute exact path="/trip/new" component={StartItineraryContainer}/>
             <ProtectedRoute exact path="/planner" component={PlannerContainer} />
         </Switch>

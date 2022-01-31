@@ -15,27 +15,27 @@ const ItinerarySchema = new Schema({
     },
     start_address: {
         type: String,
-        required: true
+        // required: true
     },
     end_address: {
         type: String,
-        required: true
+        // required: true
     },
     start_lat: {
         type: Number,
-        required: true
+        // required: true
     },
     start_lng: {
         type: Number,
-        required: true
+        // required: true
     },
     end_lat: {
         type: Number,
-        required: true
+        // required: true
     },
     end_lng: {
         type: Number,
-        required: true
+        // required: true
     },
     start_date: {
         type: Date,
@@ -45,6 +45,10 @@ const ItinerarySchema = new Schema({
         type: Date,
         // default: () => Date.now() + 2 * 24 * 60 * 60 * 1000
     },
+    complete: {
+        type: Boolean,
+        default: false
+    }, 
     line: [
         {
             lat: Number,

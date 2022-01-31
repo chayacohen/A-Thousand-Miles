@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 
 router.get('/itinerary/:itinerary_id', (req, res) => {
     if (req.body.boolean === true ){
-        // debugger
         Attraction.find({ itinerary: req.params.itinerary_id, isAdded: true })
             .then(attractions => res.json(attractions))
             .catch(err =>
@@ -23,7 +22,6 @@ router.get('/itinerary/:itinerary_id', (req, res) => {
             );
     }
     else {
-        // debugger
         Attraction.find({ itinerary: req.params.itinerary_id})
             .then(attractions => res.json(attractions))
             .catch(err =>

@@ -12,7 +12,6 @@ class Attraction extends React.Component{
 
     componentDidMount(){
         this.props.getItineraryAttractions(this.props.match.params.itineraryId, {boolean: true})
-        // debugger
     }
 
     componentWillUnmount(){
@@ -70,7 +69,6 @@ class Attraction extends React.Component{
         //         <AttractionItemContainer attraction={attraction}/>
         //         </li>
         // })
-        // debugger
         const attraction = this.checkAttractions()
         const title = this.checkItinerary()
         return(
