@@ -119,26 +119,14 @@ class EditItinerary extends React.Component {
                 <div className="map-and-attractions">
                     <div className="left-page">
                         <div>
-                            {/* {this.state.editTitle ?  */}
                             <div className="edit-title-draw">
                                 <input className="draw-title" value={this.state.title} onFocus={this.handleFocus("focusTitle")} onChange={focusTitle ? this.handleInputChange("title") : null }/>
                                 {focusTitle ? <button onClick={this.handleSaveClick('focusTitle')}>✓</button> : null } 
                             </div>
-                             {/* :  */}
-                            {/* <div id="edit-title-draw"> */}
-                                {/* <p onClick={this.handleEditClick("editTitle")} className="draw-pencil">{'\u270E'}</p>
-                                <input className="draw-title" value={this.props.itinerary ? this.props.itinerary.title : ''} onChange={this.handleInputChange('title')}/> */}
-                            {/* </div>  */}
-                            {/* {this.state.editDes ?  */}
                             <div className="edit-description-draw">
                                 <input className="draw-description" value={this.state.description} onFocus={this.handleFocus("focusDes")}  onChange={focusDes ? this.handleInputChange("description") : null}/>
                                 {focusDes ? <button onClick={this.handleSaveClick('focusDes')}>✓</button> : null}
                             </div>
-                            {/* :
-                            <div id="edit-description-draw">
-                                <p onClick={this.handleEditClick("editDes")} className="draw-pencil">{'\u270E'}</p>
-                                 <p className="draw-description">{this.props.itinerary ? this.props.itinerary.description : ''}</p>
-                            </div>} */}
                         </div>
                     <div className="after-draw-map-container">
                         <div className="map" id="done-draw-map" ref={map => this.mapNode = map}></div>

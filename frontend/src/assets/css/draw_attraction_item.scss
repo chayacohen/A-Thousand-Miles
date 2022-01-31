@@ -86,14 +86,12 @@
 }
 
 .edit-title-draw, .edit-description-draw{
-    // border: black solid 1px;
     display: flex;
     justify-content: flex-start;
-    // gap: 5%;
     align-items: flex-end;
     flex-direction: row;
-    // border: black 1px solid;
 }
+
 
 .edit-title-draw>input, .edit-description-draw > input{
    outline: none;
@@ -103,6 +101,8 @@
    background-color: transparent;
 //    border: 1px solid black;
     text-indent: 35%;
+        cursor: pointer;
+
 }
 
 .edit-description-draw > input {
