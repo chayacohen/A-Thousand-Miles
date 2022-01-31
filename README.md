@@ -57,6 +57,82 @@ A Thousand Miles is a MERN-stack web application that also utilizes Google Map A
 - Google MAPS/PLACES API 
 
 ## Code Snippets
+``` Javascript
+    receiveResults() {
+        const promises = [];
+        this.service = new google.maps.places.PlacesService(this.map.map);
+        const increment = Math.floor(this.path.length / 15);
+        for (let i = 1; i < this.path.length; i += (increment > 0 ? increment : 1)) {
+            if (this.path[i])
+                promises.push(new Promise((resolve, reject) => {
+                    this.service.nearbySearch({
+                        location: { lat: this.path[i].lat(), lng: this.path[i].lng() },
+                        radius: 50000,
+                        type: ['tourist_attraction'],
+                    }, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            this.setState({ totalResults: this.state.totalResults.concat(results) });
+                            resolve();
+                        }
+                        else if (status) {
+                            resolve();
+                        }
+                    });
+                }))
+        }
+        return Promise.all(promises)
+    }
+```
+- In the above code, in order to be able to wait for results from the Google Maps API, each call to the API was created as a promise. 
+- Sequentially, the function returns a promise that resolves once all the promises resolve.
+- This approach allows for the results to be rendered only once they are all returned from the API call. 
+
+
+``` Javascript
+addMapListeners() {
+        this.map.map.addListener("mousedown", (e) => {
+            this.clicked = !this.clicked;
+        });
+
+        this.drawListener = this.map.map.addListener("mousemove", e => {
+            if (this.clicked && this.round) {
+                this.addLatLng(e);
+            }
+        }); 
+
+        this.map.poly.addListener("mouseup", (e) => {
+            if (this.clicked) {
+                this.clicked = false;
+                this.round = false;
+                this.path = this.map.poly.getPath().xd;
+                this.map.poly.getPath().insertAt(0, this.state.start_pos);
+                this.map.poly.getPath().insertAt((this.path.length), this.state.end_pos);
+                this.path = this.map.poly.getPath().xd;
+                this.setState({save: true}); 
+            }
+        });
+    }
+```
+
+- The above code is responsible for interactively drawing a line on the map.
+- The map listens for a mousedown event that activates a mousemove event listener.
+- The mousemove event listener adds lat/lng points to the Google Maps Polyline based on the mouse's position on the map.
+- The mouseup event listener, which is on the polyline, removes the mousemove event listener, adds the start position to the front of the line and the end position to the end of the line, ensuring a complete path from start to end. 
+
+``` Javascript 
+    handleMapBounds() {
+            const bounds = new google.maps.LatLngBounds();
+            const markers = Object.values(this.markerManager.markers);
+            markers.forEach(marker => {
+                bounds.extend(marker.position)
+            });
+            this.map.map.fitBounds(bounds);
+        }
+```
+
+- The above code ensures that the map is positioned so all points (e.g. start and end address) are in view when the map is rendered.  
+
+
 
 ## Timeline & Group Breakdown 
 
