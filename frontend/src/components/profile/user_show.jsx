@@ -41,7 +41,6 @@ class UserShow extends React.Component{
     }
 
     componentDidUpdate(){
-        debugger
 
         if (this.state.main === false) {
             this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
@@ -56,7 +55,6 @@ class UserShow extends React.Component{
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
         
-        debugger
         if (!place.geometry) {
             document.getElementById('autocomplete').placeholder = this.state.address
         }
@@ -70,7 +68,6 @@ class UserShow extends React.Component{
     }
 
     updateUser() {
-        debugger
         this.props.editUser(this.props.currentUser.id, {
             username: this.state.username,
             address: this.state.address,

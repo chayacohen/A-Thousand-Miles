@@ -79,7 +79,6 @@ class SignupForm extends React.Component {
 
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
-        debugger
         if (!place.geometry) {
             document.getElementById('autocomplete').placeholder = 'Address'
         }
@@ -93,7 +92,6 @@ class SignupForm extends React.Component {
     }
 
     componentDidMount(){
-        debugger
 
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
             componentRestrictions: { 'country': ['US'] },
