@@ -9,7 +9,9 @@ import {
   const addKeyToObject = (state, action) => {
     let nextState = Object.assign({}, state);
     action.itineraries.data.forEach(itinerary => {
-      nextState[itinerary._id] = itinerary;
+      if(itinerary.complete){
+        nextState[itinerary._id] = itinerary;
+      }
     })
     return nextState;
   }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { editUser } from '../../actions/user_actions';
 // import { fetchUserItineraries } from '../../actions/itinerary_actions';
-import { getUserItineraries } from '../../actions/itinerary_actions';
+import { getUserItineraries, clearItinerariesFromState } from '../../actions/itinerary_actions';
 import Profile from './profile';
 
 const mSTP = (state) => {
@@ -14,7 +14,8 @@ const mSTP = (state) => {
 const mDTP = dispatch => {
   return {
     editUser: (id, data) => dispatch(editUser(id, data)),
-    getUserItineraries: userId => dispatch(getUserItineraries(userId))
+    getUserItineraries: userId => dispatch(getUserItineraries(userId)),
+    clearItinerariesFromState: () => dispatch(clearItinerariesFromState())
   };
 };
 
