@@ -79,7 +79,6 @@ class SignupForm extends React.Component {
 
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
-        
         if (!place.geometry) {
             document.getElementById('autocomplete').placeholder = 'Address'
         }

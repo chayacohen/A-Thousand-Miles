@@ -26,7 +26,7 @@ class EnterAddress extends React.Component {
              if(itineraryInfo.start_address) {
                  this.setState({address: {address: itineraryInfo.start_address, lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng}})
                  this.MarkerManager.addMarker({ lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
                  })
                  this.handleMapBounds();
                  this.map.map.setZoom(5)
@@ -47,7 +47,7 @@ class EnterAddress extends React.Component {
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
                  })
                  this.handleMapBounds();
                  this.map.map.setZoom(5);
@@ -66,7 +66,7 @@ class EnterAddress extends React.Component {
 
 
     componentDidUpdate(prevProps) {
-        debugger
+        // debugger
         if (this.props.match.params.id !== prevProps.match.params.id) {
            const autocomplete = document.getElementById('autocomplete')
            if (this.props.match.params.id === '1') {
@@ -88,7 +88,7 @@ class EnterAddress extends React.Component {
     }
 
     onPlaceChanged() {
-        debugger
+        // debugger
 
         const place = this.autocomplete.getPlace();
         if (!place.geometry) {
@@ -120,13 +120,13 @@ class EnterAddress extends React.Component {
 
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)})
+                    url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)})
                 this.handleMapBounds(); 
                 this.map.map.setZoom(5); 
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
+                    url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
                 })
                 this.handleMapBounds()
             }
@@ -140,7 +140,7 @@ class EnterAddress extends React.Component {
     }
 
     render() {
-debugger
+// debugger
         let autocompleteDefault = null; 
         if (this.props.match.params.id === '1') {
             if (this.props.itinerary && this.props.itinerary.start_address) {
@@ -157,7 +157,7 @@ debugger
         if (this.props.match.params.id !== '1' && this.props.match.params.id !== '2') {
             return null; 
         }
-debugger
+// debugger
         let next;
 
         if (this.props.match.params.id === '1') {
