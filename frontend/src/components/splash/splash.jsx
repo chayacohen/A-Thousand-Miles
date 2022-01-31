@@ -50,7 +50,11 @@ class Splash extends React.Component{
                                     <img alt="travel" src={splashOne}/>
                                 </div>
                                 <div className='splash-card-back'>
-                                    <h2>Check us out!</h2>
+                                    <div className='splash-card-header-container'>
+                                        <div className='splash-card-header'>
+                                            <h2>Click here to see this project's repository or check any of us out below!</h2>
+                                        </div>
+                                    </div>
                                     <div className='person'>
                                         <div className='person-info'>
 
@@ -91,6 +95,7 @@ class Splash extends React.Component{
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className='divider'></div>
                                         </div>
 
                                         <div className='person-info'>
@@ -131,6 +136,7 @@ class Splash extends React.Component{
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className='divider'></div>
                                         </div>
 
                                         <div className='person-info'>
@@ -171,6 +177,7 @@ class Splash extends React.Component{
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className='divider'></div>
                                         </div>
                                     </div>
                                 </div>
