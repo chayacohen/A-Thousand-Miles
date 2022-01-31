@@ -11,6 +11,7 @@ class UserShow extends React.Component{
             load: true,
             main: true,
         }
+
         this.userShowToggle = this.userShowToggle.bind(this);
         // this.userSettings = this.userSettings.bind(this);
         this.changeUsername = this.changeUsername.bind(this);
@@ -36,9 +37,11 @@ class UserShow extends React.Component{
                 username: this.props.user[0].username,
                 address: this.props.user[0].address
             })})
+
     }
 
     componentDidUpdate(){
+        debugger
 
         if (this.state.main === false) {
             this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
@@ -53,8 +56,9 @@ class UserShow extends React.Component{
     onPlaceChanged() {
         const place = this.autocomplete.getPlace();
         
+        debugger
         if (!place.geometry) {
-            document.getElementById('autocomplete')
+            document.getElementById('autocomplete').placeholder = this.state.address
         }
         else {
             const lat = place.geometry.location.lat();
@@ -82,7 +86,6 @@ class UserShow extends React.Component{
     render(){
         if (this.state.load) return (<h1> Loading </h1>);
 
-        debugger
             const {username, email, address} = this.props.user[0]
             const initials = username.split().map(word => word[0]).join().toUpperCase()
             
@@ -106,7 +109,7 @@ class UserShow extends React.Component{
                         <li className='user-bubble'><h1>{initials}</h1></li>
                         <li>Redefine yourself</li>
                         <li><input type="text" value={this.state.username} onChange={this.changeUsername}/></li>
-                        <li><input type="text" value={this.state.address} id='autocomplete' onChange={this.changeAddress}/></li>
+                        <li><input type="text" placeholder={this.state.address} id='autocomplete' /></li>
                         <li><button onClick={() => this.updateUser()}>Save Changes</button></li>
                     </ul>
                 </div>
