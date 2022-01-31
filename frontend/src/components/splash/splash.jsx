@@ -19,21 +19,29 @@ class Splash extends React.Component{
             about: false
         }
         this.splashOrAbout = this.splashOrAbout.bind(this)
+        this.toggleAbout = this.toggleAbout.bind(this)
     }
 
     splashOrAbout(){
         if (!this.state.about) {
-            return <img alt="travel" src={splashOne} className='splash-one-image' />
+            return "splash-card"
         } else {
-            return <div className='splash-one-image'></div>
+            return "splash-card flipped"
         }
+    }
+
+    toggleAbout(){
+        return (e) => {
+            this.setState({ about: !this.state.about })
+        };
     }
 
     render(){
 
-        // const splashOne = this.splashOrAbout();
+        const splashClass = this.splashOrAbout();
         return(
             <div className='splash-container'>
+                <button className= "about-us-button" onClick={this.toggleAbout()}>Click to learn more about us!</button>
                 <div className='splash-intro'>
                     <div className='splash-intro-bar'><div className='splash-intro-inner'></div></div>
                     
@@ -44,7 +52,7 @@ class Splash extends React.Component{
                             <Navbar className='splash-signup'/>
                             <Modal />
                         </div>
-                        <div className='splash-card'>
+                        <div className={splashClass}>
                             <div className='splash-card-inner'>
                                 <div className='splash-card-front'>
                                     <img alt="travel" src={splashOne}/>
@@ -52,7 +60,7 @@ class Splash extends React.Component{
                                 <div className='splash-card-back'>
                                     <div className='splash-card-header-container'>
                                         <div className='splash-card-header'>
-                                            <h2>Click here to see this project's repository or check any of us out below!</h2>
+                                            <h2>Click <a href="https://github.com/chayacohen/A-Thousand-Miles" target="_blank"> here </a> to see this project's repository or check any of us out below!</h2>
                                         </div>
                                     </div>
                                     <div className='person'>
@@ -67,7 +75,7 @@ class Splash extends React.Component{
                                                         Github
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={github}/> </a>
+                                                        <a href="https://github.com/chayacohen" target="_blank"> <img src={github}/> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -75,7 +83,7 @@ class Splash extends React.Component{
                                                         LinkedIn
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin}/> </a>
+                                                        <a href="https://www.linkedin.com/in/chaya-cohen-6a3035142/" target="_blank"> <img src={linkedin}/> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -83,7 +91,7 @@ class Splash extends React.Component{
                                                         AngelList
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist}/> </a>
+                                                        <a href="https://angel.co/u/chaya-cohen-1" target="_blank"> <img src={angellist}/> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -108,7 +116,7 @@ class Splash extends React.Component{
                                                         Github
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={github} /> </a>
+                                                        <a href="https://github.com/nick-barr" target="_blank"> <img src={github} /> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -116,7 +124,7 @@ class Splash extends React.Component{
                                                         LinkedIn
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin} /> </a>
+                                                        <a href="https://www.linkedin.com/in/nicholas-barrameda/" target="_blank"> <img src={linkedin} /> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -124,7 +132,7 @@ class Splash extends React.Component{
                                                         AngelList
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist} /> </a>
+                                                        <a href="https://angel.co/u/nicholas-barrameda" target="_blank"> <img src={angellist} /> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -157,7 +165,7 @@ class Splash extends React.Component{
                                                         LinkedIn
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={linkedin} /> </a>
+                                                        <a href="https://www.linkedin.com/in/brian-lin-1590/" target="_blank"> <img src={linkedin} /> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
@@ -165,7 +173,7 @@ class Splash extends React.Component{
                                                         AngelList
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={angellist} /> </a>
+                                                        <a href="https://angel.co/u/brian-lin-40" target="_blank"> <img src={angellist} /> </a>
                                                     </div>
                                                 </div>
                                                 <div className='person-info-link-item'>
