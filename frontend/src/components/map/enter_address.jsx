@@ -26,7 +26,7 @@ class EnterAddress extends React.Component {
              if(itineraryInfo.start_address) {
                  this.setState({address: {address: itineraryInfo.start_address, lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng}})
                  this.MarkerManager.addMarker({ lat: itineraryInfo.start_lat, lng: itineraryInfo.start_lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
                  })
                  this.handleMapBounds();
                  this.map.map.setZoom(5)
@@ -36,14 +36,14 @@ class EnterAddress extends React.Component {
                 this.setState({ address: address })
                 this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
                  this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
                  })
                  this.handleMapBounds();
                  this.map.map.setZoom(5);
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
-                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
+                     url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
                  })
                  this.handleMapBounds();
                  this.map.map.setZoom(5);
@@ -116,13 +116,13 @@ class EnterAddress extends React.Component {
 
             if (this.props.match.params.id === '1')  {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)})
+                    url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)})
                 this.handleMapBounds(); 
                 this.map.map.setZoom(5); 
             }
             else {
                 this.MarkerManager.addMarker({ lat: lat, lng: lng }, {
-                    url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(30, 30)
+                    url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
                 })
                 this.handleMapBounds()
             }
