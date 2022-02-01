@@ -153,6 +153,35 @@ class DrawMapRoute extends React.Component {
                 this.setState({save: true}); 
             }
         });
+        this.map.map.addListener("mouseup", (e) => {
+            if (this.clicked) {
+                this.clicked = false;
+                this.round = false;
+                this.path = this.map.poly.getPath().xd
+                this.map.poly.getPath().insertAt(0, this.state.start_pos);
+                this.map.poly.getPath().insertAt((this.path.length), this.state.end_pos);
+                this.path = this.map.poly.getPath().xd
+                this.setState({ save: true });
+            }
+        });
+
+        const markers = Object.values(this.markerManager.markers);
+        markers.forEach(marker => {
+            marker.addListener("mousedown", (e) => {
+                this.clicked = !this.clicked
+            });
+            marker.addListener("mouseup", (e) => {
+                if (this.clicked) {
+                    this.clicked = false;
+                    this.round = false;
+                    this.path = this.map.poly.getPath().xd
+                    this.map.poly.getPath().insertAt(0, this.state.start_pos);
+                    this.map.poly.getPath().insertAt((this.path.length), this.state.end_pos);
+                    this.path = this.map.poly.getPath().xd
+                    this.setState({ save: true });
+                }
+            });
+        })
     }
 
     handleSaveClick() {
