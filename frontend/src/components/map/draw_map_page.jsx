@@ -40,6 +40,7 @@ class DrawMapRoute extends React.Component {
         this.handleMapBounds = this.handleMapBounds.bind(this); 
         this.handleDragClick = this.handleDragClick.bind(this);
         this.handleDrawClick = this.handleDrawClick.bind(this); 
+        this.changeLineForMap = this.changeLineForMap.bind(this); 
     }
 
     componentDidMount() {
@@ -49,6 +50,24 @@ class DrawMapRoute extends React.Component {
         // this.map.map.setZoom(4.7)
         this.markerManager = new MarkerManager(this.map); 
         this.props.getItinerary(this.props.match.params.id).then(response => { 
+            if (response.itinerary.data.line.length > 0){
+                this.setState({ mapName: "after-draw-map-container"}); 
+                this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
+                    this.setState({ attractions: response.attractions.data })
+                    this.state.attractions.forEach((attraction) => {
+                        this.markerManager.addMarker({ lat: attraction.lat, lng: attraction.lng }, { url: attraction.icon, scaledSize: new google.maps.Size(20, 20) })
+                    })
+                    // this.getAddress(this.state.attractions).then(() => {
+                    //     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
+                    //         this.setState({ attractions: response.attractions.data })
+                    //     })
+                    // })
+                })
+                this.changeLineForMap();
+                this.state.line.forEach((location, index) => {
+                    this.map.poly.getPath().insertAt(index, location);
+                })
+            }
             this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
             this.markerManager.addMarker(this.state.start_pos, {
                 url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
@@ -59,6 +78,16 @@ class DrawMapRoute extends React.Component {
             this.handleMapBounds() 
         })
     }
+
+    changeLineForMap() {
+        const line = this.props.itinerary.line;
+        const newLine = [];
+        line.forEach(location => {
+            const latLng = new google.maps.LatLng(location.lat, location.lng)
+            newLine.push(latLng);
+        })
+        this.setState({ line: newLine })
+    };
 
     handleMapBounds() {
         const bounds = new google.maps.LatLngBounds();
