@@ -32,7 +32,6 @@ class EnterAddress extends React.Component {
                  this.map.map.setZoom(5)
              }
              else {
-                 debugger 
                  this.props.getUser(this.props.currentUserId).then(userData => {
                      debugger 
                      const user = userData.user.data; 
@@ -164,7 +163,7 @@ class EnterAddress extends React.Component {
 
         if (this.props.match.params.id === '1') {
             next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2">{'>'}</Link>
-        } else if (this.props.match.params.id === '2' && this.props.itinerary.end_address) {
+        } else if (this.props.match.params.id === '2' && this.props.itinerary && this.props.itinerary.end_address) {
             next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</Link>
         } else {
             next = <a className="next-button-empty">{'>'}</a>
