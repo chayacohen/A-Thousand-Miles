@@ -33,7 +33,7 @@ class EnterAddress extends React.Component {
              }
              else {
                  debugger 
-                 this.props.getUser(this.props.currentUser.id).then(userData => {
+                 this.props.getUser(this.props.currentUserId).then(userData => {
                      debugger 
                      const user = userData.user.data; 
                      const address = { address: user.address, lat: user.address_coord.coordinates[1], lng: user.address_coord.coordinates[0] }

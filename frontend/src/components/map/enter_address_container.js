@@ -4,11 +4,14 @@ import { getUser} from '../../actions/user_actions';
 import { createItinerary, getItinerary, editItinerary } from "../../actions/itinerary_actions";
 
 
-const mapStateToProps = (state, ownProps) => ({
-    currentUser: state.session.user,
-    itinerary: state.entities.itineraries[ownProps.match.params.itineraryId]
-
-})
+const mapStateToProps = (state, ownProps) => {
+    debugger 
+    return ({
+        currentUser: state.entities.user[state.session.user.id],
+        currentUserId: state.session.user.id,
+        itinerary: state.entities.itineraries[ownProps.match.params.itineraryId]
+    })
+}
 
 const mapDispatchToProps = (dispatch) => ({ 
     createItinerary: (itinerary) => dispatch(createItinerary(itinerary)), 
