@@ -20,6 +20,8 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 #### Profile
 
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68402088/152015885-f2987ffb-9f1f-4846-a720-8c0d459fc1b3.gif)
+
  - Users can see/edit their profile information, as well at their itineraries.
  - Users can delete or edit their itineraries.
  - Users can also delete the attractions in their itinerary.
@@ -34,6 +36,8 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
  - User can then draw a path on the map.
 
 #### Finding Attractions
+
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/68402088/152016310-90fd5073-b2b5-49f1-8e14-74af8d07c5e7.gif)
 
  - Users can add attractions that appear along the path drawn.
 
