@@ -14,9 +14,13 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 #### User Auth & Splash
 
+![Screen Recording 2022-02-01 at 11 37 13 AM](https://user-images.githubusercontent.com/68402088/152011783-18373bd4-e7db-4e77-a0d7-f25c90c69260.gif)
+
  - Users can create an account and enter their home address. Errors will be down when the user enters invalid information.
 
 #### Profile
+
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68402088/152015885-f2987ffb-9f1f-4846-a720-8c0d459fc1b3.gif)
 
  - Users can see/edit their profile information, as well at their itineraries.
  - Users can delete or edit their itineraries.
@@ -24,11 +28,16 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 #### Trip Planner
 
+![Screen Recording 2022-02-01 at 11 28 19 AM](https://user-images.githubusercontent.com/68402088/152011571-951470ab-110d-40da-91ef-5d6ec874eada.gif)
+
+
  - Users will be prompted to add a title and description for their itinerary.
  - Users then will be prompted to enter a starting and ending address.
  - User can then draw a path on the map.
 
 #### Finding Attractions
+
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/68402088/152016310-90fd5073-b2b5-49f1-8e14-74af8d07c5e7.gif)
 
  - Users can add attractions that appear along the path drawn.
 
