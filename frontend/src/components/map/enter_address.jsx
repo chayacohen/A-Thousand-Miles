@@ -32,20 +32,14 @@ class EnterAddress extends React.Component {
                  this.map.map.setZoom(5)
              }
              else {
-                 debugger 
-                 this.props.getUser(this.props.currentUser.id).then(userData => {
-                     debugger 
-                     const user = userData.user.data; 
-                     const address = { address: user.address, lat: user.address_coord.coordinates[1], lng: user.address_coord.coordinates[0] }
-                     this.setState({ address: address })
-                     this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
-                      this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
-                          url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(30, 30)
-                      })
-                      this.handleMapBounds();
-                      this.map.map.setZoom(5);
-                    }
-                 )
+                 const address = { address: this.props.currentUser.address, lat: this.props.currentUser.address_coord.coordinates[1], lng: this.props.currentUser.address_coord.coordinates[0] }
+                this.setState({ address: address })
+                this.props.editItinerary(this.props.match.params.itineraryId, { start_address: address.address, start_lat: address.lat, start_lng: address.lng }); 
+                 this.MarkerManager.addMarker({ lat: address.lat, lng: address.lng }, {
+                     url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
+                 })
+                 this.handleMapBounds();
+                 this.map.map.setZoom(5);
              }
              if(itineraryInfo.end_address) {
                  this.MarkerManager.addMarker({ lat: itineraryInfo.end_lat, lng: itineraryInfo.end_lng }, {
@@ -164,7 +158,7 @@ class EnterAddress extends React.Component {
 
         if (this.props.match.params.id === '1') {
             next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/map/2`} className="next-button-2">{'>'}</Link>
-        } else if (this.props.match.params.id === '2' && this.props.itinerary.end_address) {
+        } else if (this.props.match.params.id === '2' && this.props.itinerary && this.props.itinerary.end_address) {
             next = <Link to={`/itinerary/${this.props.match.params.itineraryId}/draw`} className="next-button-3" onClick={this.handleSubmitItinerary}>{'>'}</Link>
         } else {
             next = <a className="next-button-empty">{'>'}</a>
