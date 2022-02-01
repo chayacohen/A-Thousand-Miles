@@ -14,6 +14,8 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 #### User Auth & Splash
 
+![Screen Recording 2022-02-01 at 11 37 13 AM](https://user-images.githubusercontent.com/68402088/152011783-18373bd4-e7db-4e77-a0d7-f25c90c69260.gif)
+
  - Users can create an account and enter their home address. Errors will be down when the user enters invalid information.
 
 #### Profile
@@ -23,6 +25,9 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
  - Users can also delete the attractions in their itinerary.
 
 #### Trip Planner
+
+![Screen Recording 2022-02-01 at 11 28 19 AM](https://user-images.githubusercontent.com/68402088/152011571-951470ab-110d-40da-91ef-5d6ec874eada.gif)
+
 
  - Users will be prompted to add a title and description for their itinerary.
  - Users then will be prompted to enter a starting and ending address.
@@ -38,7 +43,7 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 A Thousand Miles is a MERN-stack web application that also utilizes Google Map API. MERN handles all of the users data and visualization while Google Map API is responsible to fetching data necessary to create itineraries and attractions.
 
 #### Google Map API
- - This web application utilizes Google Map API in order to auto-complete addresses, render maps, and fetch attraction locations.
+ - This web application utilizes Google Map API n order to auto-complete address, render maps, and fetch attraction locations.
 
 #### MERN
  - This web application utilizes MongoDB, Express, React, and Node.js to store data in a non-relational database with documents and renders all visual components through a single page model using React.
