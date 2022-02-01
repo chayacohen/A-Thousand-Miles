@@ -2,6 +2,8 @@
 [Link to the live site](https://a-thousand-miles.herokuapp.com/#/)
 ## Background and Overview 
 
+<img width="1440" alt="Screen Shot 2022-01-25 at 5 35 47 PM" src="https://user-images.githubusercontent.com/68402088/151903159-c50f6008-60ec-48cb-9565-1c91afa7ea4c.png">
+
 A Thousand Miles is a roadtrip planning web application that allows users to plan a trip through interactively drawing on a map. Users can create custom itineraries and add their favorite attractions.
 
 ## How does it work?
@@ -30,12 +32,6 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
  - Users can add attractions that appear along the path drawn.
 
-1. User Profile (CRUD)
-2. Maps 
-3. Drawing on Map  
-4. Itinerary (CRUD)
-5. Groups (bonus)
-6. Popular routes (bonus)
 
 ## Technologies
 
@@ -46,15 +42,6 @@ A Thousand Miles is a MERN-stack web application that also utilizes Google Map A
 
 #### MERN
  - This web application utilizes MongoDB, Express, React, and Node.js to store data in a non-relational database with documents and renders all visual components through a single page model using React.
-
-- MongoDB
-- Express 
-- React
-- Node.js 
-- Javascript 
-- HTML 
-- CSS 
-- Google MAPS/PLACES API 
 
 ## Code Snippets
 ``` Javascript
@@ -132,25 +119,3 @@ addMapListeners() {
 
 - The above code ensures that the map is positioned so all points (e.g. start and end address) are in view when the map is rendered.  
 
-
-
-## Timeline & Group Breakdown 
-
-### Day 1: 
-  - User Auth/Splash Fontend Routes (Nick) [/] 
-  - User profile (Brian) [/:id/profile]
-  - Figuring out map draw / fetch attractions from map (Chaya)
-  - User table / schema 
-
-### Day 2: 
-  - Map 
-  - Drawing on Map 
-
-### Day 3: 
-  - Completing itinerary 
-  - Updating and deleting itinerary 
-  - Adding itinerary to profile page 
-
-### Day 4: 
-  - Wrap up 
-  - (Bonus) Add groups feature 
