@@ -8,7 +8,7 @@ A Thousand Miles is a roadtrip planning web application that allows users to pla
 
 ## How does it work?
 
-A Thousand Miles' goal is to give the user an easy way to find attractions to visit when planning a road trip or vacation. Users will be able to create and account, log in, or sign in with a demo user. Once the user logs in, they will be prompted to create an itinerary for their trip. The user can then put in their starting address (defaulted to the address entered during sign up) and final destination. Users will then be able to draw a line on their map that represents the general path they would like to travel. Once the line is drawn, a list of tourist attraction location near the line will be available for the user to add to their itineray.
+A Thousand Miles' goal is to give the user an easy way to find attractions to visit when planning a road trip or vacation. Users will be able to create an account, log in, or sign in with a demo user. Once the user logs in, they will be prompted to create an itinerary for their trip. The user can then put in their starting address (defaulted to the address entered during sign up) and final destination. Users will then be able to draw a line between their start and end destinations that represents the general path they would like to travel. Once the line is drawn, a list of tourist attractions will population along the drawn path for the user to add to their itineray.
 
 ## Functionalitiy & MVP
 
@@ -16,15 +16,15 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 ![Screen Recording 2022-02-01 at 11 37 13 AM](https://user-images.githubusercontent.com/68402088/152011783-18373bd4-e7db-4e77-a0d7-f25c90c69260.gif)
 
- - Users can create an account and enter their home address. Errors will be down when the user enters invalid information.
+ - Users can create an account and enter their home address. Errors will be shown when the user enters invalid information.
 
 #### Profile
 
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68402088/152015885-f2987ffb-9f1f-4846-a720-8c0d459fc1b3.gif)
 
  - Users can see/edit their profile information, as well at their itineraries.
- - Users can delete or edit their itineraries.
- - Users can also delete the attractions in their itinerary.
+ - Users can edit or delete their itineraries.
+ - Users can also delete attractions from a given itinerary.
 
 #### Trip Planner
 
@@ -33,7 +33,7 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
  - Users will be prompted to add a title and description for their itinerary.
  - Users then will be prompted to enter a starting and ending address.
- - User can then draw a path on the map.
+ - Users can then draw a path on the map for their desired route.
 
 #### Finding Attractions
 
@@ -44,10 +44,10 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
 ## Technologies
 
-A Thousand Miles is a MERN-stack web application that also utilizes Google Map API. MERN handles all of the users data and visualization while Google Map API is responsible to fetching data necessary to create itineraries and attractions.
+A Thousand Miles is a MERN-stack web application that utilizes the Google Maps & Places API. The MERN stack handles all of the users data and visualization while the Google Maps & Places API is responsible for rendering maps, markers, and fetching data necessary to create itineraries and attractions.
 
-#### Google Map API
- - This web application utilizes Google Map API in order to auto-complete addresses, render maps, and fetch attraction locations.
+#### Google Maps & Places API
+ - This web application utilizes both the Google Maps & Places API in order to auto-complete addresses, render maps, and fetch attraction locations.
 
 #### MERN
  - This web application utilizes MongoDB, Express, React, and Node.js to store data in a non-relational database with documents and renders all visual components through a single page model using React.
@@ -113,7 +113,7 @@ addMapListeners() {
 - The above code is responsible for interactively drawing a line on the map.
 - The map listens for a mousedown event that activates a mousemove event listener.
 - The mousemove event listener adds lat/lng points to the Google Maps Polyline based on the mouse's position on the map.
-- The mouseup event listener, which is on the polyline, removes the mousemove event listener, adds the start position to the front of the line and the end position to the end of the line, ensuring a complete path from start to end. 
+- The mouseup event listener, which is on the polyline, removes the mousemove event listener, adds the start position to the front of the line and the end position to the end of the line, which ensures a complete path from start to end. 
 
 ``` Javascript 
     handleMapBounds() {
