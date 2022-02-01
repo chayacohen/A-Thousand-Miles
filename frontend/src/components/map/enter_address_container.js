@@ -5,7 +5,6 @@ import { createItinerary, getItinerary, editItinerary } from "../../actions/itin
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger 
     return ({
         currentUser: state.entities.user[state.session.user.id],
         currentUserId: state.session.user.id,

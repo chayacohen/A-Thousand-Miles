@@ -34,27 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore({});
   }
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  //itinerary
-  window.getItineraries = getItineraries;
-  window.getUserItineraries = getUserItineraries;
-  window.getItinerary = getItinerary;
-  window.createItinerary = createItinerary;
-  window.editItinerary = editItinerary;
-  window.deleteItinerary = deleteItinerary;
-  window.clearItinerariesFromState = clearItinerariesFromState;
-  //attraction
-  window.getAttractions = getAttractions;
-  window.getAttraction = getAttraction;
-  window.getItineraryAttractions = getItineraryAttractions;
-  window.createAttraction = createAttraction;
-  window.deleteAttraction = deleteAttraction;
-  window.editAttraction = editAttraction;
-  window.clearAttractionsFromState = clearAttractionsFromState;
-  //user
-  window.editUser = editUser;
-  window.getUser = getUser;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });
