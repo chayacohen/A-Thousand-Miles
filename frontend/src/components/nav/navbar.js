@@ -21,9 +21,9 @@ class NavBar extends React.Component {
     }
     getLinks() {
         if (this.props.loggedIn) {
-            const { pathname } = this.props.location
-            
-            if ( pathname === '/map/1' || pathname === '/map/2') {
+            const firstPath = this.props.location.pathname.split("/")[1]
+
+            if ( firstPath === 'trip' || firstPath === 'itinerary') {
                 return (
                 <div className='navbar'>
                     <NavLink to={'/profile'}>Profile</NavLink>

@@ -36,14 +36,14 @@ class StartItinerary extends React.Component {
                     <label>
                         Name your trip <img src="https://cdn-icons-png.flaticon.com/512/854/854945.png" />
                     </label>
-                    <input type="text" onChange={this.handleInputChange('title')}/>
+                    <input type="text" placeholder="e.g. National Park Tour" onChange={this.handleInputChange('title')}/>
                     <label>
                         Describe what you are looking forward to on this adventure <img src="https://cdn-icons-png.flaticon.com/512/2232/2232712.png"/>
                     </label>
-                    <input type="textarea" rows="2" wrap="hard" onChange={this.handleInputChange('description')}/>
+                    <input type="textarea" placeholder="Enter a description" rows="2" wrap="hard" onChange={this.handleInputChange('description')}/>
                     { this.state.title && this.state.description ? 
-                    <button className="a-active" onClick={this.handleNextClick}>🗺&nbsp;🡪</button>
-                    : <button className="a-inactive">🗺&nbsp;🡪</button> }
+                    <button className="a-active" onClick={this.handleNextClick}>Next</button>
+                    : <button className="a-inactive">Next</button> }
                 </section>
             </div>
         )

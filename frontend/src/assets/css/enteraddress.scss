@@ -69,9 +69,9 @@
         
     }
     
-    .address-fields{
-        
+    .address-fields{        
         #autocomplete{
+            padding-left: 20px;
             margin-bottom: 10px;
             margin-top: 15px;
             height:40px;
@@ -81,12 +81,7 @@
             border: 1px solid rgb(207, 207, 207);
             border-radius: 15px;
             // border: 1px solid rgb(255, 0, 13);
-        // border: 1px solid rgb(170, 62, 0);
 
-
-            input[type="text"] {
-                padding-left: 20px;
-            }
         }
     }
     
