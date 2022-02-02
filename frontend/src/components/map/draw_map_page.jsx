@@ -50,9 +50,17 @@ class DrawMapRoute extends React.Component {
         // this.map.map.setZoom(4.7)
         this.markerManager = new MarkerManager(this.map); 
         this.props.getItinerary(this.props.match.params.id).then(response => { 
-            if (response.itinerary.data.line.length > 0){
-                this.map.map.setOptions({draggable: true}); 
-                this.setState({ mapName: "after-draw-map-container"}); 
+            this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
+            this.markerManager.addMarker(this.state.start_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
+            })
+            this.markerManager.addMarker(this.state.end_pos, {
+                url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
+            })
+            this.handleMapBounds(); 
+            if (response.itinerary.data.line.length > 0) {
+                this.map.map.setOptions({ draggable: true });
+                this.setState({ mapName: "after-draw-map-container" });
                 this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
                     this.setState({ attractions: response.attractions.data })
                     this.state.attractions.forEach((attraction) => {
@@ -65,16 +73,8 @@ class DrawMapRoute extends React.Component {
                 })
             }
             else {
-                this.addMapListeners(); 
+                this.addMapListeners();
             }
-            this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
-            this.markerManager.addMarker(this.state.start_pos, {
-                url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', scaledSize: new google.maps.Size(40, 40)
-            })
-            this.markerManager.addMarker(this.state.end_pos, {
-                url: 'https://cdn-icons-png.flaticon.com/512/1072/1072569.png', scaledSize: new google.maps.Size(40, 40)
-            })
-            this.handleMapBounds() 
         })
     }
 
@@ -160,12 +160,14 @@ class DrawMapRoute extends React.Component {
     }
 
     addMapListeners() {
-        this.map.map.addListener("mousedown", (e) => {
-            this.clicked = !this.clicked
+        this.mapMouseDown = this.map.map.addListener("mousedown", (e) => {
+            this.clicked = true
         });
 
         this.drawListener = this.map.map.addListener("mousemove", e => {
+            // debugger
             if (this.clicked && this.round) {
+                debugger
                 this.addLatLng(e)
             }
         }); 
@@ -181,7 +183,7 @@ class DrawMapRoute extends React.Component {
                 this.setState({save: true}); 
             }
         });
-        this.map.map.addListener("mouseup", (e) => {
+        this.mapMouseUp = this.map.map.addListener("mouseup", (e) => {
             if (this.clicked) {
                 this.clicked = false;
                 this.round = false;
@@ -196,9 +198,11 @@ class DrawMapRoute extends React.Component {
         const markers = Object.values(this.markerManager.markers);
         markers.forEach(marker => {
             marker.addListener("mousedown", (e) => {
-                this.clicked = !this.clicked
+                this.clicked = true
+                debugger 
             });
             marker.addListener("mouseup", (e) => {
+                debugger 
                 if (this.clicked) {
                     this.clicked = false;
                     this.round = false;
@@ -277,13 +281,17 @@ class DrawMapRoute extends React.Component {
         this.map.map.setOptions({ draggable: false });
         this.addMapListeners(); 
         this.setState({draggable: false})
+        debugger 
     }
 
     handleDragClick() {
         this.map.map.setOptions({ draggable: true });
         if (this.drawListener) {
             this.drawListener.remove(); 
+            this.mapMouseUp.remove();
+            this.mapMouseDown.remove(); 
         }
+        debugger 
         this.setState({draggable: true}); 
     }
 
