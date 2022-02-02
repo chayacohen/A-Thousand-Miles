@@ -206,20 +206,40 @@
 }
 
 .map-instructions {
-    // border: solid 1px black;
+    // border: solid black 1px;
+    height: 9.5vh;
+    width: 69vw;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.first-ul, .second-ul {
+    // border: solid 1px black;
     list-style-type: disc;
-    height: 9vh;
-    width: 68vw;
+    list-style-position: inside;
+    // height: 9vh;
+    // width: 68vw;
+    // margin-left: 10px;
     display: flex;
     justify-content: flex-start;
     vertical-align: center;
     flex-direction: column;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+}
+
+.first-ul {
+    margin-right: 8px;
+
 }
 
 
-.map-instructions > li {
-    margin-bottom: 10px;
+.map-instructions li {
+    margin-bottom: 1%;
+    font-size: calc(10px + 0.4vw);
+    // word-wrap: break-word;
+    // word-break: break-all;
+    // white-space: normal;
+    overflow-wrap: break-word;
 }

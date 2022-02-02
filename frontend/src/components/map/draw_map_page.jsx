@@ -322,13 +322,17 @@ class DrawMapRoute extends React.Component {
                         </Link>}
                     </div>
                     {draw ?
-                        <ul className="map-instructions">
+                    <div className = "map-instructions">
+                        <ul className="first-ul">
                             <li>Drag your pointer from your start destination to create a route</li>
                             <li> Be sure to pass over areas you would like to explore</li>
                             <li>Release your mouse when you are done with your route</li>
+                        </ul> 
+                        <ul className="second-ul">
                             <li>Click reset anytime to redraw your route</li>
                             <li>Click save to finalize your route and see attractions along the way</li>
-                        </ul> : null}
+                        </ul>
+                    </div> : null}
                     {this.state.attractions.length === 0 ? null : 
                     <div className="attraction-index">
                         <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} getAttraction={this.props.getAttraction} />
