@@ -207,11 +207,18 @@
 
 .map-instructions {
     // border: solid 1px black;
-    width: 30%;
     margin: auto;
     margin-top: 40px;
     list-style-type: disc;
+    height: 9vh;
+    width: 68vw;
+    display: flex;
+    justify-content: flex-start;
+    vertical-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
+
 
 .map-instructions > li {
     margin-bottom: 10px;

@@ -323,9 +323,11 @@ class DrawMapRoute extends React.Component {
                     </div>
                     {draw ?
                         <ul className="map-instructions">
-                            <li>Hold your mouse down on the map to begin drawing</li>
-                            <li>Drag your mouse around the map to form a line</li>
-                            <li>Release your mouse hold to end drawing</li>
+                            <li>Drag your pointer from your start destination to create a route</li>
+                            <li> Be sure to pass over areas you would like to explore</li>
+                            <li>Release your mouse when you are done with your route</li>
+                            <li>Click reset anytime to redraw your route</li>
+                            <li>Click save to finalize your route and see attractions along the way</li>
                         </ul> : null}
                     {this.state.attractions.length === 0 ? null : 
                     <div className="attraction-index">
