@@ -181,7 +181,7 @@ class Splash extends React.Component{
                                                         Portfolio
                                                     </div>
                                                     <div className='person-info-link'>
-                                                        <a href="https://github.com/linb1" target="_blank"> <img src={portfolio} /> </a>
+                                                        <a href="https://linb1.github.io/portfolio/" target="_blank"> <img src={portfolio} /> </a>
                                                     </div>
                                                 </div>
                                             </div>
