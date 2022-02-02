@@ -204,3 +204,15 @@
 .draw-save-button:hover {
     background-color: #df923b;
 }
+
+.map-instructions {
+    // border: solid 1px black;
+    width: 30%;
+    margin: auto;
+    margin-top: 40px;
+    list-style-type: disc;
+}
+
+.map-instructions > li {
+    margin-bottom: 10px;
+}

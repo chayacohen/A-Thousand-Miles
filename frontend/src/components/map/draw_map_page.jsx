@@ -23,7 +23,7 @@ class DrawMapRoute extends React.Component {
             attractions: [], 
             start_pos: '',
             end_pos: '', 
-            draggable: true, 
+            draggable: false, 
             save: false
         }
         this.clicked = false;
@@ -46,27 +46,26 @@ class DrawMapRoute extends React.Component {
     componentDidMount() {
         this.map = new Map(this.mapNode)
         this.map.instantiateMap();
-        this.map.map.setOptions({ draggable: true });
+        this.map.map.setOptions({ draggable: false });
         // this.map.map.setZoom(4.7)
         this.markerManager = new MarkerManager(this.map); 
         this.props.getItinerary(this.props.match.params.id).then(response => { 
             if (response.itinerary.data.line.length > 0){
+                this.map.map.setOptions({draggable: true}); 
                 this.setState({ mapName: "after-draw-map-container"}); 
                 this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
                     this.setState({ attractions: response.attractions.data })
                     this.state.attractions.forEach((attraction) => {
                         this.markerManager.addMarker({ lat: attraction.lat, lng: attraction.lng }, { url: attraction.icon, scaledSize: new google.maps.Size(20, 20) })
                     })
-                    // this.getAddress(this.state.attractions).then(() => {
-                    //     this.props.getItineraryAttractions(this.props.match.params.id, false).then(response => {
-                    //         this.setState({ attractions: response.attractions.data })
-                    //     })
-                    // })
                 })
                 this.changeLineForMap();
                 this.state.line.forEach((location, index) => {
                     this.map.poly.getPath().insertAt(index, location);
                 })
+            }
+            else {
+                this.addMapListeners(); 
             }
             this.setState({ start_pos: new google.maps.LatLng(response.itinerary.data.start_lat, response.itinerary.data.start_lng), end_pos: new google.maps.LatLng(response.itinerary.data.end_lat, response.itinerary.data.end_lng)}) 
             this.markerManager.addMarker(this.state.start_pos, {
@@ -282,7 +281,9 @@ class DrawMapRoute extends React.Component {
 
     handleDragClick() {
         this.map.map.setOptions({ draggable: true });
-        this.drawListener.remove(); 
+        if (this.drawListener) {
+            this.drawListener.remove(); 
+        }
         this.setState({draggable: true}); 
     }
 
@@ -319,8 +320,13 @@ class DrawMapRoute extends React.Component {
                         {draw ? null : <Link to="/profile" className="draw-save-button">
                             SAVE ITINERARY
                         </Link>}
-                    
                     </div>
+                    {draw ?
+                        <ul className="map-instructions">
+                            <li>Hold your mouse down on the map to begin drawing</li>
+                            <li>Drag your mouse around the map to form a line</li>
+                            <li>Release your mouse hold to end drawing</li>
+                        </ul> : null}
                     {this.state.attractions.length === 0 ? null : 
                     <div className="attraction-index">
                         <ItineraryAttractionIndex itineraryId={this.props.match.params.id} editAttraction={this.props.editAttraction} attractions={this.state.attractions} getAttraction={this.props.getAttraction} />
