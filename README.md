@@ -10,6 +10,16 @@ A Thousand Miles is a roadtrip planning web application that allows users to pla
 
 A Thousand Miles' goal is to give the user an easy way to find attractions to visit when planning a road trip or vacation. Users will be able to create an account, log in, or sign in with a demo user. Once the user logs in, they will be prompted to create an itinerary for their trip. The user can then put in their starting address (defaulted to the address entered during sign up) and final destination. Users will then be able to draw a line between their start and end destinations that represents the general path they would like to travel. Once the line is drawn, a list of tourist attractions will population along the drawn path for the user to add to their itineray.
 
+## Technologies
+
+A Thousand Miles is a MERN-stack web application that utilizes the Google Maps & Places API. The MERN stack handles all of the users data and visualization while the Google Maps & Places API is responsible for rendering maps, markers, and fetching data necessary to create itineraries and attractions.
+
+#### Google Maps & Places API
+ - This web application utilizes both the Google Maps & Places API in order to auto-complete addresses, render maps, and fetch attraction locations.
+
+#### MERN
+ - This web application utilizes MongoDB, Express, React, and Node.js to store data in a non-relational database with documents and renders all visual components through a single page model using React.
+
 ## Functionalitiy & MVP
 
 #### User Auth & Splash
@@ -41,16 +51,6 @@ A Thousand Miles' goal is to give the user an easy way to find attractions to vi
 
  - Users can add attractions that appear along the path drawn.
 
-
-## Technologies
-
-A Thousand Miles is a MERN-stack web application that utilizes the Google Maps & Places API. The MERN stack handles all of the users data and visualization while the Google Maps & Places API is responsible for rendering maps, markers, and fetching data necessary to create itineraries and attractions.
-
-#### Google Maps & Places API
- - This web application utilizes both the Google Maps & Places API in order to auto-complete addresses, render maps, and fetch attraction locations.
-
-#### MERN
- - This web application utilizes MongoDB, Express, React, and Node.js to store data in a non-relational database with documents and renders all visual components through a single page model using React.
 
 ## Code Snippets
 ``` Javascript
