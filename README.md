@@ -100,10 +100,10 @@ addMapListeners() {
             if (this.clicked) {
                 this.clicked = false;
                 this.round = false;
-                this.path = this.map.poly.getPath().xd;
+                this.path = this.map.poly.getPath().Ed;
                 this.map.poly.getPath().insertAt(0, this.state.start_pos);
                 this.map.poly.getPath().insertAt((this.path.length), this.state.end_pos);
-                this.path = this.map.poly.getPath().xd;
+                this.path = this.map.poly.getPath().Ed;
                 this.setState({save: true}); 
             }
         });
