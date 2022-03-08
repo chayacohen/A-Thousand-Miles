@@ -120,11 +120,11 @@ class EditItinerary extends React.Component {
                     <div className="left-page">
                         <div>
                             <div className="edit-title-draw">
-                                <input className="draw-title" value={this.state.title} onFocus={this.handleFocus("focusTitle")} onChange={focusTitle ? this.handleInputChange("title") : null }/>
+                                <input className="draw-title" defaultValue={this.state.title} onFocus={this.handleFocus("focusTitle")} onChange={focusTitle ? this.handleInputChange("title") : null }/>
                                 {focusTitle ? <button onClick={this.handleSaveClick('focusTitle')}>✓</button> : null } 
                             </div>
                             <div className="edit-description-draw">
-                                <input className="draw-description" value={this.state.description} onFocus={this.handleFocus("focusDes")}  onChange={focusDes ? this.handleInputChange("description") : null}/>
+                                <input className="draw-description" defaultValue={this.state.description} onFocus={this.handleFocus("focusDes")}  onChange={focusDes ? this.handleInputChange("description") : null}/>
                                 {focusDes ? <button onClick={this.handleSaveClick('focusDes')}>✓</button> : null}
                             </div>
                         </div>
