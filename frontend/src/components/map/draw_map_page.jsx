@@ -165,9 +165,7 @@ class DrawMapRoute extends React.Component {
         });
 
         this.drawListener = this.map.map.addListener("mousemove", e => {
-            // debugger
             if (this.clicked && this.round) {
-                debugger
                 this.addLatLng(e)
             }
         }); 
@@ -176,11 +174,11 @@ class DrawMapRoute extends React.Component {
             if (this.clicked) {
                 this.clicked = false;
                 this.round = false;
-                this.path = this.map.poly.getPath().xd
+                this.path = this.map.poly.getPath().Ed
                 this.map.poly.getPath().insertAt(0, this.state.start_pos);
                 this.map.poly.getPath().insertAt((this.path.length), this.state.end_pos);
-                this.path = this.map.poly.getPath().xd
-                this.setState({save: true}); 
+                this.path = this.map.poly.getPath().Ed
+                this.setState({save: true});
             }
         });
         this.mapMouseUp = this.map.map.addListener("mouseup", (e) => {
@@ -199,10 +197,8 @@ class DrawMapRoute extends React.Component {
         markers.forEach(marker => {
             marker.addListener("mousedown", (e) => {
                 this.clicked = true
-                debugger 
             });
             marker.addListener("mouseup", (e) => {
-                debugger 
                 if (this.clicked) {
                     this.clicked = false;
                     this.round = false;
@@ -281,7 +277,6 @@ class DrawMapRoute extends React.Component {
         this.map.map.setOptions({ draggable: false });
         this.addMapListeners(); 
         this.setState({draggable: false})
-        debugger 
     }
 
     handleDragClick() {
@@ -291,7 +286,6 @@ class DrawMapRoute extends React.Component {
             this.mapMouseUp.remove();
             this.mapMouseDown.remove(); 
         }
-        debugger 
         this.setState({draggable: true}); 
     }
 
